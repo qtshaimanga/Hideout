@@ -23,7 +23,7 @@ class Terrain {
 		this.mesh = new THREE.Mesh( this.geometry, this.material );
 
 		this.img = new Image();
-		this.img.src = "images/heightmap.png";
+		this.img.src = "images/heightmap2.png";
 
 		this.img.onload = () => {
 			this.getHeightData();

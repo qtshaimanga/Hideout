@@ -1,7 +1,9 @@
 import THREE from 'three'
-import Wagner from '@superguigui/wagner'
-import BloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass'
-import OrbitControls from './OrbitControls'
+// import Wagner from '@superguigui/wagner'
+// import BloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass'
+// import OrbitControls from './OrbitControls'
+import FlyControls from './FlyControls'
+
 
 class Scene {
 
@@ -11,6 +13,7 @@ class Scene {
     constructor(width, height) {
 
         this.scene = new THREE.Scene();
+		this.scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.0015 );
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
         this.renderer.setSize(width, height);
@@ -21,27 +24,17 @@ class Scene {
 		this.camera.position.y = 240;
 		this.camera.position.x = 240;
 		this.camera.lookAt(new THREE.Vector3(0,0,0));
+		//
+		// var opts = {
+		// 	movementSpeed: 0.25,
+		// 	rollSpeed: 0.005
+		// };
 
-        this.controls = new OrbitControls(this.camera);
+		this.controls = new THREE.FlyControls(this.camera, undefined );
+		this.controls.dragToLook = false;
+		this.controls.autoForward = true;
 
-        this.initPostProcessing();
-
-    }
-
-    /**
-     * @method
-     * @name initPostProcessing
-     */
-    initPostProcessing() {
-
-        // this.composer = new Wagner.Composer(this.renderer);
-
-        this.bloomPass = new BloomPass({
-            applyZoomBlur: true,
-            zoomBlurStrength: 2,
-            blurAmount: 1
-        });
-
+		// this.controls = new OrbitControls(this.camera);
     }
 
     /**
@@ -77,6 +70,7 @@ class Scene {
 
         this.renderer.autoClearColor = true;
         this.renderer.render(this.scene, this.camera);
+		this.controls.update();
 
         // this.composer.reset();
         // this.composer.render(this.scene, this.camera);

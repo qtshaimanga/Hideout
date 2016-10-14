@@ -10,8 +10,8 @@
 	  //attribute vec2 uv;
 
 varying vec2 vUV;
-varying vec3 vPos;
-varying vec3 vCameraPosition;
+	  varying vec3 vPos;
+	  varying vec3 vCameraPosition;
 void main(void) {
 
 	vUV = uv;

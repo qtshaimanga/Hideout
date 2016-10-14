@@ -29,12 +29,12 @@ class App {
     }
 
 	addLights() {
-			var light = new THREE.AmbientLight( 0x404040 );
-			this.scene.add( light );
+		var light = new THREE.AmbientLight( 0x404040 );
+		this.scene.add( light );
 
-		var directionalLight = new THREE.DirectionalLight(0xffffff);
-		directionalLight.position.set(900, 400, 0).normalize();
-		this.scene.add(directionalLight);
+		// var directionalLight = new THREE.DirectionalLight(0xffffff);
+		// directionalLight.position.set(900, 500, 0).normalize();
+		// this.scene.add(directionalLight);
 	}
 
     /**

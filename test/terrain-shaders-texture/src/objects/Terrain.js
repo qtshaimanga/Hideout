@@ -93,7 +93,7 @@ class Terrain {
 		* @description Triggered on every TweenMax tick
 		*/
 	update() {
-		this.time += 0.001;
+		this.time += 0.01;
 		this.material.uniforms.time.value = this.time;
 
 		//   this.mesh.rotation.x += this.rotationSpeed;

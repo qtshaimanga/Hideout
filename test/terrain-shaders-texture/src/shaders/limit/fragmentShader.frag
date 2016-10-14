@@ -113,10 +113,18 @@ precision highp float;
 	  float fog = 1.0 - exp(-0.1 * distance(vCameraPosition, vPos));
 	  vec3 finalColor = mix(vPos.xyz, vec3(1.0), fog);
 	  vec3 noise = vec3(cnoise(vUV * 2.0 * vec2(40.0, 1.0) + time) );
-	  finalColor = noise * mix(vec3(0.1, 0.8 * sin(time), 8.0), vec3(1.0), noise);
+	//   finalColor = noise * mix(vec3(0.1, 0.8 * sin(time), 8.0), vec3(1.0), noise);
 	  // vec3 textureColor = texture2D(texture, vUV).rgb;
 	  // vec3 finalColor = mix(textureColor, vPos.xyz * sin(0.1 * time + 10.0 * vPos.x), 0.5);
 
+	//   gl_FragCoord.y
+
 	// gl_FragColor = vec4(vUV.x, vUV.y, 0.0, 1.0);
-	  gl_FragColor = vec4(finalColor, noise);
+
+	  float radiusRatio = (vPos.z) / 100.;
+	  radiusRatio = pow(sin(radiusRatio * 40.), 20.);
+
+	  vec3 color = mix(vec3(0.0, 0.0, 0.0), vec3(1.0, 1.0, 1.0), radiusRatio);
+
+	  gl_FragColor = vec4(color, 1.0);
 }

@@ -13,13 +13,13 @@ class Scene {
     constructor(width, height) {
 
         this.scene = new THREE.Scene();
-		// this.scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.0015 );
+		this.scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.0015 );
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
         this.renderer.setSize(width, height);
         this.renderer.setClearColor(0x111111);
 
-        this.camera = new THREE.PerspectiveCamera(50, width / height, 1, 2000);
+        this.camera = new THREE.PerspectiveCamera(50, width / height, 1, 5000);
         this.camera.position.z = 0;
 		this.camera.position.y = 150;
 		this.camera.position.x = 0;
@@ -29,12 +29,12 @@ class Scene {
 		// 	movementSpeed: 0.25,
 		// 	rollSpeed: 0.005
 		// };
+		//
+		// this.controls = new THREE.FlyControls(this.camera, undefined );
+		// this.controls.dragToLook = false;
+		// this.controls.autoForward = false;
 
-		this.controls = new THREE.FlyControls(this.camera, undefined );
-		this.controls.dragToLook = false;
-		this.controls.autoForward = false;
-
-		// this.controls = new OrbitControls(this.camera);
+		this.controls = new OrbitControls(this.camera);
     }
 
     /**

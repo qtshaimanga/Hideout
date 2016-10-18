@@ -1,7 +1,7 @@
 import THREE from 'three'
 import Wagner from '@superguigui/wagner'
 import BloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass'
-import OrbitControls from './OrbitControls'
+import {FlyControls} from './Controls'
 
 class Scene {
 
@@ -16,14 +16,15 @@ class Scene {
         this.renderer.setSize(width, height);
         this.renderer.setClearColor(0x111111);
 
-        this.camera = new THREE.PerspectiveCamera(50, width / height, 1, 2000);
+        this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 2500);
         this.camera.position.z = 1000;
+        this.camera.position.y = 240;
+        this.camera.position.x = 240;
+        this.camera.lookAt(new THREE.Vector3(0,0,0));
 
-    		this.camera.position.y = 240;
-    		this.camera.position.x = 240;
-    		this.camera.lookAt(new THREE.Vector3(0,0,0));
-
-        this.controls = new OrbitControls(this.camera);
+        this.controls = new THREE.FlyControls(this.camera);
+        this.controls.dragToLook = false;
+        this.controls.autoForward = false;
 
         this.initPostProcessing();
 
@@ -35,14 +36,6 @@ class Scene {
      */
     initPostProcessing() {
 
-        // this.composer = new Wagner.Composer(this.renderer);
-
-        this.bloomPass = new BloomPass({
-            applyZoomBlur: true,
-            zoomBlurStrength: 2,
-            blurAmount: 1
-        });
-
     }
 
     /**
@@ -52,9 +45,7 @@ class Scene {
      * @param {object} child - A THREE object
      */
     add(child) {
-
-        this.scene.add(child);
-
+      this.scene.add(child);
     }
 
     /**
@@ -64,10 +55,9 @@ class Scene {
      * @param {object} child - A THREE object
      */
     remove(child) {
-
-        this.scene.remove(child);
-
+      this.scene.remove(child);
     }
+
 
     /**
      * @method
@@ -75,15 +65,9 @@ class Scene {
      * @description Renders/Draw the scene
      */
     render() {
-
-        this.renderer.autoClearColor = true;
-        this.renderer.render(this.scene, this.camera);
-
-        // this.composer.reset();
-        // this.composer.render(this.scene, this.camera);
-        // this.composer.pass(this.bloomPass);
-        // this.composer.toScreen();
-
+      this.renderer.autoClearColor = true;
+      this.renderer.render(this.scene, this.camera);
+      this.controls.update();
     }
 
     /**
@@ -94,12 +78,9 @@ class Scene {
      * @param {number} newHeight
      */
     resize(newWidth, newHeight) {
-
-        this.camera.aspect = newWidth / newHeight;
-        this.camera.updateProjectionMatrix();
-
-        this.renderer.setSize(newWidth, newHeight);
-
+      this.camera.aspect = newWidth / newHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(newWidth, newHeight);
     }
 
 }

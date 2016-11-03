@@ -13,7 +13,7 @@ class Scene {
     constructor(width, height) {
 
         this.scene = new THREE.Scene();
-		this.scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.0015 );
+		// this.scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.0015 );
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
         this.renderer.setSize(width, height);

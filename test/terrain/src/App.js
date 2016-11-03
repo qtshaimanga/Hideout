@@ -14,26 +14,25 @@ class App {
         this.height = window.innerHeight;
 
         this.scene = new Scene(this.width, this.height);
-        // this.terrain = new Terrain();
 		this.terrain = new Terrain();
+
         this.scene.add(this.terrain.mesh);
 
         const root = document.body.querySelector('.app');
         root.appendChild(this.scene.renderer.domElement);
 
         this.addListeners();
-		    this.addLights();
+		this.addLights();
     }
 
-  	addLights() {
-  		var ambientLight = new THREE.AmbientLight(0x444444);
-  		ambientLight.intensity = 0.0;
-  		this.scene.add(ambientLight);
+	addLights() {
+		var light = new THREE.AmbientLight( 0x404040 );
+		this.scene.add( light );
 
-  		var directionalLight = new THREE.DirectionalLight(0xffffff);
-  		directionalLight.position.set(900, 400, 0).normalize();
-  		this.scene.add(directionalLight);
-  	}
+		var directionalLight = new THREE.DirectionalLight(0xffffff);
+		directionalLight.position.set(900, 400, 0).normalize();
+		this.scene.add(directionalLight);
+	}
 
     /**
      * @method

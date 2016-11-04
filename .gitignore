@@ -1,1 +1,6 @@
+<<<<<<< HEAD
+=======
+!.gitignore
+node_modules
+>>>>>>> 57c0d2358de6a5624aa85c503b48c0d9af3e80bc
 .DS_Store

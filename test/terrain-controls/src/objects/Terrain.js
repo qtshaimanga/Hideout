@@ -16,7 +16,7 @@ class Terrain {
 		// textureLoader = load( 'images/heightmap.png' );
 		this.material = new THREE.MeshLambertMaterial({
 			color: 0xccccff,
-			wireframe: false
+			wireframe: true
 			// map: this.texture
 		});
 
@@ -67,7 +67,7 @@ class Terrain {
 			var py = Math.floor(i/ns)/(ns) * this.img.height;
 			var idpx = Math.floor(this.img.width * py + px);
 			var terrainValue = terrain[idpx];
-			vertex.z = vertex.z + terrainValue * 200;
+			vertex.z = vertex.z + terrainValue * 150;
 		}
 
 		this.geometry.verticesNeedUpdate = true;

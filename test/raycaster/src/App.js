@@ -55,16 +55,20 @@ class App {
       var cameraRay = new THREE.Raycaster();
       cameraRay.setFromCamera(down2, this.scene.camera);
 
-  		var intersectCamera = cameraRay.intersectObject( this.terrain.mesh );
+      var intersectCamera = cameraRay.intersectObject( this.terrain.mesh );
 
       if(intersectCamera!= 0 && intersectCamera[0].distance <= 20){
         this.scene.camera.position.y = this.scene.camera.position.y + 20 - intersectCamera[0].distance;
       }
 
       //Test obj flottant
+      //var up = new THREE.Vector3(0, 20, 0);
       //var intersectCube = cameraRay.intersectObject( this.cube.mesh );
       // if(intersectCube!= 0 && intersectCube[0].distance <= 50){
       //   this.scene.camera.position.y = this.scene.camera.position.y + 50 - intersectCube[0].distance;
+      // }
+      // if(this.scene.camera.position.y >= 200 || this.scene.camera.position.y <= -200){
+      //   this.scene.camera.position.y = this.scene.camera.position.y - up.y;
       // }
 
     }

@@ -11,25 +11,61 @@ class App {
      */
     constructor() {
 		this.checkHover;
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
 
-        this.scene = new Scene(this.width, this.height);
+    this.scene = new Scene(this.width, this.height);
 		this.terrain = new Terrain();
 		this.cube = new Cube();
 
 		this.raycaster = new THREE.Raycaster();
 		this.mouse = new THREE.Vector2();
 
-        this.scene.add(this.terrain.mesh);
+    this.scene.add(this.terrain.mesh);
 		this.scene.add(this.cube.mesh);
 
-        const root = document.body.querySelector('.app');
-        root.appendChild(this.scene.renderer.domElement);
+    const root = document.body.querySelector('.app');
+    root.appendChild(this.scene.renderer.domElement);
 
-        this.addListeners();
+    this.addListeners();
 		this.addLights();
+    this.collisionneur();
     }
+
+  collisionneur(){
+    var down = new THREE.Vector2(0, 0);
+    var back = new THREE.Vector3(0, 0, 1);
+    var up = new THREE.Vector3(0, 20, 0);
+
+    var down2 = new THREE.Vector3(0,-1,1);
+
+    var cameraRay = new THREE.Raycaster();
+    cameraRay.setFromCamera(down2, this.scene.camera);
+
+    var intersectCamera = cameraRay.intersectObject( this.terrain.mesh );
+    var intersectCube = cameraRay.intersectObject( this.cube.mesh );
+    this.cube.mesh.position.y = 400;
+
+    var currentPosition = this.scene.camera.position.y;
+
+    if(intersectCamera!= 0 && intersectCamera[0].distance <= 80){
+      this.scene.camera.position.y = this.scene.camera.position.y + up.y;
+    }
+
+    for(var i=0; i<intersectCube.length; i++){
+      if(intersectCube!= 0 && intersectCube[i].distance <= 80){
+        this.scene.camera.position.z = this.scene.camera.position.z + up.y;
+      }
+    }
+
+    if(this.scene.camera.position.x >= 2000 && this.scene.camera.position.x >= -2000){
+      this.scene.camera.position.x = this.scene.camera.position.x - up.y;
+    }
+
+    if(this.scene.camera.position.y >= 200 || this.scene.camera.position.y <= -200){
+      this.scene.camera.position.y = this.scene.camera.position.y - up.y;
+    }
+  }
 
 	addLights() {
 		var light = new THREE.AmbientLight( 0x404040 );
@@ -82,7 +118,6 @@ class App {
 	var intersects = this.raycaster.intersectObjects( this.scene.scene.children );
 	for ( var i = 0; i < intersects.length; i++ ) {
 		if(intersects[ i ].object.name == 'cube' && intersects[ i ].distance < 400 ) {
-			// console.log(intersects[ i ].object);
 			this.checkHover += 1;
 			this.cube.update();
 			if(this.checkHover > 20) {
@@ -91,12 +126,10 @@ class App {
 		} else {
 			this.checkHover = 0;
 		}
-		// intersects[ i ].object.material.color.set( 0xff0000 );
-
 	}
 
-	// console.log(this.checkHover);
-
+	   //console.log(this.checkHover);
+    this.collisionneur();
 		this.terrain.update();
 		this.scene.render();
 

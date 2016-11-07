@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>cannon.js - Heightfield demo</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  </head>
+  <body>
+    <script src="./build/cannon.js"></script>
+    <script src="./build/cannon.demo.js"></script>
+    <script src="./libs/dat.gui.js"></script>
+    <script src="./libs/Three.js"></script>
+    <script src="./libs/TrackballControls.js"></script>
+    <script src="./libs/Detector.js"></script>
+    <script src="./libs/Stats.js"></script>
+    <script src="./libs/smoothie.js"></script>
+    <script>
+
+        this.img = new Image();
+        this.img.src = "assets/heightmap.png";
+
+        this.img.onload = () => {
+          getTerrainPixelData();
+          var terrain = getTerrainPixelData()
+          //console.log(terrain);
+        }
+
+        /**
+        *CREATE MATRIX WITH DATA
+        */
+        var m = [];
+        var terrain = getTerrainPixelData();
+        var sizeX = 50; //Math.sqrt(terrain.length);
+        var sizeY = 50; //Math.sqrt(terrain.length);
+
+        for (var i = 0; i < sizeX; i++) {
+            m.push([]);
+
+            for (var j = 0; j < sizeY; j++) {
+
+                for (var a=500; a<=550; a++){
+                   var height = terrain[i]
+
+                   if(i===0 || i === sizeX-1 || j===0 || j === sizeY-1)
+                     height = 1;
+                 }
+
+                m[i].push(Math.exp(height)*10);
+            }
+        }
+        console.log(m);
+
+        function map( num, min1, max1, min2, max2 ) {
+
+    			let num1 = ( num - min1 ) / ( max1 - min1 )
+    		  let num2 = ( num1 * ( max2 - min2 ) ) + min2
+
+    		  return num2;
+
+		    }
+
+
+
+
+
+        function getTerrainPixelData(){
+          var canvas = document.createElement('canvas');
+
+      		canvas.width = this.img.width;
+      		canvas.height = this.img.height;
+      		canvas.getContext('2d').drawImage(this.img, 0, 0, this.img.width, this.img.height);
+
+      		var data = canvas.getContext('2d').getImageData(0,0, this.img.height, this.img.width).data;
+      		var normPixels = []
+
+      		for (var i = 0, n = data.length; i < n; i += 4) {
+      			normPixels.push(((data[i] + data[i+1] + data[i+2]) / 3)/255);
+      		}
+
+      		return normPixels;
+        }
+
+
+        /*CANNON*/
+        var demo = new CANNON.Demo();
+
+        demo.addScene("BOX",function(){
+          var world = setupWorld(demo);
+
+          var vec3 = new CANNON.Vec3(1,1,1)
+          var boxShape = new CANNON.Box(vec3);
+          var boxBody = new CANNON.Body({ mass: 5 });
+          boxBody.addShape(boxShape);
+          boxBody.position.set(0, 8, 0);
+
+          boxBody.velocity.set(0,-10,0);
+          boxBody.linearDamping = 0;
+          world.addBody(boxBody);
+          demo.addVisual(boxBody);
+
+          // console.log(boxBody);
+          // console.log(boxShape);
+        });
+
+
+
+        function setupWorld(demo){
+          // Init world
+          var world = demo.getWorld();
+          world.gravity.set(0, 0, -10);
+          world.broadphase = new CANNON.NaiveBroadphase();
+
+          // Create a matrix of height values
+          var matrix = [];
+          var sizeX = 64,
+              sizeY = 64;
+          for (var i = 0; i < sizeX; i++) {
+              matrix.push([]);
+              for (var j = 0; j < sizeY; j++) {
+                var height = Math.cos(i / sizeX * Math.PI * 5) * Math.cos(j/sizeY * Math.PI * 5) * 2 + 2;
+                  if(i===0 || i === sizeX-1 || j===0 || j === sizeY-1)
+                      height = 1;
+
+                  matrix[i].push(height);
+              }
+          }
+          //var matrix = getTerrainPixelData();
+          //console.log(matrix);
+
+          // Create the heightfield
+          var hfShape = new CANNON.Heightfield(m, {
+              elementSize: 1
+          });
+          var hfBody = new CANNON.Body({ mass: 0 });
+
+          hfBody.addShape(hfShape);
+          hfBody.position.set(-10, -20, -20);
+          world.addBody(hfBody);
+          demo.addVisual(hfBody);
+          //hfBody.quaternion.setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), - Math.PI / 2 );
+
+          return world;
+        }
+
+      demo.start();
+
+    </script>
+  </body>
+</html>

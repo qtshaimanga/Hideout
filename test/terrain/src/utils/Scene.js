@@ -21,6 +21,12 @@ class Scene {
 
         this.camera = new THREE.PerspectiveCamera(50, width / height, 1, 2000);
         this.camera.position.z = 1000;
+<<<<<<< HEAD
+
+    		this.camera.position.y = 240;
+    		this.camera.position.x = 240;
+    		this.camera.lookAt(new THREE.Vector3(0,0,0));
+=======
 		this.camera.position.y = 240;
 		this.camera.position.x = 240;
 		this.camera.lookAt(new THREE.Vector3(0,0,0));
@@ -29,6 +35,7 @@ class Scene {
 		// 	movementSpeed: 0.25,
 		// 	rollSpeed: 0.005
 		// };
+>>>>>>> 068f3c23438d5459f54b65b841886ab00cb614b8
 
 		this.controls = new THREE.FlyControls(this.camera, undefined );
 		this.controls.dragToLook = false;

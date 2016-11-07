@@ -1,5 +1,5 @@
-import 'TweenMax'
-import Scene from './utils/Scene'
+import { TweenMax } from 'gsap'
+import Scene from './scenes/Scene'
 import Cube from './objects/Cube'
 
 class App {

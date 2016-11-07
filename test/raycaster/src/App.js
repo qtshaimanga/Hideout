@@ -49,64 +49,26 @@ class App {
     }
 
     collisionneur(){
-      //console.log(this.protector.mesh.position);
-      //this.proctector.position = this.scene.camera.position;
-
-      //WTF
-      // this.protector.mesh.position.y = this.scene.camera.position.y
-      // this.protector.mesh.position.x = this.protector.mesh.position.x
-      // this.protector.mesh.position.z = this.scene.camera.position.z
-
-  		var down = new THREE.Vector2(0, 0);
-      var back = new THREE.Vector3(0, 0, 1);
-      var up = new THREE.Vector3(0, 20, 0);
+      this.cube.mesh.position.y = 400;
 
       var down2 = new THREE.Vector3(0,-1,1);
-      //down2.multiplyScalar(10);
-
       var cameraRay = new THREE.Raycaster();
-      //cameraRay.setFromCamera(down, this.scene.camera);
       cameraRay.setFromCamera(down2, this.scene.camera);
-
-      //calcul diff entre deux vecteur et avoir up different
-      //var cubeRay = new THREE.Raycaster(this.protector, this.scene.camera);
 
   		var intersectCamera = cameraRay.intersectObject( this.terrain.mesh );
 
-      //SET L'OBJET FLOTTANT cube
-      var intersectCube = cameraRay.intersectObject( this.cube.mesh );
-      //TEST : SET CUBE POSITION
-      this.cube.mesh.position.y = 400;
-
-      var currentPosition = this.scene.camera.position.y;
-
-      var max = intersectCamera.length - 1;
-      for(var i=0; i<intersectCamera.length; i++){
-
-      }
-      if(intersectCamera!= 0 && intersectCamera[0].distance <= 80){
-        //console.log("pts", intersectCamera[0].point);
-        //console.log("cam", this.scene.camera.position);
-        this.scene.camera.position.y = this.scene.camera.position.y + up.y;
+      if(intersectCamera!= 0 && intersectCamera[0].distance <= 20){
+        this.scene.camera.position.y = this.scene.camera.position.y + 20 - intersectCamera[0].distance;
       }
 
-      for(var i=0; i<intersectCube.length; i++){
-        if(intersectCube!= 0 && intersectCube[i].distance <= 80){
-          this.scene.camera.position.z = this.scene.camera.position.z + up.y;
-        }
-      }
-
-      if(this.scene.camera.position.x >= 2000 && this.scene.camera.position.x >= -2000){
-        this.scene.camera.position.x = this.scene.camera.position.x - up.y;
-      }
-
-      if(this.scene.camera.position.y >= 200 || this.scene.camera.position.y <= -200){
-        this.scene.camera.position.y = this.scene.camera.position.y - up.y;
-      }
+      //Test obj flottant
+      //var intersectCube = cameraRay.intersectObject( this.cube.mesh );
+      // if(intersectCube!= 0 && intersectCube[0].distance <= 50){
+      //   this.scene.camera.position.y = this.scene.camera.position.y + 50 - intersectCube[0].distance;
+      // }
 
     }
-    //collision avec l'ex de la map
-    //vecteur opposé
+
 
     /**
     * @method

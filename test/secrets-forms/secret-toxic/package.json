@@ -19,10 +19,8 @@
   },
   "homepage": "https://github.com/ArnaudRocca/three-js-starter-kit",
   "dependencies": {
-    "cannon": "^0.6.2",
     "gsap": "^1.18.4",
-    "three": "^0.76.1",
-    "three-trackballcontrols": "0.0.5"
+    "three": "^0.76.1"
   },
   "devDependencies": {
     "@superguigui/wagner": "^0.1.21",

@@ -37,11 +37,11 @@ class Limit {
      */
     update() {
 
-		this.time += 0.005;
-		this.material.uniforms.time.value = this.time;
-        // this.mesh.rotation.x += this.rotationSpeed;
-        // this.mesh.rotation.y += this.rotationSpeed;
-        // this.mesh.rotation.z += this.rotationSpeed;
+  		this.time += 0.005;
+  		this.material.uniforms.time.value = this.time;
+      // this.mesh.rotation.x += this.rotationSpeed;
+      // this.mesh.rotation.y += this.rotationSpeed;
+      // this.mesh.rotation.z += this.rotationSpeed;
 
     }
 

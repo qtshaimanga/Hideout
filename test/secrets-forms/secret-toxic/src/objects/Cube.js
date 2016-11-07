@@ -7,7 +7,8 @@ class Cube {
      */
     constructor() {
 
-        this.size = 1;
+        this.size = 200;
+        this.rotationSpeed = .01;
 
         this.geometry = new THREE.BoxGeometry(this.size, this.size, this.size);
         this.material = new THREE.MeshBasicMaterial({
@@ -26,6 +27,9 @@ class Cube {
      */
     update() {
 
+        this.mesh.rotation.x += this.rotationSpeed;
+        this.mesh.rotation.y += this.rotationSpeed;
+        this.mesh.rotation.z += this.rotationSpeed;
 
     }
 

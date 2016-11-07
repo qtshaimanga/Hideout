@@ -12,18 +12,18 @@ class Scene {
      */
     constructor(width, height) {
 
-        this.scene = new THREE.Scene();
-		this.scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.0015 );
+      this.scene = new THREE.Scene();
+		  this.scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.0015 );
 
-        this.renderer = new THREE.WebGLRenderer({antialias: true});
-        this.renderer.setSize(width, height);
-        this.renderer.setClearColor(0x111111);
+      this.renderer = new THREE.WebGLRenderer({antialias: true});
+      this.renderer.setSize(width, height);
+      this.renderer.setClearColor(0x111111);
 
-        this.camera = new THREE.PerspectiveCamera(50, width / height, 1, 5000);
-        this.camera.position.z = 0;
-		this.camera.position.y = 150;
-		this.camera.position.x = 0;
-		this.camera.lookAt(new THREE.Vector3(0,0,0));
+      this.camera = new THREE.PerspectiveCamera(50, width / height, 1, 5000);
+      this.camera.position.z = 0;
+  		this.camera.position.y = 150;
+  		this.camera.position.x = 0;
+  		this.camera.lookAt(new THREE.Vector3(0,0,0));
 		//
 		// var opts = {
 		// 	movementSpeed: 0.25,
@@ -34,7 +34,7 @@ class Scene {
 		// this.controls.dragToLook = false;
 		// this.controls.autoForward = false;
 
-		this.controls = new OrbitControls(this.camera);
+		  this.controls = new OrbitControls(this.camera);
     }
 
     /**
@@ -70,7 +70,7 @@ class Scene {
 
         this.renderer.autoClearColor = true;
         this.renderer.render(this.scene, this.camera);
-		this.controls.update();
+		    this.controls.update();
 
         // this.composer.reset();
         // this.composer.render(this.scene, this.camera);

@@ -11,21 +11,22 @@ class App {
      */
     constructor() {
 
-        this.width = window.innerWidth;
-        this.height = window.innerHeight;
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
 
-        this.scene = new Scene(this.width, this.height);
-		this.terrain = new Terrain();
-		// this.limit = new Limit();
+      this.scene = new Scene(this.width, this.height);
+  		this.terrain = new Terrain();
+  		// this.limit = new Limit();
 
-        this.scene.add(this.terrain.mesh);
-		// this.scene.add(this.limit.mesh);
+      this.scene.add(this.terrain.mesh);
+	    // this.scene.add(this.limit.mesh);
 
-        const root = document.body.querySelector('.app');
-        root.appendChild(this.scene.renderer.domElement);
+      const root = document.body.querySelector('.app');
+      root.appendChild(this.scene.renderer.domElement);
 
-        this.addListeners();
-		this.addLights();
+      this.addListeners();
+	    this.addLights();
+      
     }
 
 	addLights() {

@@ -25,6 +25,8 @@ class Scene {
         this.controls = new THREE.FlyControls(this.camera);
         this.controls.dragToLook = false;
         this.controls.autoForward = false;
+        this.controls.movementSpeed = 2;
+
 
         this.initPostProcessing();
 
@@ -68,6 +70,40 @@ class Scene {
       this.renderer.autoClearColor = true;
       this.renderer.render(this.scene, this.camera);
       this.controls.update();
+
+      //TEST 1
+      if(this.controls.rotationVector.y != 0){
+        this.controls.rotationVector.x = 0;
+      }
+      if(this.controls.rotationVector.y != 0){
+        this.controls.rotationVector.x = 0;
+      }
+
+      //TEST 2
+      // var forward = this.camera.getWorldDirection().clone().normalize();
+      // var up = new THREE.Vector3(0, 1, 0);
+      // var right = forward.clone().cross(up);
+      //
+      // var rotation = new THREE.Matrix4().makeBasis(right, up, forward);
+      // this.camera.rotation.set(0,0,0);
+      //
+      // var matrix =  this.camera.matrix.multiply(rotation);
+      // this.camera.matrix = matrix;
+
+      //TEST 3
+      // var forward = this.camera.getWorldDirection().clone().normalize();
+      // var up = new THREE.Vector3(0, 1, 0);
+      //
+      // var matrix = new THREE.Matrix4();
+      // matrix.lookAt(
+      //   this.camera.position,
+      //   this.camera.position.clone().add(forward),
+      //   up
+      // );
+      //
+      // this.camera.matrix.copy(matrix);
+      // console.log([this.camera, matrix, forward, up]);
+      
     }
 
     /**

@@ -1,7 +1,5 @@
 import THREE from 'three'
-import Wagner from '@superguigui/wagner'
-import BloomPass from '@superguigui/wagner/src/passes/bloom/MultiPassBloomPass'
-import OrbitControls from './OrbitControls'
+import OrbitControls from '../controls/OrbitControls'
 
 class Scene {
 
@@ -21,25 +19,8 @@ class Scene {
 
         this.controls = new OrbitControls(this.camera);
 
-        this.initPostProcessing();
-
     }
 
-    /**
-     * @method
-     * @name initPostProcessing
-     */
-    initPostProcessing() {
-
-        this.composer = new Wagner.Composer(this.renderer);
-
-        this.bloomPass = new BloomPass({
-            applyZoomBlur: true,
-            zoomBlurStrength: 2,
-            blurAmount: 1
-        });
-
-    }
 
     /**
      * @method
@@ -73,12 +54,7 @@ class Scene {
     render() {
 
         this.renderer.autoClearColor = true;
-        // this.renderer.render(this.scene, this.camera);
-
-        this.composer.reset();
-        this.composer.render(this.scene, this.camera);
-        this.composer.pass(this.bloomPass);
-        this.composer.toScreen();
+        this.renderer.render(this.scene, this.camera);
 
     }
 

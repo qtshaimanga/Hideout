@@ -2,4 +2,7 @@
 node_modules
 *.log*
 *.DS_Store
+.DS_Store
 build
+
+test/.DS_Store

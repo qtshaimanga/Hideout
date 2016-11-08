@@ -12,7 +12,7 @@ class Alpha {
 
 		this.size = 50;
 		this.rotationSpeed = .01;
-		
+
 	}
 
 	load() {

@@ -12,7 +12,7 @@ class Scene {
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
         this.renderer.setSize(width, height);
-        this.renderer.setClearColor(0x111111);
+        this.renderer.setClearColor(0xF5F5F5);
 
         this.camera = new THREE.PerspectiveCamera(50, width / height, 1, 2000);
         this.camera.position.z = 1000;

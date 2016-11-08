@@ -1,5 +1,5 @@
 #SYSTEM
-.DS_Store
+*.DS_Store
 .git
 
 #MODULES

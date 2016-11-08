@@ -12,8 +12,8 @@
 varying vec2 vUV;
 	  varying vec3 vPos;
 	  varying vec3 vCameraPosition;
-void main(void) {
 
+void main(void) {
 	vUV = uv;
 			  vPos = position;
 			  vCameraPosition = cameraPosition;

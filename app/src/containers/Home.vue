@@ -1,13 +1,14 @@
 <template>
 	<div class="home">
 		<navigation></navigation>
-		<div id="main"></div>
+		<div id="webgl"></div>
 	</div>
 </template>
 
 <script>
+
 import { TweenMax } from 'gsap';
-import { TimelineLite } from 'gsap';
+// import { TimelineLite } from 'gsap';
 
 import Scene from '../components/webgl/scene.class.js';
 import Cube from '../components/webgl/objects/cube.class.js';
@@ -36,13 +37,13 @@ export default {
 	},
 	//http://vuejs.org/guide/migration.html#ready
 	mounted: function() {
-		Vue.nextTick(function () {
+		this.$nextTick(function () {
 			// code that assumes this.$el is in-document
 			window.addEventListener('resize', this.onResize);
 			TweenMax.ticker.addEventListener('tick', this.update);
 
 			this.scene.add(this.cube.mesh);
-			main.appendChild(this.scene.renderer.domElement);
+			webgl.appendChild(this.scene.renderer.domElement);
 		})
 	},
 	beforeDestroy: function(){
@@ -65,8 +66,8 @@ export default {
 <style lang="scss" scoped>
 
 .home{
-	width: 0%;
-	height: 0%;
+	width: 100%;
+	height: 100%;
 	margin: 0px;
 	padding: 0px;
 	background-color: green;

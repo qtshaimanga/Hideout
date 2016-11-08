@@ -5,9 +5,13 @@
 </template>
 
 <script>
-import store from './store'
 
+import Vue from 'vue'
+
+import store from './store'
+import router from './router'
 export default {
+	router,
 	components: {},
 	store: store,
 	data () {
@@ -32,6 +36,7 @@ html{
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
+	overflow: hidden;
 }
 
 body{
@@ -42,8 +47,8 @@ body{
 }
 
 .app{
-	width: 0%;
-	height: 0%;
+	width: 100%;
+	height: 100%;
 	margin: 0px;
 	padding: 0px;
 }

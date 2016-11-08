@@ -6,28 +6,21 @@ import Home from './containers/Home'
 import NotFound from './containers/NotFound'
 
 Vue.use(VueRouter)
-var router = new VueRouter({
-  history: false
+const routes = [
+  {
+    path: '/',
+    component: Home
+  },
+  {
+    path: '*',
+    component: NotFound
+   }
+];
+
+const router = new VueRouter({
+  mode: 'history',
+  scrollBehavior: () => ({ y: 0 }),
+  routes
 });
 
-router.map({
-    '/': {
-      name: 'home',
-      component: Home
-    },
-    '*':{
-      name: 'lost',
-      component: NotFound
-    }
-})
-
-router.beforeEach(function (transition) {
-  window.scrollTo(0, 0)
-  transition.next()
-})
-
-router.afterEach(function (transition) {
-  console.log('Successfully navigated to: ' + transition.to.path)
-})
-
-router.start(App, '#app')
+export { router };

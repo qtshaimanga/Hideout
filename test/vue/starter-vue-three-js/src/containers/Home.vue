@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <navigation></navigation>
-    <div id="main"></div>
+    <div id="webgl"></div>
   </div>
 </template>
 
@@ -34,15 +34,15 @@ export default {
     this.scene = new Scene(this.width, this.height);
     this.cube = new Cube();
   },
-	ready: function() {
+	mounted: function() {
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);
 
     this.scene.add(this.cube.mesh);
-    main.appendChild(this.scene.renderer.domElement);
+    webgl.appendChild(this.scene.renderer.domElement);
   },
   beforeDestroy: function(){
-    
+
   },
   methods:{
     onResize: function(event){

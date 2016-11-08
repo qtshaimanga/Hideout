@@ -14,13 +14,11 @@ export default {
   data () {
     return {}
   },
-	ready: function() {
+	mounted: function() {
 
   },
   methods:{
-    init: function(event){
 
-    }
   }
 }
 </script>

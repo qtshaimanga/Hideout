@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div id="app">
     <router-view></router-view>
   </div>
 </template>
@@ -8,13 +8,18 @@
 import store from './store'
 
 export default {
-  components: {},
   store: store,
   data () {
-    return {}
+    return {
+
+    }
   },
-  ready: function() {},
-  methods:{}
+  mounted: function() {
+
+  },
+  methods:{
+
+  }
 }
 </script>
 
@@ -22,23 +27,16 @@ export default {
 @import "./styles/fonts.scss";
 @import "./styles/transition.scss";
 
-  html{
+  html, body{
     width: 100%;
     height: 100%;
     margin: 0px;
     padding: 0px;
   }
 
-  body{
+  #app{
     width: 100%;
     height: 100%;
-    margin: 0px;
-    padding: 0px;
-  }
-
-  .app{
-    width: 0%;
-    height: 0%;
     margin: 0px;
     padding: 0px;
   }

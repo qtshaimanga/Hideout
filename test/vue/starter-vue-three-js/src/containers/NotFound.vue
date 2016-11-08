@@ -7,14 +7,14 @@
 
 export default {
   components: {
-    
+
   },
   data () {
     return {
 
     }
   },
-	ready: function() {
+	mounted: function() {
 
   },
   methods:{

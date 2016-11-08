@@ -86,7 +86,7 @@ class Terrain {
 
 			var vertex = vertices[i];
 			var terrainValue = terrain[terrainId]
-			vertex.z = vertex.z + terrainValue * 500;
+			vertex.z = vertex.z + terrainValue * 200;
 		}
 
 		this.geometry.verticesNeedUpdate = true;

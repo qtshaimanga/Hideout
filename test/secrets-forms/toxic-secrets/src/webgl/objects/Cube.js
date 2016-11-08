@@ -1,4 +1,6 @@
 import THREE from 'three'
+import VertexShader from '../shaders/toxicSecrets/vertexShader.vert'
+import FragmentShader  from '../shaders/toxicSecrets/fragmentShader.frag'
 
 class Cube {
 
@@ -11,9 +13,18 @@ class Cube {
         this.rotationSpeed = .01;
 
         this.geometry = new THREE.BoxGeometry(this.size, this.size, this.size);
-        this.material = new THREE.MeshBasicMaterial({
-            wireframe: true,
-            color: 0x0000FF
+        // this.material = new THREE.MeshBasicMaterial({
+        //     wireframe: true,
+        //     color: 0xFFFFFF
+        // });
+
+        this.material = new THREE.ShaderMaterial({
+        	uniforms: {
+        		time: { type: "f", value: 1.0 },
+        		resolution: { type: "v2", value: new THREE.Vector2() }
+        	},
+        	vertexShader: VertexShader,
+        	fragmentShader: FragmentShader
         });
 
         this.mesh = new THREE.Mesh(this.geometry, this.material);

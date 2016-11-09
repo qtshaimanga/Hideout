@@ -13,7 +13,7 @@ class Cube {
       this.geometry = new THREE.BoxGeometry(this.size, this.size, this.size);
       this.material = new THREE.MeshBasicMaterial({
           wireframe: true,
-          color: 0x0000FF
+          color: 0x808080
       });
 
       this.mesh = new THREE.Mesh(this.geometry, this.material);

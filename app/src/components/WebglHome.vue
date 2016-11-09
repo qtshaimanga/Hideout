@@ -1,6 +1,5 @@
 <template>
-
-  <div class="webgl-home" id="yolo">
+  <div class="webgl-home">
   </div>
 </template>
 
@@ -35,24 +34,24 @@ export default {
     this.scene = new Scene(this.width, this.height);
     this.toxic = new Toxic();
     this.sugar = new Sugar();
-	this.terrain = new Terrain();
-
+    this.terrain = new Terrain();
   },
-	mounted: function() {
+  mounted: function() {
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);
 
     this.toxic.mesh.position.set(-200, 10, -500);
-    this.scene.add(this.toxic.mesh);
+    //this.scene.add(this.toxic.mesh);
 
     this.sugar.mesh.position.set(200, 0, -600);
-    this.scene.add(this.sugar.mesh);
+    //this.scene.add(this.sugar.mesh);
 
-	this.scene.add(this.terrain.mesh);
+    this.scene.add(this.terrain.mesh);
 
-	this.down = new THREE.Vector3(0,0,0);
-	this.cameraRay = new THREE.Raycaster();
-	this.cameraRay.setFromCamera(this.down, this.scene.camera);
+    this.down = new THREE.Vector3(0,0,0);
+    this.cameraRay = new THREE.Raycaster();
+    this.cameraRay.setFromCamera(this.down, this.scene.camera);
+    //this.collisionneur();
 
     this.$el.appendChild(this.scene.renderer.domElement);
   },
@@ -60,26 +59,22 @@ export default {
 
   },
   methods:{
-	  addLights() {
-		  console.log('>>>');
-		  var light = new THREE.AmbientLight( 0xffffff );
-		  this.scene.add( light );
+    addLights() {
+      console.log('>>>');
+      var light = new THREE.AmbientLight( 0xffffff );
+      this.scene.add( light );
 
-		  var directionalLight = new THREE.DirectionalLight(0xffffff);
-		  directionalLight.position.set(900, 400, 0).normalize();
-		  this.scene.add(directionalLight);
-	  },
-	  collisionneur(){
+      var directionalLight = new THREE.DirectionalLight(0xffffff);
+      directionalLight.position.set(900, 400, 0).normalize();
+      this.scene.add( directionalLight );
+    },
+    collisionneur(){
+      var intersectCamera = this.cameraRay.intersectObject( this.terrain.mesh );
 
-		  var intersectCamera = this.cameraRay.intersectObject( this.terrain.mesh );
-
-		  if(intersectCamera!= 0 && intersectCamera[0].distance < 80){
-			  this.scene.camera.position.y = this.scene.camera.position.y + 80 - intersectCamera[0].distance;
-		  }else{
-			  console.log("not");
-		  }
-
-	  },
+      if(intersectCamera!= 0 && intersectCamera[0].distance < 80){
+        this.scene.camera.position.y = this.scene.camera.position.y + 80 - intersectCamera[0].distance;
+      }
+    },
     onResize: function(event){
       this.width = window.innerWidth;
       this.height = window.innerHeight;
@@ -89,7 +84,7 @@ export default {
       this.toxic.update();
       this.sugar.update();
       this.scene.render();
-	  this.collisionneur();
+      //this.collisionneur();
     }
   }
 }
@@ -98,11 +93,11 @@ export default {
 <style lang="scss" scoped>
 
 .webgl-home, canvas{
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-	overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow: hidden;
 }
 
 </style>

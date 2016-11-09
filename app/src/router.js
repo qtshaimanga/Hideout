@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from './containers/Home'
-// import Accueil from './containers/Home'
 import NotFound from './containers/NotFound'
 
 Vue.use(VueRouter)

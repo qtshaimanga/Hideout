@@ -1,4 +1,6 @@
-const THREE = require('three');
+import * as THREE from 'three';
+import FirstPersonControls from '../controls/FirstPersonControls';
+
 
 class Scene {
 
@@ -9,24 +11,36 @@ class Scene {
 
         this.scene = new THREE.Scene();
 
+        this.fogColor = 0xFFFFFF;
+ 		    this.scene.fog = new THREE.FogExp2( this.fogColor, 0.0025 );
+
         this.renderer = new THREE.WebGLRenderer({antialias: true});
         this.renderer.setSize(width, height);
         this.renderer.setClearColor(0xF5F5F5);
 
         this.camera = new THREE.PerspectiveCamera(74, width / height, 1, 1000);
         this.camera.position.z = 0;
+        this.camera.position.y = 150;
+        this.camera.position.x = 0;
+	      this.camera.lookAt(new THREE.Vector3(0,1,0));
 
         this.addLight();
+
+        this.clock = new THREE.Clock();
+        this.controls = new THREE.FirstPersonControls(this.camera);
+        this.controls.movementSpeed = 150;
+ 	      this.controls.lookSpeed = 0.1;
 
     }
 
     addLight(){
-      this.scene.add(new THREE.AmbientLight(0x404040));
 
-      this.directional = new THREE.DirectionalLight(0x808080);
-      this.directional.position.set(1, 1, 1);
-      this.directional.lookAt(new THREE.Vector3());
-      this.scene.add(this.directional);
+        this.scene.add(new THREE.AmbientLight(0x404040));
+
+        this.directional = new THREE.DirectionalLight(0x808080);
+        this.directional.position.set(1, 1, 1);
+        this.directional.lookAt(new THREE.Vector3());
+        this.scene.add(this.directional);
 
     }
 
@@ -63,6 +77,8 @@ class Scene {
 
       this.renderer.autoClearColor = true;
       this.renderer.render(this.scene, this.camera);
+
+      this.controls.update(this.clock.getDelta());
 
     }
 

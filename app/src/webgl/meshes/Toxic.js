@@ -70,7 +70,6 @@ class Toxic {
         // this.mesh.rotation.x += this.time;
         // this.mesh.rotation.y += this.time;
         // this.mesh.rotation.z += this.time;
-
         this.material.uniforms.u_time.value += this.time;
 
     }

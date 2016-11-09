@@ -10,20 +10,18 @@ class Terrain {
 		this.width = 4000;
 		this.height = 4000;
 		this.numSegments = 100;
-		// plane
+
 		this.geometry = new THREE.PlaneGeometry( this.height, this.width, this.numSegments, this.numSegments );
-		// var textureLoader = new THREE.TextureLoader();
-		// textureLoader = load( 'images/heightmap.png' );
+
 		this.material = new THREE.MeshLambertMaterial({
 			color: 0x000000,
 			wireframe: false
-			// map: this.texture
 		});
 
 		this.mesh = new THREE.Mesh( this.geometry, this.material );
 
 		this.img = new Image();
-		this.img.src = "/static/images/heightmap2.png";
+		this.img.src = "/static/textures/heightmap.png";
 
 		this.img.onload = () => {
 			this.getHeightData();
@@ -35,6 +33,9 @@ class Terrain {
 
 	}
 
+	/**
+	*
+	*/
 	getTerrainPixelData() {
 		var mycanvas = document.createElement("canvas");
 		mycanvas.id = 'img';
@@ -54,8 +55,9 @@ class Terrain {
 		return normPixels;
 	}
 
-
-	//return array with height data from img
+	/**
+	*
+	*/
 	getHeightData() {
 
  		var terrain = this.getTerrainPixelData();
@@ -80,13 +82,9 @@ class Terrain {
 		* @name update
 		* @description Triggered on every TweenMax tick
 		*/
-	update() {
+		update() {
 
-		//   this.mesh.rotation.x += this.rotationSpeed;
-		//   this.mesh.rotation.y += this.rotationSpeed;
-		//   this.mesh.rotation.z += this.rotationSpeed;
-
-	}
+		}
 }
 
 export default Terrain

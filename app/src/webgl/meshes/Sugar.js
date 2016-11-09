@@ -14,9 +14,9 @@ class Sugar {
     constructor() {
 
         this.size = 100;
-        this.widthSegments = 25;
-        this.heightSegments = 25;
-        this.time = 0.005;
+        this.widthSegments = 20;
+        this.heightSegments = 20;
+        this.time = 0.01;
 
         this.geometry = new THREE.SphereGeometry(this.size, this.widthSegments, this.heightSegments);
 
@@ -40,13 +40,12 @@ class Sugar {
         				metalness: { value: 1. },
         				envMapIntensity : { value: 1 },
                 u_time: { type: "f", value: 0.1 },
-                u_speed: { type: 'f', value: 0.4 },
+                u_speed: { type: 'f', value: 0.3 },
                 u_amp: { type: 'f', value: 60.0 }
         			}
         		]),
             fragmentShader: fragmentShader,
             vertexShader: vertexShader,
-            // shading: THREE.FlatShading,
             lights: true
         });
 

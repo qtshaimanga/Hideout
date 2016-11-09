@@ -1,5 +1,7 @@
+import * as THREE from 'three';
+
 import AWDLoader from './AWDLoader';
-import SoundManager from './SoundManager';
+// import SoundManager from './SoundManager';
 import VideoManager from './VideoManager';
 import files from '../resources';
 
@@ -23,7 +25,7 @@ class AssetsLoader {
       switch( type ) {
         case 'model': return new AWDLoader();
         case 'texture': return new THREE.TextureLoader();
-        case 'audio': return SoundManager;
+        //case 'audio': return SoundManager;
         case 'video': return VideoManager;
       }
     };

@@ -2,8 +2,13 @@ export default [
   // ==== Textures
   {
     type: 'texture',
-    id: 'stroke',
-    url: '/textures/stroke.png'
+    id: 'toxic',
+    url: '../static/textures/toxic.png'
+  },
+  {
+    type: 'texture',
+    id: 'sugar',
+    url: '../static/textures/toxic.png'
   },
   // ==== Sounds
   // {

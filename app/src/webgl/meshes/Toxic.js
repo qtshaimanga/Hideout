@@ -3,6 +3,8 @@ import * as THREE from 'three';
 import { UniformsUtils } from '../utils/UniformsUtils';
 import { UniformsLib } from '../utils/UniformsLib';
 
+import AssetsLoader from '../../helpers/AssetsLoader';
+
 import vertexShader from '../shaders/toxicSecrets/vertexShader.vert';
 import fragmentShader from '../shaders/toxicSecrets/fragmentShader.frag';
 
@@ -13,13 +15,16 @@ class Toxic {
      */
     constructor() {
 
+        //console.log(AssetsLoader);
+
         this.size = 100;
         this.widthSegments = 8;
         this.heightSegments = 8;
-        this.time = 0.008;
+        this.time = 0.01;
 
         this.geometry = new THREE.SphereGeometry(this.size, this.widthSegments, this.heightSegments);
 
+        this.loader = new THREE.TextureLoader();
 
         this.material = new THREE.ShaderMaterial({
             uniforms: UniformsUtils.merge([
@@ -40,15 +45,18 @@ class Toxic {
         				metalness: { value: 1. },
         				envMapIntensity : { value: 1 },
                 u_time: { type: "f", value: 0.1 },
-                u_speed: { type: 'f', value: 0.5 },
-                u_amp: { type: 'f', value: 80.0 }
-        			}
+                u_speed: { type: 'f', value: 0.4 },
+                u_amp: { type: 'f', value: 100.0 },
+                u_texture:   { value: new THREE.TextureLoader().load( "../../../static/textures/toxic.png" ) },
+              }
         		]),
             fragmentShader: fragmentShader,
             vertexShader: vertexShader,
             shading: THREE.FlatShading,
             lights: true
         });
+
+        //console.log(this.material.uniforms.texture.value);
 
         this.mesh = new THREE.Mesh(this.geometry, this.material);
 

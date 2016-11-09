@@ -1,6 +1,11 @@
-/node_modules
+!.gitignore
 
-*.log*
-*.DS_Store
+#SYSTEM
+.DS_Store
+.git
 
-/build
+#MODULES
+node_modules/
+
+#BUILD
+build/

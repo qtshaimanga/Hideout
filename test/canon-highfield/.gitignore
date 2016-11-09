@@ -1,8 +1,6 @@
 !.gitignore
 
-/node_modules
-
-*.log*
-*.DS_Store
-
-/build
+#SYSTEM
+.log
+.DS_Store
+.git

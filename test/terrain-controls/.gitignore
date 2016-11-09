@@ -1,8 +1,12 @@
 !.gitignore
 
+#MODULES
 /node_modules
 
-*.log*
-*.DS_Store
+#SYSTEM
+.log
+.DS_Store
+.git
 
+#BUILD
 /build

@@ -47,7 +47,7 @@ class Toxic {
                 u_time: { type: "f", value: 0.1 },
                 u_speed: { type: 'f', value: 0.4 },
                 u_amp: { type: 'f', value: 100.0 },
-                u_texture:   { value: new THREE.TextureLoader().load( "../../../static/textures/toxic.png" ) },
+                //u_texture:   { value: new THREE.TextureLoader().load( "../../static/textures/toxic.png" ) },
               }
         		]),
             fragmentShader: fragmentShader,
@@ -55,8 +55,6 @@ class Toxic {
             shading: THREE.FlatShading,
             lights: true
         });
-
-        //console.log(this.material.uniforms.texture.value);
 
         this.mesh = new THREE.Mesh(this.geometry, this.material);
 

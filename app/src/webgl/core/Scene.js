@@ -11,10 +11,22 @@ class Scene {
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
         this.renderer.setSize(width, height);
-        this.renderer.setClearColor(0x111111);
+        this.renderer.setClearColor(0xF5F5F5);
 
-        this.camera = new THREE.PerspectiveCamera(50, width / height, 1, 2000);
-        this.camera.position.z = 1000;
+        this.camera = new THREE.PerspectiveCamera(74, width / height, 1, 1000);
+        this.camera.position.z = 0;
+
+        this.addLight();
+
+    }
+
+    addLight(){
+      this.scene.add(new THREE.AmbientLight(0x404040));
+
+      this.directional = new THREE.DirectionalLight(0x808080);
+      this.directional.position.set(1, 1, 1);
+      this.directional.lookAt(new THREE.Vector3());
+      this.scene.add(this.directional);
 
     }
 

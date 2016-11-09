@@ -1,5 +1,5 @@
 <template>
-  <div class="webgl-home">
+  <div class="webgl-home" id="yolo">
   </div>
 </template>
 
@@ -7,8 +7,9 @@
 import { TweenMax } from 'gsap';
 import { TimelineLite } from 'gsap';
 
-import Scene from '../webgl/core/scene.class.js';
-import Cube from '../webgl/meshes/cube.class.js';
+import Scene from '../webgl/core/Scene.js';
+import Toxic from '../webgl/meshes/Toxic.js';
+import Sugar from '../webgl/meshes/Sugar.js';
 
 export default {
   components: {},
@@ -21,18 +22,25 @@ export default {
       width: window.innerWidth,
       height: window.innerHeight,
       scene: Object(),
-      cube: Object()
+      toxic: Object(),
+      sugar: Object()
     }
   },
   created: function(){
     this.scene = new Scene(this.width, this.height);
-    this.cube = new Cube();
+    this.toxic = new Toxic();
+    this.sugar = new Sugar();
   },
 	mounted: function() {
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);
 
-    this.scene.add(this.cube.mesh);
+    this.toxic.mesh.position.set(-200, 10, -500);
+    this.scene.add(this.toxic.mesh);
+
+    this.sugar.mesh.position.set(200, 0, -600);
+    this.scene.add(this.sugar.mesh);
+
     this.$el.appendChild(this.scene.renderer.domElement);
   },
   beforeDestroy: function(){
@@ -45,7 +53,8 @@ export default {
       this.scene.resize(this.width, this.height);
     },
     update: function(event){
-      this.cube.update();
+      this.toxic.update();
+      this.sugar.update();
       this.scene.render();
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation">
+  <div class="loader">
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 
 <style lang="scss" scoped>
 
-  .navigation{
+  .loader{
     position: absolute;
     width: 100%;
     height: 100%;

@@ -1,4 +1,4 @@
-# Starter Front THREE
+# Starter Front : project.air-edf.io
 
 > starter with THREE, VUEJS, VUEX, VUE-ROUTER, Capistrano...
 
@@ -18,7 +18,7 @@ npm run dev
 ```
 ```
 
-## Build and Production
+## Build and Production in project.air-edf.io
 ```
   - [server] create /var/www/projectName/
   - set deploy.rb : repo and name

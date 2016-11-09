@@ -1,29 +1,25 @@
 <template>
-	<div class="app">
-		<router-view></router-view>
-	</div>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-
-import Vue from 'vue'
-
 import store from './store'
-import router from './router'
+
 export default {
-	router,
-	components: {},
-	store: store,
-	data () {
-		return {}
-	},
-	//http://vuejs.org/guide/migration.html#ready
-	mounted: function() {
-		Vue.nextTick(function () {
-			// code that assumes this.$el is in-document
-		})
-	},
-	methods:{}
+  store: store,
+  data () {
+    return {
+
+    }
+  },
+  mounted: function() {
+
+  },
+  methods:{
+
+  }
 }
 </script>
 
@@ -31,26 +27,18 @@ export default {
 @import "./styles/fonts.scss";
 @import "./styles/transition.scss";
 
-html{
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-	overflow: hidden;
-}
+  html, body{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
 
-body{
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-}
-
-.app{
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-}
+  #app{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
 
 </style>

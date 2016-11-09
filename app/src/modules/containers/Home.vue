@@ -1,11 +1,19 @@
 <template>
-  <div class="navigation">
+  <div class="home">
+    <navigation></navigation>
+    <webgl-home></webgl-home>
   </div>
 </template>
 
 <script>
+import WebglHome  from '../components/WebglHome';
+import Navigation from '../components/Navigation';
 
 export default {
+  components: {
+    WebglHome,
+    Navigation
+  },
   vuex: {
     getters: {},
     actions: {}
@@ -24,8 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 
-  .navigation{
-    position: absolute;
+  .home{
     width: 100%;
     height: 100%;
     margin: 0px;

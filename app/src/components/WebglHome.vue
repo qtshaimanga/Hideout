@@ -27,7 +27,10 @@ export default {
       height: window.innerHeight,
       scene: Object(),
       toxic: Object(),
-      sugar: Object()
+      sugar: Object(),
+      terrain: Object(),
+      cameraRay: Object(),
+      down: Object()
     }
   },
   created: function(){
@@ -35,44 +38,37 @@ export default {
     this.toxic = new Toxic();
     this.sugar = new Sugar();
     this.terrain = new Terrain();
+
+    this.down = new THREE.Vector3(0,-1,1);
+    this.cameraRay = new THREE.Raycaster();
   },
   mounted: function() {
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);
 
-    this.toxic.mesh.position.set(-200, 10, -500);
-    //this.scene.add(this.toxic.mesh);
+    this.toxic.mesh.position.set(-500, 150, -1200);
+    this.scene.add(this.toxic.mesh);
 
-    this.sugar.mesh.position.set(200, 0, -600);
-    //this.scene.add(this.sugar.mesh);
+    this.sugar.mesh.position.set(200, 400, 400);
+    this.scene.add(this.sugar.mesh);
 
+    this.terrain.mesh.name = "terrain"
     this.scene.add(this.terrain.mesh);
 
-    this.down = new THREE.Vector3(0,0,0);
-    this.cameraRay = new THREE.Raycaster();
-    this.cameraRay.setFromCamera(this.down, this.scene.camera);
-    //this.collisionneur();
-
     this.$el.appendChild(this.scene.renderer.domElement);
+
+    this.collisionneur();
   },
   beforeDestroy: function(){
 
   },
   methods:{
-    addLights() {
-      console.log('>>>');
-      var light = new THREE.AmbientLight( 0xffffff );
-      this.scene.add( light );
-
-      var directionalLight = new THREE.DirectionalLight(0xffffff);
-      directionalLight.position.set(900, 400, 0).normalize();
-      this.scene.add( directionalLight );
-    },
     collisionneur(){
-      var intersectCamera = this.cameraRay.intersectObject( this.terrain.mesh );
+      this.cameraRay.setFromCamera(this.down, this.scene.camera);
 
-      if(intersectCamera!= 0 && intersectCamera[0].distance < 80){
-        this.scene.camera.position.y = this.scene.camera.position.y + 80 - intersectCamera[0].distance;
+      var intersectCamera = this.cameraRay.intersectObject( this.terrain.mesh, true );
+      if(intersectCamera!= 0 && intersectCamera[0].distance <= 50){
+        this.scene.camera.position.y = this.scene.camera.position.y + 50 - intersectCamera[0].distance;
       }
     },
     onResize: function(event){
@@ -84,7 +80,7 @@ export default {
       this.toxic.update();
       this.sugar.update();
       this.scene.render();
-      //this.collisionneur();
+      this.collisionneur();
     }
   }
 }

@@ -13,14 +13,14 @@ class Sugar {
      */
     constructor() {
 
-        this.size = 100;
-        this.widthSegments = 20;
-        this.heightSegments = 20;
+        this.size = 50;
+        this.widthSegments = 30;
+        this.heightSegments = 30;
         this.time = 0.01;
 
         this.geometry = new THREE.SphereGeometry(this.size, this.widthSegments, this.heightSegments);
 
-
+        // tester phong
         this.material = new THREE.ShaderMaterial({
             uniforms: UniformsUtils.merge([
         			UniformsLib.common,
@@ -35,18 +35,20 @@ class Sugar {
         			UniformsLib.fog,
         			UniformsLib.lights,
         			{
-        				emissive : { value: new THREE.Color( 0x999999 ) },
-        				roughness: { value: 1.0 },
-        				metalness: { value: 1. },
+        				emissive : { value: new THREE.Color( 0xff60b5 ) },
+        				roughness: { value: .8 },
+        				metalness: { value: 1.0 },
         				envMapIntensity : { value: 1 },
                 u_time: { type: "f", value: 0.1 },
                 u_speed: { type: 'f', value: 0.3 },
-                u_amp: { type: 'f', value: 60.0 }
+                u_amp: { type: 'f', value: 40.0 }
         			}
         		]),
             fragmentShader: fragmentShader,
             vertexShader: vertexShader,
-            lights: true
+            lights: true,
+            //shading: THREE.FlatShading,
+            //wireframe: true
         });
 
         this.mesh = new THREE.Mesh(this.geometry, this.material);

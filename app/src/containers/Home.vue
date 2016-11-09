@@ -1,7 +1,7 @@
 <template>
-	<div class="home" @click="showWebgl">
+	<div class="home">
 		<navigation></navigation>
-		<webgl-home v-show="webgl"></webgl-home>
+		<webgl-home></webgl-home>
 	</div>
 </template>
 
@@ -19,17 +19,12 @@ export default {
 		actions: {}
 	},
 	data () {
-		return {
-			webgl:true
-		}
+		return {}
 	},
 	mounted: function() {
 
 	},
 	methods:{
-		showWebgl: function(event){
-			this.webgl = true;
-		}
 	}
 }
 </script>
@@ -41,7 +36,6 @@ export default {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: red;
 }
 
 </style>

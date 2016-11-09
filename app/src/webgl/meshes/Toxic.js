@@ -17,9 +17,9 @@ class Toxic {
 
         //console.log(AssetsLoader);
 
-        this.size = 100;
-        this.widthSegments = 8;
-        this.heightSegments = 8;
+        this.size = 50;
+        this.widthSegments = 5;
+        this.heightSegments = 5;
         this.time = 0.01;
 
         this.geometry = new THREE.SphereGeometry(this.size, this.widthSegments, this.heightSegments);
@@ -46,7 +46,7 @@ class Toxic {
         				envMapIntensity : { value: 1 },
                 u_time: { type: "f", value: 0.1 },
                 u_speed: { type: 'f', value: 0.4 },
-                u_amp: { type: 'f', value: 100.0 },
+                u_amp: { type: 'f', value: 80.0 },
                 //u_texture:   { value: new THREE.TextureLoader().load( "../../static/textures/toxic.png" ) },
               }
         		]),

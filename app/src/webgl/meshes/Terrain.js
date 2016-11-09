@@ -9,19 +9,28 @@ class Terrain {
 
 		this.width = 4000;
 		this.height = 4000;
-		this.numSegments = 100;
+		this.numSegments = 25;
 
 		this.geometry = new THREE.PlaneGeometry( this.height, this.width, this.numSegments, this.numSegments );
 
-		this.material = new THREE.MeshLambertMaterial({
+		this.materialAlpha = new THREE.MeshPhongMaterial({
 			color: 0x000000,
 			wireframe: false
+			// shading: THREE.FlatShading
 		});
 
-		this.mesh = new THREE.Mesh( this.geometry, this.material );
+		this.materialBeta = new THREE.MeshPhongMaterial({
+			color: 0x808080,
+			wireframe: true
+		});
+
+		this.mesh = THREE.SceneUtils.createMultiMaterialObject( this.geometry, [
+			this.materialAlpha,
+			this.materialBeta
+		]);
 
 		this.img = new Image();
-		this.img.src = "/static/textures/heightmap.png";
+		this.img.src = "/static/textures/heightmap-small.png";
 
 		this.img.onload = () => {
 			this.getHeightData();
@@ -60,16 +69,14 @@ class Terrain {
 	*/
 	getHeightData() {
 
- 		var terrain = this.getTerrainPixelData();
-		for (var i = 0, l = this.geometry.vertices.length; i < l; i++)
-		{
-			var ns = this.numSegments + 1;
-			var vertex = this.geometry.vertices[i];
-			var px = (i % ns)/(ns) * this.img.width;
-			var py = Math.floor(i/ns)/(ns) * this.img.height;
-			var idpx = Math.floor(this.img.width * py + px);
-			var terrainValue = terrain[idpx];
-			vertex.z = vertex.z + terrainValue * 200;
+		var vertices = this.geometry.vertices;
+		var terrain = this.getTerrainPixelData();
+
+		for(let i=0; i<vertices.length; i++){
+			var terrainId = Math.round(this.map(i, 0, vertices.length - 1, 0, terrain.length - 1))
+			var vertex = vertices[i];
+			var terrainValue = terrain[terrainId]
+			vertex.z = vertex.z + terrainValue * 250;
 		}
 
 		this.geometry.verticesNeedUpdate = true;
@@ -77,14 +84,23 @@ class Terrain {
 		this.geometry.computeVertexNormals();
 	}
 
-		/**
-		* @method
-		* @name update
-		* @description Triggered on every TweenMax tick
-		*/
-		update() {
+	map( num, min1, max1, min2, max2 ) {
 
-		}
+		let num1 = ( num - min1 ) / ( max1 - min1 )
+		let num2 = ( num1 * ( max2 - min2 ) ) + min2
+
+		return num2;
+
+	}
+
+	/**
+	* @method
+	* @name update
+	* @description Triggered on every TweenMax tick
+	*/
+	update() {
+
+	}
 }
 
 export default Terrain

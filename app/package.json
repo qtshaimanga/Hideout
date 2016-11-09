@@ -1,8 +1,8 @@
 {
   "name": "starter",
   "version": "1.0.0",
-  "description": "starter VUEJS",
-  "author": "quentin.tshaimanga <q.tshaimanga@gmail.com>",
+  "description": "Exp THREEJS+VUEJS",
+  "author": "Quentin Tshaimanga and Kirgan Somville",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -31,10 +31,13 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.4",
     "function-bind": "^1.0.2",
+    "glslify": "^6.0.1",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.12.0",
     "json-loader": "^0.5.4",
+    "node-sass": "^3.8.0",
     "ora": "^0.2.0",
+    "sass-loader": "^4.0.0",
     "shelljs": "^0.6.0",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.2.0",
@@ -44,8 +47,6 @@
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
-    "webpack-merge": "^0.8.3",
-    "node-sass": "^3.8.0",
-    "sass-loader": "^4.0.0"
+    "webpack-merge": "^0.8.3"
   }
 }

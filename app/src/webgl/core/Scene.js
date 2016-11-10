@@ -19,10 +19,10 @@ class Scene {
         this.renderer.setClearColor(0xF5F5F5);
 
         this.camera = new THREE.PerspectiveCamera(74, width / height, 1, 1000);
-        this.camera.position.z = 0;
-        this.camera.position.y = 150;
-        this.camera.position.x = 0;
-	      this.camera.lookAt(new THREE.Vector3(0,1,0));
+        this.camera.position.z = 500;
+        this.camera.position.y = 20;
+        this.camera.position.x = -100;
+	      this.camera.lookAt(new THREE.Vector3(0,50,0));
 
         this.addLight();
 

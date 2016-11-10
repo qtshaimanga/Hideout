@@ -16,6 +16,7 @@ import Cube from '../webgl/meshes/Cube.js';
 import Terrain from '../webgl/meshes/Terrain.js';
 
 export default {
+  name: "webglHome",
   components: {},
   vuex: {
     getters: {},
@@ -30,7 +31,8 @@ export default {
       sugar: Object(),
       terrain: Object(),
       cameraRay: Object(),
-      down: Object()
+      down: Object(),
+      front: Object()
     }
   },
   created: function(){
@@ -40,6 +42,7 @@ export default {
     this.terrain = new Terrain();
 
     this.down = new THREE.Vector3(0,-1,1);
+    this.front = new THREE.Vector3(0,0,1);
     this.cameraRay = new THREE.Raycaster();
   },
   mounted: function() {
@@ -70,6 +73,15 @@ export default {
       if(intersectCamera!= 0 && intersectCamera[0].distance <= 50){
         this.scene.camera.position.y = this.scene.camera.position.y + 50 - intersectCamera[0].distance;
       }
+
+      this.cameraRay.setFromCamera(this.front, this.scene.camera);
+      var intersectSecret = this.cameraRay.intersectObject( this.sugar.mesh, true );
+      if(intersectSecret!= 0 && intersectSecret[0].distance <= 800){
+        this.$el.style.cursor = "progress";
+      }else{
+        this.$el.style.cursor = "default";
+      }
+      
     },
     onResize: function(event){
       this.width = window.innerWidth;

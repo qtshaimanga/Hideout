@@ -20,7 +20,7 @@ class Terrain {
 		});
 
 		this.materialBeta = new THREE.MeshPhongMaterial({
-			color: 0x808080,
+			color: 0x444444,
 			wireframe: true
 		});
 
@@ -46,10 +46,7 @@ class Terrain {
 	*
 	*/
 	getTerrainPixelData() {
-		var mycanvas = document.createElement("canvas");
-		mycanvas.id = 'img';
-		document.body.appendChild(mycanvas);
-		var canvas = document.getElementById( 'img' );
+		var canvas = document.createElement("canvas");
 		canvas.width = this.img.width;
 		canvas.height = this.img.height;
 		canvas.getContext('2d').drawImage(this.img, 0, 0, this.img.width, this.img.height);

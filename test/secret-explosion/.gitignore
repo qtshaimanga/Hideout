@@ -1,0 +1,11 @@
+!.gitignore
+
+#SYSTEM
+.DS_Store
+.git
+
+#MODULES
+node_modules/
+
+#BUILD
+build/

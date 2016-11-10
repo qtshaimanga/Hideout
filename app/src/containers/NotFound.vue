@@ -30,7 +30,7 @@ export default {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    background-color: yellow;
+    background-color: #FFFFFF;
   }
 
 </style>

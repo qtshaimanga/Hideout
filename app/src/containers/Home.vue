@@ -3,15 +3,19 @@
 		<transition name="fade" mode="out-in">
 			<video-screen v-show="getSkip"></video-screen>
 		</transition>
+
 		<transition name="fade" mode="out-in">
 			<presentation v-show="getPres"></presentation>
 		</transition>
+
 		<transition name="fade" mode="out-in">
 			<choice v-show="getChoice"></choice>
 		</transition>
+
 		<transition name="fade" mode="out-in">
 			<share v-show="getShare"></share>
 		</transition>
+		
 		<webgl-home v-show="getwebglHome"></webgl-home>
 	</div>
 </template>

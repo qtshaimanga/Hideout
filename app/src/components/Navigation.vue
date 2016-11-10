@@ -1,7 +1,7 @@
 <template>
   <div class="navigation">
     <div class="container">
-      <div class="settiing">
+      <div class="about" @click="about">
         <span>i</span>
         <span>///</span>
       </div>
@@ -34,7 +34,9 @@ export default {
 
   },
   methods:{
-
+    about: function(event){
+      this.$router.push({ name: 'about'});
+    }
   }
 }
 </script>
@@ -44,14 +46,14 @@ export default {
   .navigation{
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 10%;
     margin: 0px;
     padding: 0px;
     display: flex;
-    align-items: flex-end;
+    align-self: flex-end;
       .container{
         width: 100%;
-        height: 10%;
+        height: 100%;
         background-color: #000000;
         color: #FFFFFF;
         display: flex;
@@ -62,7 +64,7 @@ export default {
           height: 100%;
           display: inline;
         }
-        .settiing{
+        .about{
           margin-left: 20px;
           &:hover{
             cursor: pointer;

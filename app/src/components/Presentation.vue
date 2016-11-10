@@ -38,10 +38,8 @@ export default {
     }
   },
   created : function(){
-    if(this.spacebarPressed){
-      window.addEventListener('keydown', this.spacebarPressed)
-      window.addEventListener('keyup', this.spacebarReleased)
-    }
+    window.addEventListener('keydown', this.spacebarPressed.bind(this));
+    window.addEventListener('keyup', this.spacebarReleased.bind(this));
   },
 	mounted: function() {
 
@@ -50,7 +48,9 @@ export default {
     spacebarPressed: function(event){
       this.counter += 0.1;
       var bar = document.querySelector('.loader__bar');
-      TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
+      if(bar != null){
+        TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
+      }
       if(this.counter == 1.2){
         this.setPres();
         this.setChoice();
@@ -59,7 +59,9 @@ export default {
     spacebarReleased: function(event){
       this.counter = 0;
       var bar = document.querySelector('.loader__bar');
-      TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
+      if(bar != null){
+        TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
+      }
     }
   }
 }

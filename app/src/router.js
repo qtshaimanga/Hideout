@@ -2,23 +2,26 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from './containers/Home'
-import NotFound from './containers/NotFound'
 import About from './containers/About'
+import NotFound from './containers/NotFound'
 
 Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name : 'home',
     component: Home
   },
   {
-    path: '*',
-    component: NotFound
+    path: '/about',
+    name: 'about',
+    component: About
   },
   {
-    path: '/about',
-    component: About
-   }
+    path: '*',
+    name: 'notFound',
+    component: NotFound
+  }
 ];
 
 const router = new VueRouter({

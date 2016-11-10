@@ -4,10 +4,10 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  skip: false,
+  skip: true,
   pres: false,
   choice: false,
-  webglHome: true,
+  webglHome: false,
   share: false
 }
 

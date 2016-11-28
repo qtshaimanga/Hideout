@@ -66,12 +66,12 @@ class Cube {
 	update() {
 
 		this.time = Date.now() * 0.01;
-		this.material.uniforms.amplitude.value = 1.0 + Math.sin( this.time * 0.5 );
+		this.material.uniforms.amplitude.value = 1.0 + (Math.sin( this.time * 0.5 ) + 0.3);
 
 		// console.log(this.material.uniforms.time.value);
 
-		this.mesh.rotation.x += 0.1;
-		this.mesh.rotation.y += 0.1;
+		this.mesh.rotation.x += 0.01;
+		this.mesh.rotation.y += 0.01;
 		// this.mesh.rotation.z += 0.01;
 
 	}

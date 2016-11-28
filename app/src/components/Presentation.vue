@@ -68,18 +68,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import "../styles/partials/variables";
+@import "../styles/partials/variables";
+@import "../styles/partials/mixins";
 
 .presentation{
 	width: 100%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	// background-color: rgb(23, 25, 38);
+	background-color: rgb(23, 25, 38);
 	display: flex;
-	background-color: $color-green;
-	// font-family: $font-poppins-light;
-
 	.container{
 		width: 38%;
 		height: 100%;
@@ -88,6 +86,7 @@ export default {
 		color: #FFFFFF;
 		display: flex;
 		flex-direction: column;
+		font-family: $font-poppins-light;
 		div{
 			margin-bottom: 20px;
 			&:first-child{

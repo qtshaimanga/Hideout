@@ -24,8 +24,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./styles/main.scss";
-@import "./styles/variables.scss";
+@import "./styles/fonts.scss";
+@import "./styles/transitions.scss";
 
 
 html, body {
@@ -36,7 +36,6 @@ html, body {
 }
 
 .app{
-	// background-color: $color-green;
 	width: 100%;
 	height: 100%;
 	margin: 0px;

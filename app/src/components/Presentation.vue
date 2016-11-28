@@ -68,8 +68,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/partials/variables";
-@import "../styles/partials/mixins";
+@import "../styles/variables";
+@import "../styles/mixins";
 
 .presentation{
 	width: 100%;

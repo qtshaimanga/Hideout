@@ -1,0 +1,22 @@
+%skip {
+	margin-right: 20px;
+	font-size: 1.4rem;
+	font-family: $font-poppins-light;
+	text-transform: uppercase;
+
+	.separator {
+		display: inline-block;
+		vertical-align: middle;
+		background-color: white;
+		width: 15px;
+		height: 1px;
+	}
+
+	.text {
+		vertical-align: middle;
+	}
+
+	&:hover{
+		cursor: pointer;
+	}
+}

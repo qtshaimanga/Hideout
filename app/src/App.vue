@@ -26,7 +26,11 @@ export default {
 <style lang="scss">
 @import "./styles/fonts.scss";
 @import "./styles/transitions.scss";
+@import "./styles/mixins.scss";
 
+html {
+	font-size: 62.5%;
+}
 
 html, body {
 	width: 100%;

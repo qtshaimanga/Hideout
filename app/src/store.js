@@ -4,15 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  skip: true,
+  skip: false,
   pres: false,
   choice: false,
-  webglHome: false,
+  webglHome: true,
   share: false,
   writing: false,
   telling: false,
   type: { statut:false, from:"home"},
-  sharechoice: false
+  sharechoice: false,
+  secretMessage: false,
 }
 
 const mutations = {
@@ -57,6 +58,10 @@ const mutations = {
     state.type.statut = false;
     state.telling = false;
     state.writing = false;
+  },
+  MESSAGE (state)
+  {
+    state.secretMessage = state.secretMessage ? false : state.secretMessage ? false : true;
   },
 }
 

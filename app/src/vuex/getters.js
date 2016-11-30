@@ -33,3 +33,7 @@ export function getShareChoiceState (state) {
 export function getTypeState (state) {
   return state.type
 }
+
+export function getSecretMessageState (state) {
+  return state.secretMessage
+}

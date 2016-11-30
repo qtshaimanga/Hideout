@@ -38,3 +38,7 @@ export const setTypeState = function ({ dispatch, state }, from) {
 export const setResetShareState = function ({ dispatch, state }) {
   dispatch('RESETSHARE')
 }
+
+export const setSecretMessageState = function ({ dispatch, state }) {
+  dispatch('MESSAGE')
+}

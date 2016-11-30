@@ -12,7 +12,7 @@ class Scene {
         this.scene = new THREE.Scene();
 
         this.fogColor = 0xF5F5F5;
- 		    this.scene.fog = new THREE.FogExp2( this.fogColor, 0.0025 );
+	    this.scene.fog = new THREE.FogExp2( this.fogColor, 0.0025 );
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
         this.renderer.setSize(width, height);

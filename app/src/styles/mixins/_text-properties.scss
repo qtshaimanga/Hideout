@@ -1,0 +1,18 @@
+@mixin text-title ($font-family: 'Otama', $font-size: 3.5rem, $line-height: normal) {
+	font-family: $font-family;
+	font-size: $font-size;
+	line-height: $line-height;
+}
+
+@mixin text-button ($font-family: 'poppins-light', $font-size: 1.4rem, $line-height: normal, $text-transform: uppercase) {
+	font-family: $font-family;
+	font-size: $font-size;
+	line-height: $line-height;
+	text-transform: $text-transform;
+}
+
+@mixin text-standard ($font-family: 'poppins-light', $font-size: 1.3rem, $line-height: normal) {
+	font-family: $font-family;
+	font-size: $font-size;
+	line-height: $line-height;
+}

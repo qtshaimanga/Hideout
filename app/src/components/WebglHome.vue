@@ -56,6 +56,10 @@ export default {
     this.scene = new Scene(this.width, this.height);
     this.toxic = new Toxic();
     this.sugar = new Sugar();
+
+    this.toxic2 = new Toxic();
+    this.sugar2 = new Sugar();
+
     this.globe = new Globe();
     this.terrain = new Terrain();
 
@@ -67,13 +71,23 @@ export default {
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);
 
-    // this.toxic.mesh.name = "toxic_id"
-    // this.toxic.mesh.position.set(-500, 150, -1200);
-    // this.scene.add(this.toxic.mesh);
+    this.toxic.mesh.name = "toxic_id"
+    this.toxic.mesh.position.set(-500, 150, -1200);
+    this.scene.add(this.toxic.mesh);
+
+    //test
+    this.toxic2.mesh.name = "toxic_"
+    this.toxic2.mesh.position.set(-600, 150, -1000);
+    this.scene.add(this.toxic2.mesh);
+
+    this.sugar2.mesh.name = "sugar_"
+    this.sugar2.mesh.position.set(100, 500, 80);
+    this.scene.add(this.sugar2.mesh);
 
     this.sugar.mesh.name = "sugar_1"
     this.sugar.mesh.position.set(20, 400, 40);
     this.scene.add(this.sugar.mesh);
+
     this.globe.mesh.name = "sugar_1"
     this.globe.mesh.position.set(20, 400, 40);
     this.scene.add(this.globe.mesh);
@@ -127,8 +141,12 @@ export default {
       this.scene.resize(this.width, this.height);
     },
     update: function(event){
-      this.toxic.update();
-      this.sugar.update();
+      //test
+      // this.toxic2.update();
+      // this.sugar2.update();
+      // this.toxic.update();
+      // this.sugar.update();
+
       this.scene.render();
       this.collisionneur();
     },
@@ -142,23 +160,19 @@ export default {
 
       var cameraPosition = this.scene.camera.position;
       var objectPosition = object.position;
+
       var firstControl = cameraPosition.clone().add(this.scene.camera.getWorldDirection().multiplyScalar(1));
-      firstControl.add(cameraPosition);
 
       var upVec = new THREE.Vector3( 0, 1, 0);
-      var direction = object.position.clone().sub(this.scene.camera.position).normalize();
+      var offset1 = this.scene.camera.getWorldDirection().cross(upVec).multiplyScalar(1);
+      var interPosition = objectPosition.clone().add(offset1);
 
-      var offset1 = direction.cross(upVec).multiplyScalar(1);
-      var offset2 = offset1.add(direction.clone().multiplyScalar(-20));
-      offset2.y = objectPosition.y;
+      // var finalPosition = interPosition.clone().add(cameraPosition.multiplyScalar(1));
+      // finalPosition.y = objectPosition.y;
 
-      var secondControl = offset2.multiplyScalar(20);
-      secondControl.add(direction.clone().multiplyScalar(-20));
+      var secondControl = finalPosition.clone().add(cameraPosition.multiplyScalar(1));
+      secondControl.y = objectPosition.y;
 
-      console.log(secondControl);
-
-      //world cross productut avce up
-      //vec * cost = dist
 
       var curve = new THREE.CubicBezierCurve3(
       	cameraPosition,
@@ -168,14 +182,14 @@ export default {
       );
 
       var geometry = new THREE.Geometry();
-      geometry.vertices = curve.getPoints( 10 );
+      geometry.vertices = curve.getPoints( 20 );
 
       var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
 
       var curveObject = new THREE.Line( geometry, material );
       this.scene.add(curveObject);
 
-
+      //getPoint and getTangante
 
       //setAction for open modal and set props with id
 

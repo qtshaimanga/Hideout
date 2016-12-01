@@ -14,6 +14,8 @@ const state = {
   type: { statut:false, from:"home"},
   sharechoice: false,
   secretMessage: false,
+  lockControls: false,
+  data: Object()
 }
 
 const mutations = {
@@ -63,6 +65,14 @@ const mutations = {
   {
     state.secretMessage = state.secretMessage ? false : state.secretMessage ? false : true;
   },
+  CONTROLS (state)
+  {
+    state.lockControls = state.lockControls ? false : state.lockControls ? false : true;
+  },
+  DATA (state, data)
+  {
+    state.data = data;
+  }
 }
 
 export default new Vuex.Store({

@@ -1,25 +1,41 @@
 <template>
   <div class="secret-message">
+    <div class="close">
+      <p @click="setLockControls">X</p>
+    </div>
     <div class="container">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>{{ meshId }} {{ meshText }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { setLockControlsState } from '../vuex/actions';
 
 export default {
   name: "secretMessage",
+  props: ['meshId', 'meshText'],
   components: {
 
+  },
+  vuex: {
+    getters: {
+    },
+    actions: {
+      setLockControls: setLockControlsState
+    }
   },
   data () {
     return {
 
     }
   },
+  watch: {
+    mesh: function(){
+      console.log("tets mesh id : ", this.meshId);
+    }
+  },
 	mounted: function() {
-
   },
   methods:{
 
@@ -39,10 +55,21 @@ export default {
     display: flex;
     justify-content: flex-end;
   }
+  .close{
+    position: absolute;
+    width: 100%;
+    p{
+      float: right;
+      margin: 20px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
 
   .container{
     width: 25%;
-    margin-right: 15%;
+    margin-right: 10%;
     height: auto;
     margin-top: auto;
     margin-bottom: auto;

@@ -42,3 +42,11 @@ export const setResetShareState = function ({ dispatch, state }) {
 export const setSecretMessageState = function ({ dispatch, state }) {
   dispatch('MESSAGE')
 }
+
+export const setLockControlsState = function ({ dispatch, state }) {
+  dispatch('CONTROLS')
+}
+
+export const setDataState = function ({ dispatch, state }, data) {
+  dispatch('DATA', data)
+}

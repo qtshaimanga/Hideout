@@ -153,51 +153,47 @@ export default {
     getRequestSecretById: function(id, object){
       //props
       this.setSecretMessage()
-
-      //set focused
-      //twin position + unabled controller update
-
-
+      //check if is focused
       var cameraPosition = this.scene.camera.position;
       var objectPosition = object.position;
 
-      var firstControl = cameraPosition.clone().add(this.scene.camera.getWorldDirection().multiplyScalar(1));
+      var firstControl = cameraPosition.clone().add(this.scene.camera.getWorldDirection()); //
 
       var upVec = new THREE.Vector3( 0, 1, 0);
-      var offset1 = this.scene.camera.getWorldDirection().cross(upVec).multiplyScalar(1);
+      var offset1 = this.scene.camera.getWorldDirection().cross(upVec);//
       var interPosition = objectPosition.clone().add(offset1);
 
-      // var finalPosition = interPosition.clone().add(cameraPosition.multiplyScalar(1));
-      // finalPosition.y = objectPosition.y;
+      var finalPosition = interPosition.clone().add(cameraPosition).multiplyScalar(0.4);  //
+      finalPosition.y = objectPosition.y;
 
-      var secondControl = finalPosition.clone().add(cameraPosition.multiplyScalar(1));
+      var secondControl = finalPosition.clone().add(cameraPosition); //
       secondControl.y = objectPosition.y;
-
 
       var curve = new THREE.CubicBezierCurve3(
       	cameraPosition,
       	firstControl,
       	secondControl,
-      	objectPosition
+      	finalPosition
       );
 
       var geometry = new THREE.Geometry();
-      geometry.vertices = curve.getPoints( 20 );
+      geometry.vertices = curve.getPoints(20);
 
       var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
 
       var curveObject = new THREE.Line( geometry, material );
       this.scene.add(curveObject);
 
-      //getPoint and getTangante
+      var cameraPositionUpdated = curve.getPoints();
+      for(let i=0; i<cameraPositionUpdated.length; i++){
+        var cameraLookAtUpdated = curve.getTangent(i);
+        TweenMax.to(cameraPosition, 0.8, {
+          x : cameraPositionUpdated[i].x,
+          y : cameraPositionUpdated[i].y,
+          z : cameraPositionUpdated[i].z
+        });
+      }
 
-      //setAction for open modal and set props with id
-
-      // this.$http.get('').then((response) => {
-      // 	console.log("sucess response", response);
-      // }, (response) => {
-      // 	console.log("error response", response);
-      // });
     },
     getRequestAllSecrets: function(){
       //foreach

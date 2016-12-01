@@ -46,7 +46,7 @@ export default {
     height: auto;
     margin-top: auto;
     margin-bottom: auto;
-    margin-right: 20%;
+    margin-right: 15%;
     color: gray;
   }
 

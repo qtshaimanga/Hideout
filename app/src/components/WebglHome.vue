@@ -121,7 +121,8 @@ export default {
         this.time++
         if(this.time == 20){
           var meshId = this.getMeshId(intersectSecret[0].object.name);
-          this.getRequestSecretById(meshId, intersectSecret[0].object);
+          this.setSecretMessage();
+          this.getRequestSecretById(meshId, intersectSecret[0].object, intersectSecret[0].distance);
           //TweenMax.ticker.removeEventListener('tick', this.update);
         }else{
           console.log("loading");
@@ -149,9 +150,7 @@ export default {
       this.scene.render();
       this.collisionneur();
     },
-    getRequestSecretById: function(id, object){
-      //props
-      this.setSecretMessage()
+    getRequestSecretById: function(id, object, distance){
       //check if is focused
       var cameraPosition = this.scene.camera.position;
       var objectPosition = object.position;
@@ -162,7 +161,7 @@ export default {
       var offset1 = this.scene.camera.getWorldDirection().cross(upVec);//
       var interPosition = objectPosition.clone().add(offset1);
 
-      var finalPosition = interPosition.clone().add(cameraPosition).multiplyScalar(0.4);  //
+      var finalPosition = interPosition.clone().add(this.scene.camera.getWorldDirection().multiplyScalar(-200));
       finalPosition.y = objectPosition.y;
 
       var secondControl = finalPosition.clone().add(cameraPosition); //
@@ -186,7 +185,7 @@ export default {
       var cameraPositionUpdated = curve.getPoints();
       for(let i=0; i<cameraPositionUpdated.length; i++){
         var cameraLookAtUpdated = curve.getTangent(i);
-        TweenMax.to(cameraPosition, 0.8, {
+        TweenMax.to(cameraPosition, 1.8, {
           x : cameraPositionUpdated[i].x,
           y : cameraPositionUpdated[i].y,
           z : cameraPositionUpdated[i].z

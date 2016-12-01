@@ -146,7 +146,6 @@ export default {
       // this.sugar2.update();
       // this.toxic.update();
       // this.sugar.update();
-
       this.scene.render();
       this.collisionneur();
     },
@@ -204,12 +203,17 @@ export default {
       // this.toxic.mesh.name = "toxic_id"
       // this.toxic.mesh.position.set(-500, 150, -1200);
       // this.scene.add(this.toxic.mesh);
+      // this.globe.mesh.name = "sugar_1"
+      // this.globe.mesh.position.set(20, 400, 40);
+      // this.scene.add(this.globe.mesh);
     },
     getMeshId: function(name){
       var regex = /_(.*)/;
       var id = name.match(regex)[1];
-
       return id
+    },
+    postRequestSecretById: function(){
+
     }
   }
 }

@@ -121,12 +121,12 @@ export default {
   methods:{
     terrainBuilder: function(){
       this.terrain = new Terrain();
-
       this.terrain.mesh.name = "terrain_1"
       this.scene.add(this.terrain.mesh);
     },
     particleBuilder: function() {
       this.particules = new ParticleSystem();
+      this.particules.mesh.name = "particules_1"
       this.scene.add(this.particules.mesh);
     },
     secretBuilder: function(){
@@ -316,7 +316,7 @@ export default {
       this.scene.resize(this.width, this.height);
     },
     update: function(event){
-      //TODO CREATE CLASS
+      //TODO
       if(this.currentObjectSecret.mesh != null){
         this.currentObjectSecret.update();
         this.currentObjectSecret.rotation(false);
@@ -332,6 +332,7 @@ export default {
       if(this.getLockControls == false){
         this.controls.update();
       }
+
       this.particules.update();
       this.meshCollisionneur();
       this.terrainCollisionneur();
@@ -352,6 +353,7 @@ export default {
         });
   		  loader.get().forEach(function(file) {
   			//console.log(file);
+        //TODO STATE
   		  });
 			})
 			.start();

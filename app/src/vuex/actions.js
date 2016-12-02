@@ -54,3 +54,7 @@ export const setDataState = function ({ dispatch, state }, data) {
 export const setMoveObjectState = function ({ dispatch, state }, objectsMoved) {
   dispatch('MOVE', objectsMoved)
 }
+
+export const setRessourcesState = function({ dispatch, state }, ressources){
+	dispatch('RESSOURCES', ressources)
+}

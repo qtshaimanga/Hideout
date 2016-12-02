@@ -50,6 +50,6 @@ export function getMoveObjectState (state) {
   return state.objectsMoved
 }
 
-// export function getControlsControllerState (state) {
-//   return state.controlsController
-// }
+export function getRessourcesState (state, ressources) {
+  return state.ressources
+}

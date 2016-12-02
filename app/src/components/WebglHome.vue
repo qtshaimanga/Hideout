@@ -1,12 +1,16 @@
 <template>
-  <div class="webgl-home">
-    <secret-message v-show="this.getSecretMessage" :meshId="meshId" :meshText="meshText"></secret-message>
-  </div>
+	<div class="webgl-home">
+		<secret-message v-show="this.getSecretMessage" :meshId="meshId" :meshText="meshText"></secret-message>
+	</div>
 </template>
 
 <script>
 //TEST
 import data from '../service/data.json';
+
+import AssetsLoader from 'assets-loader';
+import ressources from '../helpers/AssetsLoader';
+import Assets from '../resources';
 
 import { TweenMax } from 'gsap';
 import { TimelineLite } from 'gsap';
@@ -23,18 +27,19 @@ import Sugar from '../webgl/meshes/Sugar.js';
 import Cube from '../webgl/meshes/Cube.js';
 import Globe from '../webgl/meshes/Globe.js';
 import Terrain from '../webgl/meshes/Terrain.js';
+import ParticleSystem from '../webgl/meshes/ParticleSystem.js';
 
 import { getSecretMessageState,
-  getLockControlsState,
-  getDataState,
-  getMoveObjectState
+	getLockControlsState,
+	getDataState,
+	getMoveObjectState
 } from '../vuex/getters';
 
 import { setSecretMessageState,
-  setLockControlsState,
-  setDataState,
-  setMoveObjectState
- } from '../vuex/actions';
+	setLockControlsState,
+	setDataState,
+	setMoveObjectState
+} from '../vuex/actions';
 
 import SecretMessage from './SecretMessage';
 
@@ -86,9 +91,6 @@ export default {
         this.currentObjectSecret = Object();
       }
     },
-    // getData: function(){
-    //   this.buildSecret();
-    // }
   },
   created: function(){
     this.scene = new Scene(this.width, this.height);
@@ -96,10 +98,13 @@ export default {
 
     this.terrainBuilder();
     this.secretBuilder();
+    this.particleBuilder();
 
     this.downVec = new THREE.Vector3(0,-1,1);
     this.frontVec = new THREE.Vector3(0,0,1);
     this.cameraRay = new THREE.Raycaster();
+
+    this.loaderYolo();
   },
   mounted: function() {
     window.addEventListener('resize', this.onResize);
@@ -118,6 +123,10 @@ export default {
 
       this.terrain.mesh.name = "terrain_1"
       this.scene.add(this.terrain.mesh);
+    },
+    particleBuilder: function() {
+      this.particleSystem = new ParticleSystem();
+      this.scene.add(this.particleSystem.mesh);
     },
     secretBuilder: function(){
       var that = this;
@@ -326,6 +335,32 @@ export default {
       this.meshCollisionneur();
       this.terrainCollisionneur();
     },
+    loaderYolo: function(){
+			console.log("yolo");
+
+			var loader = new AssetsLoader({
+				assets: Assets
+			})
+			.on('error', function(error) {
+				console.error(error);
+			})
+			.on('progress', function(progress) {
+				console.log((progress * 100).toFixed() + '%');
+			})
+			.on('complete', function(map) {
+				// map is a hashmap of loaded files
+				// keys are either ids if specified or urls
+				Object.keys(map).forEach(function(key) {
+					console.log(key, map[key]);
+				});
+
+				// get array of all loaded files
+				loader.get().forEach(function(file) {
+					console.log(file);
+				});
+			})
+			.start();
+		}
   }
 }
 </script>
@@ -333,11 +368,11 @@ export default {
 <style lang="scss" scoped>
 
 .webgl-home, canvas{
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-  overflow: hidden;
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
 }
 
 </style>

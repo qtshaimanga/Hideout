@@ -16,8 +16,22 @@ const state = {
   secretMessage: false,
   lockControls: false,
   data: Array(),
-  objectsMoved: Array()
+  objectsMoved: Array(),
+  ressources: Object()
 }
+
+// const state = {
+//   skip: true,
+//   pres: false,
+//   choice: false,
+//   webglHome: false,
+//   share: false,
+//   writing: false,
+//   telling: false,
+//   type: { statut:false, from:"home"},
+//   sharechoice: false,
+//   secretMessage: false,
+// }
 
 const mutations = {
   SKIP (state){
@@ -77,7 +91,11 @@ const mutations = {
   MOVE (state, objectsMoved)
   {
     state.objectsMoved = objectsMoved;
-  }
+	},
+	RESSOURCES(state, ressources)
+	{
+		state.ressources = ressources
+	}
 }
 
 export default new Vuex.Store({

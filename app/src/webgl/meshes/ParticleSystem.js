@@ -24,6 +24,7 @@ class ParticleSystem {
 			// Add the vertex to the geometry
 			this.particles.vertices.push(particle);
 		}
+
 		this.particleMaterial = new THREE.PointsMaterial({
 			color: 0x0000FF,
 			size: 3,

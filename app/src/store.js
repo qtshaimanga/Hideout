@@ -16,7 +16,8 @@ const state = {
   secretMessage: false,
   lockControls: false,
   data: Array(),
-  objectsMoved: Array()
+  objectsMoved: Array(),
+  ressources: Object()
 }
 
 // const state = {
@@ -90,7 +91,11 @@ const mutations = {
   MOVE (state, objectsMoved)
   {
     state.objectsMoved = objectsMoved;
-  }
+	},
+	RESSOURCES(state, ressources)
+	{
+		state.ressources = ressources
+	}
 }
 
 export default new Vuex.Store({

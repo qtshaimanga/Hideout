@@ -8,6 +8,10 @@
 //TEST
 import data from '../service/data.json';
 
+import AssetsLoader from 'assets-loader';
+import ressources from '../helpers/AssetsLoader';
+import Assets from '../resources';
+
 import { TweenMax } from 'gsap';
 import { TimelineLite } from 'gsap';
 import throttle from 'lodash.throttle';
@@ -38,6 +42,9 @@ import { setSecretMessageState,
 import SecretMessage from './SecretMessage';
 
 export default {
+	// assets,
+	// mixins: [ressources],
+	// autoLoad: true,
 	name: "webglHome",
 	components: {
 		SecretMessage
@@ -99,6 +106,8 @@ export default {
 		this.cameraRay = new THREE.Raycaster();
 	},
 	mounted: function() {
+		this.loaderYolo();
+
 		window.addEventListener('resize', this.onResize);
 		TweenMax.ticker.addEventListener('tick', this.update);
 
@@ -301,6 +310,32 @@ export default {
 			this.meshCollisionneur();
 			this.terrainCollisionneur();
 		},
+		loaderYolo: function(){
+			console.log("yolo");
+
+			var loader = new AssetsLoader({
+				assets: Assets
+			})
+			.on('error', function(error) {
+				console.error(error);
+			})
+			.on('progress', function(progress) {
+				console.log((progress * 100).toFixed() + '%');
+			})
+			.on('complete', function(map) {
+				// map is a hashmap of loaded files
+				// keys are either ids if specified or urls
+				Object.keys(map).forEach(function(key) {
+					console.log(key, map[key]);
+				});
+
+				// get array of all loaded files
+				loader.get().forEach(function(file) {
+					console.log(file);
+				});
+			})
+			.start();
+		}
 	}
 }
 </script>

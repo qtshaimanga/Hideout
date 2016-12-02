@@ -1,33 +1,18 @@
 export default [
   // ==== Textures
   {
-    type: 'texture',
+    type: 'png',
     id: 'toxic',
     url: '../static/textures/toxic.png'
   },
   {
-    type: 'texture',
+    type: 'png',
     id: 'sugar',
     url: '../static/textures/toxic.png'
   },
-  // ==== Sounds
-  // {
-  //   type: 'audio',
-  //   id: 'sound-example',
-  //   url: './audios/sound-example.mp3'
-  // },
-  //
-  // ==== Videos
-  // {
-  //   type: 'video',
-  //   id: 'video-example',
-  //   url: '/videos/video-example.png'
-  // }
-  //
-  // ==== AWD
-  // {
-  //   type: 'model',
-  //   id: 'model-example',
-  //   url: './models/model-example.awd'
-  // },
+  {
+	  type: 'png',
+	  id: 'particle',
+	  url: '../static/textures/particle_1.png'
+  }
 ];

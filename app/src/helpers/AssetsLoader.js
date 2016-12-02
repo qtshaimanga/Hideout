@@ -5,6 +5,9 @@ import AWDLoader from './AWDLoader';
 import VideoManager from './VideoManager';
 import files from '../resources';
 
+//CREATE CACHE
+//var CACHE = {}
+
 /**
  * AssetsLoader class
  */
@@ -41,9 +44,11 @@ class AssetsLoader {
 
             resolve({ id, resource });
 
-            this.currentProgress++;
+            //
+            //console.log(resource.image.currentSrc);
+            //CACHE[id] = resource //or VueX
 
-            //Emitter.emit( RESSOURCES_PROGRESS, this.currentProgress / this.totalProgress );
+            this.currentProgress++; //this.currentProgress / this.totalProgress
 
             if(this.currentProgress >= this.totalProgress) {
               this.load();
@@ -61,11 +66,15 @@ class AssetsLoader {
   }
 
   /**
+  * TODO
+  */
+  // GETLOADER()
+
+  /**
    * load function
    * @return {promise} Promise
    */
   load() {
-
     return Promise.all( this.promises );
   }
 

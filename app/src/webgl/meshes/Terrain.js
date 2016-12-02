@@ -14,14 +14,16 @@ class Terrain {
 		this.geometry = new THREE.PlaneGeometry( this.height, this.width, this.numSegments, this.numSegments );
 
 		this.materialAlpha = new THREE.MeshPhongMaterial({
-			color: 0x000000,
+			color: 0x2c3544,
 			wireframe: false
 			// shading: THREE.FlatShading
 		});
 
 		this.materialBeta = new THREE.MeshPhongMaterial({
-			color: 0x444444,
-			wireframe: true
+			color: 0xfff6e3,
+			wireframe: true,
+			transparent: true,
+			opacity: 0.2
 		});
 
 		this.mesh = THREE.SceneUtils.createMultiMaterialObject( this.geometry, [
@@ -73,7 +75,7 @@ class Terrain {
 			var terrainId = Math.round(this.map(i, 0, vertices.length - 1, 0, terrain.length - 1))
 			var vertex = vertices[i];
 			var terrainValue = terrain[terrainId]
-			vertex.z = vertex.z + terrainValue * 250;
+			vertex.z = vertex.z + terrainValue * 350;
 		}
 
 		this.geometry.verticesNeedUpdate = true;

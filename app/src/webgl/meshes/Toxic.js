@@ -15,8 +15,6 @@ class Toxic {
      */
     constructor() {
 
-        //console.log(AssetsLoader);
-
         this.size = 50;
         this.widthSegments = 5;
         this.heightSegments = 5;

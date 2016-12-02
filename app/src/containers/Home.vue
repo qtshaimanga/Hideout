@@ -15,7 +15,7 @@
 		<transition name="fade" mode="out-in">
 			<share v-show="getShare"></share>
 		</transition>
-		
+
 		<webgl-home v-show="getwebglHome"></webgl-home>
 	</div>
 </template>
@@ -26,6 +26,8 @@ import Presentation from '../components/Presentation';
 import Choice  from '../components/Choice';
 import WebglHome  from '../components/WebglHome';
 import Share  from '../components/Share';
+
+import AssetsLoader from '../helpers/AssetsLoader';
 
 import {
 	getSkipState,
@@ -58,7 +60,7 @@ export default {
 		return {}
 	},
 	mounted: function() {
-
+		console.log(AssetsLoader);
 	},
 	methods:{
 	}

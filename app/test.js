@@ -78,4 +78,4 @@ console.log(secondControl);
 
 
 //
-//TODO changer le material, remove out of box, hide message and lookAt
+//TODO changer le material, remove out of box, and lookAt

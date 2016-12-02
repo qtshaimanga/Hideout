@@ -15,7 +15,8 @@ const state = {
   sharechoice: false,
   secretMessage: false,
   lockControls: false,
-  data: Object()
+  data: Array(),
+  objectsMoved: Array()
 }
 
 const mutations = {
@@ -72,6 +73,10 @@ const mutations = {
   DATA (state, data)
   {
     state.data = data;
+  },
+  MOVE (state, objectsMoved)
+  {
+    state.objectsMoved = objectsMoved;
   }
 }
 

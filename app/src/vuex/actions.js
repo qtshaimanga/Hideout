@@ -50,3 +50,7 @@ export const setLockControlsState = function ({ dispatch, state }) {
 export const setDataState = function ({ dispatch, state }, data) {
   dispatch('DATA', data)
 }
+
+export const setMoveObjectState = function ({ dispatch, state }, objectsMoved) {
+  dispatch('MOVE', objectsMoved)
+}

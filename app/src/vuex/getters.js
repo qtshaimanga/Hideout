@@ -45,3 +45,7 @@ export function getLockControlsState (state) {
 export function getDataState (state) {
   return state.data
 }
+
+export function getMoveObjectState (state) {
+  return state.objectsMoved
+}

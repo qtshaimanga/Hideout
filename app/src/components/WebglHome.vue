@@ -24,12 +24,14 @@ import Terrain from '../webgl/meshes/Terrain.js';
 
 import { getSecretMessageState,
   getLockControlsState,
-  getDataState
+  getDataState,
+  getMoveObjectState
 } from '../vuex/getters';
 
 import { setSecretMessageState,
   setLockControlsState,
-  setDataState
+  setDataState,
+  setMoveObjectState
  } from '../vuex/actions';
 
 import SecretMessage from './SecretMessage';
@@ -43,12 +45,14 @@ export default {
     getters: {
       getSecretMessage: getSecretMessageState,
       getLockControls: getLockControlsState,
-      getData: getDataState
+      getData: getDataState,
+      getMoveObject: getMoveObjectState
     },
     actions: {
       setSecretMessage: setSecretMessageState,
       setLockControls: setLockControlsState,
-      setData: setDataState
+      setData: setDataState,
+      setMoveObject: setMoveObjectState
     }
   },
   data () {
@@ -73,16 +77,19 @@ export default {
     getLockControls: function(){
       if(this.getLockControls == false){
         this.scene.lockControls(0.1);
+        this.setSecretMessage();
+        //reverse tween
+        //this.moveObject(this.getMoveObject[1], this.getMoveObject[0]);
       }
     },
     getData: function(){
-      this.listOfDataSecret = this.getData;
+      //this.listOfDataSecret = this.getData;
+      this.buildSecret();
     }
   },
   created: function(){
     this.scene = new Scene(this.width, this.height);
     this.terrainBuilder();
-
     this.secretBuilder();
 
     this.downVec = new THREE.Vector3(0,-1,1);
@@ -185,7 +192,8 @@ export default {
               this.meshText = this.getRequestSecretMessageById(this.meshId);
 
               //focus sur le mesh and show secretMessage component with props
-              this.focusOnSecret(intersectSecret[0].object);
+              this.moveObject(this.scene.camera, intersectSecret[0].object);
+
               this.setLockControls();
               this.scene.lockControls(0);
 
@@ -197,29 +205,34 @@ export default {
           this.objectIntersected = intersectSecret[0].object.name;
 
         }
-          //TODO hide if intersaction is null and set lookAT in focusOnSecret method
+          //TODO hide if intersaction is null and set lookAT in moveObject method
       }
 
-
     },
-    focusOnSecret: function(object){
-      var cameraPosition = this.scene.camera.position;
-      var objectPosition = object.position;
+    moveObject: function(startObject, endObject){
+      var startPosition = startObject.position;
+      var endPosition = endObject.position;
 
-      var firstControl = cameraPosition.clone().add(this.scene.camera.getWorldDirection()); //
+      //reverse
+      var objectsMoved = [];
+      objectsMoved.push(startObject);
+      objectsMoved.push(endObject);
+      this.setMoveObject(objectsMoved);
+
+      var firstControl = startPosition.clone().add(this.scene.camera.getWorldDirection()); //
 
       var upVec = new THREE.Vector3( 0, 1, 0);
       var offset1 = this.scene.camera.getWorldDirection().cross(upVec);//
-      var interPosition = objectPosition.clone().add(offset1);
+      var interPosition = endPosition.clone().add(offset1);
 
       var finalPosition = interPosition.clone().add(this.scene.camera.getWorldDirection().multiplyScalar(-200));
-      finalPosition.y = objectPosition.y;
+      finalPosition.y = endPosition.y;
 
-      var secondControl = finalPosition.clone().add(cameraPosition); //
-      secondControl.y = objectPosition.y;
+      var secondControl = finalPosition.clone().add(startPosition); //
+      secondControl.y = endPosition.y;
 
       var curve = new THREE.CubicBezierCurve3(
-      	cameraPosition,
+      	startPosition,
       	firstControl,
       	secondControl,
       	finalPosition
@@ -238,7 +251,7 @@ export default {
       for(let i=0; i<cameraPositionUpdated.length; i++){
 
         var cameraLookAtUpdated = curve.getTangent(i);
-        TweenMax.to(cameraPosition, 1.8, {
+        TweenMax.to(startPosition, 1.8, {
           x : cameraPositionUpdated[i].x,
           y : cameraPositionUpdated[i].y,
           z : cameraPositionUpdated[i].z

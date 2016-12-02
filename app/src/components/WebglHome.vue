@@ -80,7 +80,8 @@ export default {
       listOfObjectSecret: Array(),
       loading: 20,
       tweenMove: Object(),
-      currentObjectSecret: Object()
+      currentObjectSecret: Object(),
+      particules: Object()
     }
   },
   watch:{
@@ -125,8 +126,8 @@ export default {
       this.scene.add(this.terrain.mesh);
     },
     particleBuilder: function() {
-      this.particleSystem = new ParticleSystem();
-      this.scene.add(this.particleSystem.mesh);
+      this.particules = new ParticleSystem();
+      this.scene.add(this.particules.mesh);
     },
     secretBuilder: function(){
       var that = this;
@@ -315,7 +316,7 @@ export default {
       this.scene.resize(this.width, this.height);
     },
     update: function(event){
-
+      //TODO CREATE CLASS
       if(this.currentObjectSecret.mesh != null){
         this.currentObjectSecret.update();
         this.currentObjectSecret.rotation(false);
@@ -331,33 +332,27 @@ export default {
       if(this.getLockControls == false){
         this.controls.update();
       }
-
+      this.particules.update();
       this.meshCollisionneur();
       this.terrainCollisionneur();
     },
     loaderYolo: function(){
-			console.log("yolo");
-
 			var loader = new AssetsLoader({
 				assets: Assets
 			})
-			.on('error', function(error) {
-				console.error(error);
-			})
-			.on('progress', function(progress) {
-				console.log((progress * 100).toFixed() + '%');
-			})
-			.on('complete', function(map) {
-				// map is a hashmap of loaded files
-				// keys are either ids if specified or urls
-				Object.keys(map).forEach(function(key) {
-					console.log(key, map[key]);
-				});
-
-				// get array of all loaded files
-				loader.get().forEach(function(file) {
-					console.log(file);
-				});
+  		.on('error', function(error) {
+  			//console.error(error);
+  		})
+  		.on('progress', function(progress) {
+  			//console.log((progress * 100).toFixed() + '%');
+  		})
+  		.on('complete', function(map) {
+  			Object.keys(map).forEach(function(key) {
+          //console.log(key, map[key]);
+        });
+  		  loader.get().forEach(function(file) {
+  			//console.log(file);
+  		  });
 			})
 			.start();
 		}

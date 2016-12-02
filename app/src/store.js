@@ -16,6 +16,19 @@ const state = {
   secretMessage: false,
 }
 
+// const state = {
+//   skip: true,
+//   pres: false,
+//   choice: false,
+//   webglHome: false,
+//   share: false,
+//   writing: false,
+//   telling: false,
+//   type: { statut:false, from:"home"},
+//   sharechoice: false,
+//   secretMessage: false,
+// }
+
 const mutations = {
   SKIP (state){
     state.skip = state.skip ? false : state.skip ? false : true;

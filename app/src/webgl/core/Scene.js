@@ -33,11 +33,12 @@ class Scene {
 	}
 
 	/**
-	*
 	*/
-	addLight(){
+	lockControls(speed){
+		this.controls.lookSpeed = speed;
+	}
 
-		this.scene.add(new THREE.AmbientLight(0x1f1f3b));
+	addLight(){
 
 		this.directional = new THREE.DirectionalLight(0xf4a6e9);
 		this.directional.position.set(1, 1, 1);
@@ -57,7 +58,7 @@ class Scene {
 	* @param {object} child - A THREE object
 	*/
 	add(child) {
-
+		
 		this.scene.add(child);
 
 	}

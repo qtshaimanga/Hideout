@@ -42,3 +42,15 @@ export const setResetShareState = function ({ dispatch, state }) {
 export const setSecretMessageState = function ({ dispatch, state }) {
   dispatch('MESSAGE')
 }
+
+export const setLockControlsState = function ({ dispatch, state }) {
+  dispatch('CONTROLS')
+}
+
+export const setDataState = function ({ dispatch, state }, data) {
+  dispatch('DATA', data)
+}
+
+export const setMoveObjectState = function ({ dispatch, state }, objectsMoved) {
+  dispatch('MOVE', objectsMoved)
+}

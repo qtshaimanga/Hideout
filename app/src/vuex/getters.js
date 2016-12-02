@@ -37,3 +37,15 @@ export function getTypeState (state) {
 export function getSecretMessageState (state) {
   return state.secretMessage
 }
+
+export function getLockControlsState (state) {
+  return state.lockControls
+}
+
+export function getDataState (state) {
+  return state.data
+}
+
+export function getMoveObjectState (state) {
+  return state.objectsMoved
+}

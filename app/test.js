@@ -78,4 +78,6 @@ console.log(secondControl);
 
 
 //
-//TODO changer le material, remove out of box, and lookAt
+//TODO changer le material, remove out of box
+
+// var ratio = Math.min(Math.max(t / 100, 0), 1);

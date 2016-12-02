@@ -8,6 +8,12 @@ import AssetsLoader from '../../helpers/AssetsLoader';
 import vertexShader from '../shaders/toxicSecrets/vertexShader.vert';
 import fragmentShader from '../shaders/toxicSecrets/fragmentShader.frag';
 
+
+var size = 50;
+var widthSegments = 5;
+var heightSegments = 5;
+var geometry = new THREE.SphereGeometry(size, widthSegments, heightSegments);
+
 class Toxic {
 
     /**
@@ -15,12 +21,8 @@ class Toxic {
      */
     constructor() {
 
-        this.size = 50;
-        this.widthSegments = 5;
-        this.heightSegments = 5;
-        this.time = 0.01;
 
-        this.geometry = new THREE.SphereGeometry(this.size, this.widthSegments, this.heightSegments);
+        this.time = 0.01;
 
         this.loader = new THREE.TextureLoader();
 
@@ -54,7 +56,7 @@ class Toxic {
             lights: true
         });
 
-        this.mesh = new THREE.Mesh(this.geometry, this.material);
+        this.mesh = new THREE.Mesh(geometry, this.material);
 
     }
 
@@ -65,10 +67,19 @@ class Toxic {
      */
     update() {
 
-        // this.mesh.rotation.x += this.time;
-        // this.mesh.rotation.y += this.time;
-        // this.mesh.rotation.z += this.time;
         this.material.uniforms.u_time.value += this.time;
+
+    }
+
+    /**
+    */
+    rotation(start){
+      
+      if(start == true){
+        this.mesh.rotation.x += this.time*0.5;
+        this.mesh.rotation.y += this.time*0.5;
+        this.mesh.rotation.z += this.time*0.5;
+      }
 
     }
 

@@ -14,6 +14,8 @@ import throttle from 'lodash.throttle';
 import _ from 'underscore';
 
 import Scene from '../webgl/core/Scene.js';
+import Controls from '../webgl/core/Controls.js';
+
 import * as THREE from 'three';
 
 import Toxic from '../webgl/meshes/Toxic.js';
@@ -60,6 +62,7 @@ export default {
       width: window.innerWidth,
       height: window.innerHeight,
       scene: Object(),
+      controls: Object(),
       terrain: Object(),
       cameraRay: Object(),
       downVec: Object(),
@@ -71,24 +74,26 @@ export default {
       listOfDataSecret: Array(),
       listOfObjectSecret: Array(),
       loading: 20,
+      tweenMove: Object(),
+      currentObjectSecret: Object()
     }
   },
   watch:{
     getLockControls: function(){
       if(this.getLockControls == false){
-        this.scene.lockControls(0.1);
         this.setSecretMessage();
-        //reverse tween
-        //this.moveObject(this.getMoveObject[1], this.getMoveObject[0]);
+        this.tweenMove.reverse();
+        this.currentObjectSecret = Object();
       }
     },
-    getData: function(){
-      //this.listOfDataSecret = this.getData;
-      this.buildSecret();
-    }
+    // getData: function(){
+    //   this.buildSecret();
+    // }
   },
   created: function(){
     this.scene = new Scene(this.width, this.height);
+    this.controls = new Controls(this.scene);
+
     this.terrainBuilder();
     this.secretBuilder();
 
@@ -104,6 +109,8 @@ export default {
 
     this.meshCollisionneur();
     this.terrainCollisionneur();
+
+    console.log(this.listOfObjectSecret);
   },
   methods:{
     terrainBuilder: function(){
@@ -126,6 +133,7 @@ export default {
     },
     buildSecret: function(){
       var listOfObjectSecret = [];
+
       for(let i=0; i<=this.getData.length-1;i++){
         var secret = this.getData[i].typeSecret+"_"+i;
         var globe = secret;
@@ -143,6 +151,7 @@ export default {
         }
 
         globe = new Globe();
+        console.log(secret);
 
         secret.mesh.name = this.getData[i].typeSecret+"_"+i;
         secret.mesh.position.set(x, y, z);
@@ -176,6 +185,7 @@ export default {
         var intersectSecret = this.cameraRay.intersectObject( globe.mesh, true );
 
         if(intersectSecret != 0 && intersectSecret[0].distance <= 1000){
+          //&& this.getLockControls == false
 
           var time = this.time;
           this.time++
@@ -192,10 +202,13 @@ export default {
               this.meshText = this.getRequestSecretMessageById(this.meshId);
 
               //focus sur le mesh and show secretMessage component with props
-              this.moveObject(this.scene.camera, intersectSecret[0].object);
-
               this.setLockControls();
-              this.scene.lockControls(0);
+
+              //path raycast
+              console.log(this.listOfObjectSecret[this.meshId][0]);
+              this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
+
+              this.moveObject(this.scene.camera, intersectSecret[0].object);
 
             }else if(time <= this.loading){
               console.log("LOADING...");
@@ -213,23 +226,26 @@ export default {
       var startPosition = startObject.position;
       var endPosition = endObject.position;
 
-      //reverse
-      var objectsMoved = [];
-      objectsMoved.push(startObject);
-      objectsMoved.push(endObject);
-      this.setMoveObject(objectsMoved);
-
-      var firstControl = startPosition.clone().add(this.scene.camera.getWorldDirection()); //
-
+      var curveCtrlLength1 = 220;
+      var curveCtrlLength2 = 220;
+      var offset = new THREE.Vector2(50, 200);
       var upVec = new THREE.Vector3( 0, 1, 0);
-      var offset1 = this.scene.camera.getWorldDirection().cross(upVec);//
-      var interPosition = endPosition.clone().add(offset1);
 
-      var finalPosition = interPosition.clone().add(this.scene.camera.getWorldDirection().multiplyScalar(-200));
-      finalPosition.y = endPosition.y;
+      var diff = endPosition.clone().sub(startPosition);
 
-      var secondControl = finalPosition.clone().add(startPosition); //
-      secondControl.y = endPosition.y;
+      var offset1 = diff.clone().cross(upVec).setLength(offset.x);;
+      offset1.y = 0;
+
+      var offset2 = diff.clone().setLength(offset.y).multiplyScalar(-1);
+      offset2.y = 0;
+
+      var firstLookAt = endPosition.clone();
+      var finalLookAt = endPosition.clone().add(offset1);
+
+      var finalPosition = finalLookAt.clone().add(offset2);
+
+      var firstControl = diff.clone().setLength(curveCtrlLength1).add(startPosition);
+      var secondControl = offset2.clone().setLength(curveCtrlLength2).add(finalPosition);
 
       var curve = new THREE.CubicBezierCurve3(
       	startPosition,
@@ -246,19 +262,24 @@ export default {
       var curveObject = new THREE.Line( geometry, material );
       this.scene.add(curveObject);
 
-      var cameraPositionUpdated = curve.getPoints();
+      var startObjectPositionUpdated = curve.getPoints();
 
-      for(let i=0; i<cameraPositionUpdated.length; i++){
+      var cameraTransition = {
+        "value": 0
+      };
 
-        var cameraLookAtUpdated = curve.getTangent(i);
-        TweenMax.to(startPosition, 1.8, {
-          x : cameraPositionUpdated[i].x,
-          y : cameraPositionUpdated[i].y,
-          z : cameraPositionUpdated[i].z
-        });
+      this.tweenMove = TweenMax.to(cameraTransition, 1.5, {
+        value: 1,
+        onUpdate: function(){
+          var positionUpdated = curve.getPoint(cameraTransition.value);
+          startPosition.copy(positionUpdated);
 
-      }
-
+          var lookAtPositionUpdated = finalLookAt.clone().sub(firstLookAt)
+                                                  .multiplyScalar(cameraTransition.value)
+                                                  .add(firstLookAt);
+          startObject.lookAt(lookAtPositionUpdated);
+        }
+      });
 
     },
     getRequestSecretMessageById: function(meshId){
@@ -285,12 +306,22 @@ export default {
       this.scene.resize(this.width, this.height);
     },
     update: function(event){
-      //test
-      // this.toxic2.update();
-      // this.sugar2.update();
-      // this.toxic.update();
-      // this.sugar.update();
+
+      if(this.currentObjectSecret.mesh != null){
+        this.currentObjectSecret.update();
+        this.currentObjectSecret.rotation(false);
+      }
+
+      for(let i=0; i<= this.listOfObjectSecret.length-1; i++){
+        var secret = this.listOfObjectSecret;
+        secret[i][0].rotation(true);
+      }
+
       this.scene.render();
+
+      if(this.getLockControls == false){
+        this.controls.update();
+      }
 
       this.meshCollisionneur();
       this.terrainCollisionneur();

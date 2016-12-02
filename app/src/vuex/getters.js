@@ -49,3 +49,7 @@ export function getDataState (state) {
 export function getMoveObjectState (state) {
   return state.objectsMoved
 }
+
+// export function getControlsControllerState (state) {
+//   return state.controlsController
+// }

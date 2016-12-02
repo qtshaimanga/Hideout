@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import FirstPersonControls from '../controls/FirstPersonControls';
 
 
 class Scene {
@@ -26,17 +25,6 @@ class Scene {
 
         this.addLight();
 
-        this.clock = new THREE.Clock();
-        this.controls = new THREE.FirstPersonControls(this.camera);
-        this.controls.movementSpeed = 150;
- 	      this.controls.lookSpeed = 0.1;
-
-    }
-
-    /**
-    */
-    lockControls(speed){
-      this.controls.lookSpeed = speed;
     }
 
 
@@ -87,8 +75,6 @@ class Scene {
 
       this.renderer.autoClearColor = true;
       this.renderer.render(this.scene, this.camera);
-
-      this.controls.update(this.clock.getDelta());
 
     }
 

@@ -12,7 +12,7 @@ class GlobeCamera {
     constructor() {
 
       this.geometry = geometry;
-      
+
       this.material = new THREE.MeshBasicMaterial({
           //wireframe: true,
           color: 0xff0000,
@@ -22,7 +22,6 @@ class GlobeCamera {
       });
 
       this.mesh = new THREE.Mesh(this.geometry, this.material);
-
 
     }
 

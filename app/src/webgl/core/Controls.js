@@ -32,6 +32,7 @@ class Controls {
      */
     update() {
 
+      //console.log(this.clock.getDelta());
       this.controls.update(this.clock.getDelta());
 
     }

@@ -47,6 +47,10 @@ export const setLockControlsState = function ({ dispatch, state }) {
   dispatch('CONTROLS')
 }
 
+export const setFocusState = function ({ dispatch, state }) {
+  dispatch('FOCUS')
+}
+
 export const setDataState = function ({ dispatch, state }, data) {
   dispatch('DATA', data)
 }
@@ -61,4 +65,12 @@ export const setLoaderState = function ({ dispatch, state }) {
 
 export const setRessourcesState = function({ dispatch, state }, ressources){
 	dispatch('RESSOURCES', ressources)
+}
+
+export const setCursorProgressState = function({ dispatch, state }, cursorProgress){
+	dispatch('OPEN', cursorProgress)
+}
+
+export const setCursorLoaderState = function ({ dispatch, state }) {
+  dispatch('CURSOR')
 }

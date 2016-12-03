@@ -19,6 +19,9 @@ const state = {
   objectsMoved: Array(),
   loader: true,
   ressources: Object(),
+  focus: false,
+  cursorLoader: false,
+  cursorProgress: Number()
 }
 
 const mutations = {
@@ -72,6 +75,10 @@ const mutations = {
   {
     state.lockControls = state.lockControls ? false : state.lockControls ? false : true;
   },
+  FOCUS (state)
+  {
+    state.focus = state.focus ? false : state.focus ? false : true;
+  },
   DATA (state, data)
   {
     state.data = data;
@@ -88,6 +95,14 @@ const mutations = {
   {
     state.ressources = ressources
   },
+  OPEN(state, cursorProgress)
+  {
+    state.cursorProgress = cursorProgress
+  },
+  CURSOR(state)
+  {
+    state.cursorLoader = state.cursorLoader ? false : state.cursorLoader ? false : true;
+  }
 }
 
 export default new Vuex.Store({

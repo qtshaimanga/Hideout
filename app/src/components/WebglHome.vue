@@ -1,5 +1,6 @@
 <template>
 	<div class="webgl-home">
+		<cursor-loader></cursor-loader>
 		<secret-message v-show="this.getSecretMessage" :meshId="meshId" :meshText="meshText"></secret-message>
 	</div>
 </template>
@@ -25,6 +26,7 @@ import ParticleSystem from '../webgl/meshes/ParticleSystem.js';
 
 import { getSecretMessageState,
 	getLockControlsState,
+	getFocusState,
 	getDataState,
 	getMoveObjectState,
 	getRessourcesState
@@ -32,21 +34,26 @@ import { getSecretMessageState,
 
 import { setSecretMessageState,
 	setLockControlsState,
+	setFocusState,
 	setDataState,
-	setMoveObjectState
+	setMoveObjectState,
+	setCursorProgressState
 } from '../vuex/actions';
 
 import SecretMessage from './SecretMessage';
+import CursorLoader from './CursorLoader';
 
 export default {
   name: "webglHome",
   components: {
-    SecretMessage
+    SecretMessage,
+		CursorLoader
   },
   vuex: {
     getters: {
       getSecretMessage: getSecretMessageState,
       getLockControls: getLockControlsState,
+			getFocus: getFocusState,
       getData: getDataState,
       getMoveObject: getMoveObjectState,
 			getRessources: getRessourcesState
@@ -54,8 +61,10 @@ export default {
     actions: {
       setSecretMessage: setSecretMessageState,
       setLockControls: setLockControlsState,
+			setFocus: setFocusState,
       setData: setDataState,
-      setMoveObject: setMoveObjectState
+      setMoveObject: setMoveObjectState,
+			setCursorProgress: setCursorProgressState
     }
   },
   data () {
@@ -74,19 +83,20 @@ export default {
       meshText: String(),
       listOfDataSecret: Array(),
       listOfObjectSecret: Array(),
-      loading: 20,
+      loading: 10000,
       tweenMove: Object(),
       currentObjectSecret: Object(),
       particules: Object(),
-			globeCamera: Object()
     }
   },
   watch:{
-    getLockControls: function(){
-      if(this.getLockControls == false){
+    getFocus: function(){
+      if(this.getFocus == false){
         this.setSecretMessage();
         this.tweenMove.reverse();
         this.currentObjectSecret = Object();
+				this.setLockControls();
+
       }
     },
   },
@@ -97,7 +107,6 @@ export default {
     this.terrainBuilder();
     this.secretBuilder();
     this.particleBuilder();
-		this.buildCameraGlobe();
 
     this.downVec = new THREE.Vector3(0,-1,1);
     this.frontVec = new THREE.Vector3(0,0,1);
@@ -184,12 +193,11 @@ export default {
       this.cameraRay.setFromCamera(this.frontVec, this.scene.camera);
 
       for(let i=0; i<=this.listOfObjectSecret.length-1; i++){
+
         var globeSecret = this.listOfObjectSecret[i][1];
         var intersectSecret = this.cameraRay.intersectObject( globeSecret.mesh, true );
 
-        if(intersectSecret != 0 && intersectSecret[0].distance <= 1000){
-          //&& this.getLockControls == false
-
+        if(intersectSecret != 0 && intersectSecret[0].distance <= 500){
           var time = this.time;
           this.time++
 
@@ -205,21 +213,30 @@ export default {
               this.meshText = this.getRequestSecretMessageById(this.meshId);
 
               //focus sur le mesh and show secretMessage component with props
-              this.setLockControls();
-
-              //path raycast
+              this.setFocus();
+							this.setLockControls();
               this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
               this.moveObject(this.scene.camera, intersectSecret[0].object);
 
             }else if(time <= this.loading){
-              console.log("LOADING...");
+							this.setCursorProgress(time+1);
+
             }
           }
 
           this.objectIntersected = intersectSecret[0].object.name;
 
-        }
-          //TODO hide if intersaction is null and set lookAT in moveObject method
+        }else{
+					if(intersectSecret.length == 0){
+						//5
+						console.log(0);
+					}else{
+						//1
+						console.log(1);
+					}
+					//console.log(intersectSecret, globeSecret);
+				}
+
       }
 
     },
@@ -288,36 +305,10 @@ export default {
       var text = "mon texte de test"
       return text
     },
-		buildCameraGlobe: function(){
-			//check les elemnts dans le cube et remove les objets a l'exterieurs.
-			//this.scene.remove(this.sugar2.mesh);
-			this.globeCamera = new GlobeCamera();
-
-			var x = this.scene.camera.position.x;
-			var y = this.scene.camera.position.y + 200;
-			var z = this.scene.camera.position.z;
-
-			this.globeCamera.mesh.name = "globeCamera_1";
-			this.globeCamera.mesh.position.set(x, y, z);	//-100, 200, 500
-			this.scene.add(this.globeCamera.mesh);
+		postRequestSecretById: function(){
+			//deposer -> raycaster pour recuperer x,y,z + post + refreshData
+			//post request -> update State + send secret with meshId and meshPosition
 		},
-    cameraGlobeCollisionneur: function(){
-			this.globeCamera.mesh.position.x = this.scene.camera.position.x
-			this.globeCamera.mesh.position.y = this.scene.camera.position.y + 150;
-			this.globeCamera.mesh.position.z = this.scene.camera.position.z
-
-			var sugar = this.listOfObjectSecret[3][0];
-			var geometry = this.globeCamera.geometry;
-			//console.log(sugar, geometry);
-
-			// var intersect = this.globeCamera.containsBox();
-			// console.log(intersect);
-
-    },
-    postRequestSecretById: function(){
-      //deposer -> raycaster pour recuperer x,y,z + post + refreshData
-      //post request -> update State + send secret with meshId and meshPosition
-    },
     getMeshId: function(name){
       var regex = /_(.*)/;
       var id = name.match(regex)[1];
@@ -329,7 +320,6 @@ export default {
       this.scene.resize(this.width, this.height);
     },
     update: function(event){
-      //TODO
       if(this.currentObjectSecret.mesh != null){
         this.currentObjectSecret.update();
         this.currentObjectSecret.rotation(false);
@@ -342,14 +332,17 @@ export default {
 
       this.scene.render();
 
-      if(this.getLockControls == false){
-        this.controls.update();
-      }
+      if(this.getLockControls == true){
+				this.controls.lockControls(0);
+      }else{
+				this.controls.lockControls(0.1);
+			}
+
+			this.controls.update();
 
       this.particules.update();
       this.meshCollisionneur();
       this.terrainCollisionneur();
-			this.cameraGlobeCollisionneur();
     },
   }
 }

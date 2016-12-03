@@ -42,6 +42,10 @@ export function getLockControlsState (state) {
   return state.lockControls
 }
 
+export function getFocusState (state) {
+  return state.focus
+}
+
 export function getDataState (state) {
   return state.data
 }
@@ -56,4 +60,12 @@ export function getLoaderState (state) {
 
 export function getRessourcesState (state, ressources) {
   return state.ressources
+}
+
+export function getCursorProgressState (state, cursorProgress) {
+  return state.cursorProgress
+}
+
+export function getCursorLoaderState (state) {
+  return state.cursorLoader
 }

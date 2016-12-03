@@ -12,10 +12,10 @@ class GlobeSecret {
     constructor() {
 
       this.material = new THREE.MeshBasicMaterial({
-          wireframe: true,
-          color: 0x808080,
-          // transparent: true,
-          // opacity: 0
+          // wireframe: true,
+          // color: 0x808080,
+          transparent: true,
+          opacity: 0
       });
 
       this.mesh = new THREE.Mesh(geometry, this.material);

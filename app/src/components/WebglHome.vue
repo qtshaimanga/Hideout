@@ -83,7 +83,7 @@ export default {
       meshText: String(),
       listOfDataSecret: Array(),
       listOfObjectSecret: Array(),
-      loading: 10000,
+      loading: 100,
       tweenMove: Object(),
       currentObjectSecret: Object(),
       particules: Object(),
@@ -91,13 +91,14 @@ export default {
   },
   watch:{
     getFocus: function(){
-      if(this.getFocus == false){
+      if(this.getFocus == true){
         this.setSecretMessage();
-        this.tweenMove.reverse();
-        this.currentObjectSecret = Object();
+      }else{
+				this.tweenMove.reverse();
 				this.setLockControls();
-
-      }
+				this.setSecretMessage();
+				this.currentObjectSecret = Object();
+			}
     },
   },
   created: function(){
@@ -197,16 +198,12 @@ export default {
         var globeSecret = this.listOfObjectSecret[i][1];
         var intersectSecret = this.cameraRay.intersectObject( globeSecret.mesh, true );
 
-        if(intersectSecret != 0 && intersectSecret[0].distance <= 500){
+        if(intersectSecret != 0 && intersectSecret[0].distance <= 800){
           var time = this.time;
           this.time++
 
           if(this.objectIntersected != intersectSecret[0].object.name){
             this.time = 0;
-
-            if(this.getSecretMessage == false){
-               this.setSecretMessage();
-             }
           }else{
             if(time == this.loading){
               this.meshId = this.getMeshId(intersectSecret[0].object.name);
@@ -229,10 +226,10 @@ export default {
         }else{
 					if(intersectSecret.length == 0){
 						//5
-						console.log(0);
+						//console.log(0);
 					}else{
 						//1
-						console.log(1);
+						//console.log(1);
 					}
 					//console.log(intersectSecret, globeSecret);
 				}

@@ -22,21 +22,21 @@
     "date": "1/12/16"
   },
   {
-    "rowid":"2",
-    "typeContaint": "text",
-    "sound": null,
-    "text": "text 2",
-    "typeSecret": "toxic",
-    "x":"1200",
-    "y": "250",
-    "z": "-1200",
-    "date": "1/12/16"
-  },
-  {
     "rowid":"3",
     "typeContaint": "text",
     "sound": null,
     "text": "text 3",
+    "typeSecret": "toxic",
+    "x":"1200",
+    "y": "250",
+    "z": "200",
+    "date": "1/12/16"
+  },
+  {
+    "rowid":"4",
+    "typeContaint": "text",
+    "sound": null,
+    "text": "text 4",
     "typeSecret": "sugar",
     "x":"20",
     "y": "400",
@@ -44,10 +44,10 @@
     "date": "1/12/16"
   },
   {
-    "rowid":"4",
+    "rowid":"5",
     "typeContaint": "text",
     "sound": null,
-    "text": "text 4",
+    "text": "text 5",
     "typeSecret": "sugar",
     "x":"700",
     "y": "500",
@@ -55,10 +55,10 @@
     "date": "1/12/16"
   },
   {
-    "rowid":"4",
+    "rowid":"6",
     "typeContaint": "text",
     "sound": null,
-    "text": "text 4",
+    "text": "text 6",
     "typeSecret": "sugar",
     "x":"1200",
     "y": "500",

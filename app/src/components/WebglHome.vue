@@ -8,14 +8,7 @@
 //TEST
 import data from '../service/data.json';
 
-import AssetsLoader from 'assets-loader';
-import ressources from '../helpers/AssetsLoader';
-import Assets from '../resources';
-
 import { TweenMax } from 'gsap';
-import { TimelineLite } from 'gsap';
-import throttle from 'lodash.throttle';
-import _ from 'underscore';
 
 import Scene from '../webgl/core/Scene.js';
 import Controls from '../webgl/core/Controls.js';
@@ -32,7 +25,8 @@ import ParticleSystem from '../webgl/meshes/ParticleSystem.js';
 import { getSecretMessageState,
 	getLockControlsState,
 	getDataState,
-	getMoveObjectState
+	getMoveObjectState,
+	getRessourcesState
 } from '../vuex/getters';
 
 import { setSecretMessageState,
@@ -53,7 +47,8 @@ export default {
       getSecretMessage: getSecretMessageState,
       getLockControls: getLockControlsState,
       getData: getDataState,
-      getMoveObject: getMoveObjectState
+      getMoveObject: getMoveObjectState,
+			getRessources: getRessourcesState
     },
     actions: {
       setSecretMessage: setSecretMessageState,
@@ -104,10 +99,10 @@ export default {
     this.downVec = new THREE.Vector3(0,-1,1);
     this.frontVec = new THREE.Vector3(0,0,1);
     this.cameraRay = new THREE.Raycaster();
-
-    this.loaderYolo();
   },
   mounted: function() {
+		console.log("RESSOURCES object.key = objectValue -> file.src : ", this.getRessources);
+
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);
 
@@ -115,8 +110,6 @@ export default {
 
     this.meshCollisionneur();
     this.terrainCollisionneur();
-
-    console.log(this.listOfObjectSecret);
   },
   methods:{
     terrainBuilder: function(){
@@ -161,7 +154,6 @@ export default {
         }
 
         globe = new Globe();
-        console.log(secret);
 
         secret.mesh.name = this.getData[i].typeSecret+"_"+i;
         secret.mesh.position.set(x, y, z);
@@ -215,9 +207,7 @@ export default {
               this.setLockControls();
 
               //path raycast
-              console.log(this.listOfObjectSecret[this.meshId][0]);
               this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
-
               this.moveObject(this.scene.camera, intersectSecret[0].object);
 
             }else if(time <= this.loading){
@@ -337,27 +327,6 @@ export default {
       this.meshCollisionneur();
       this.terrainCollisionneur();
     },
-    loaderYolo: function(){
-			var loader = new AssetsLoader({
-				assets: Assets
-			})
-  		.on('error', function(error) {
-  			//console.error(error);
-  		})
-  		.on('progress', function(progress) {
-  			//console.log((progress * 100).toFixed() + '%');
-  		})
-  		.on('complete', function(map) {
-  			Object.keys(map).forEach(function(key) {
-          //console.log(key, map[key]);
-        });
-  		  loader.get().forEach(function(file) {
-  			//console.log(file);
-        //TODO STATE
-  		  });
-			})
-			.start();
-		}
   }
 }
 </script>

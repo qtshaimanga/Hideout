@@ -7,7 +7,7 @@ const state = {
   skip: false,
   pres: false,
   choice: false,
-  webglHome: true,
+  webglHome: false,
   share: false,
   writing: false,
   telling: false,
@@ -17,21 +17,9 @@ const state = {
   lockControls: false,
   data: Array(),
   objectsMoved: Array(),
-  ressources: Object()
+  loader: true,
+  ressources: Object(),
 }
-
-// const state = {
-//   skip: true,
-//   pres: false,
-//   choice: false,
-//   webglHome: false,
-//   share: false,
-//   writing: false,
-//   telling: false,
-//   type: { statut:false, from:"home"},
-//   sharechoice: false,
-//   secretMessage: false,
-// }
 
 const mutations = {
   SKIP (state){
@@ -92,10 +80,14 @@ const mutations = {
   {
     state.objectsMoved = objectsMoved;
 	},
-	RESSOURCES(state, ressources)
-	{
-		state.ressources = ressources
-	}
+  LOADER (state)
+  {
+    state.loader = state.loader ? false : state.loader ? false : true;
+  },
+  RESSOURCES(state, ressources)
+  {
+    state.ressources = ressources
+  },
 }
 
 export default new Vuex.Store({

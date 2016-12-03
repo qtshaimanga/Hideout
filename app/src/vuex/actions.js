@@ -55,6 +55,10 @@ export const setMoveObjectState = function ({ dispatch, state }, objectsMoved) {
   dispatch('MOVE', objectsMoved)
 }
 
+export const setLoaderState = function ({ dispatch, state }) {
+  dispatch('LOADER')
+}
+
 export const setRessourcesState = function({ dispatch, state }, ressources){
 	dispatch('RESSOURCES', ressources)
 }

@@ -3,8 +3,6 @@ import * as THREE from 'three';
 import { UniformsUtils } from '../utils/UniformsUtils';
 import { UniformsLib } from '../utils/UniformsLib';
 
-import AssetsLoader from '../../helpers/AssetsLoader';
-
 import vertexShader from '../shaders/toxicSecrets/vertexShader.vert';
 import fragmentShader from '../shaders/toxicSecrets/fragmentShader.frag';
 
@@ -74,7 +72,7 @@ class Toxic {
     /**
     */
     rotation(start){
-      
+
       if(start == true){
         this.mesh.rotation.x += this.time*0.5;
         this.mesh.rotation.y += this.time*0.5;

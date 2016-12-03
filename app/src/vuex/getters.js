@@ -50,6 +50,10 @@ export function getMoveObjectState (state) {
   return state.objectsMoved
 }
 
+export function getLoaderState (state) {
+  return state.loader
+}
+
 export function getRessourcesState (state, ressources) {
   return state.ressources
 }

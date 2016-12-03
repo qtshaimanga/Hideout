@@ -18,7 +18,8 @@ import * as THREE from 'three';
 import Toxic from '../webgl/meshes/Toxic.js';
 import Sugar from '../webgl/meshes/Sugar.js';
 import Cube from '../webgl/meshes/Cube.js';
-import Globe from '../webgl/meshes/Globe.js';
+import GlobeSecret from '../webgl/meshes/GlobeSecret.js';
+import GlobeCamera from '../webgl/meshes/GlobeCamera.js';
 import Terrain from '../webgl/meshes/Terrain.js';
 import ParticleSystem from '../webgl/meshes/ParticleSystem.js';
 
@@ -76,7 +77,8 @@ export default {
       loading: 20,
       tweenMove: Object(),
       currentObjectSecret: Object(),
-      particules: Object()
+      particules: Object(),
+			globeCamera: Object()
     }
   },
   watch:{
@@ -95,14 +97,13 @@ export default {
     this.terrainBuilder();
     this.secretBuilder();
     this.particleBuilder();
+		this.buildCameraGlobe();
 
     this.downVec = new THREE.Vector3(0,-1,1);
     this.frontVec = new THREE.Vector3(0,0,1);
     this.cameraRay = new THREE.Raycaster();
   },
   mounted: function() {
-		console.log("RESSOURCES object.key = objectValue -> file.src : ", this.getRessources);
-
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);
 
@@ -139,7 +140,7 @@ export default {
 
       for(let i=0; i<=this.getData.length-1;i++){
         var secret = this.getData[i].typeSecret+"_"+i;
-        var globe = secret;
+        var globeSecret = secret;
         var objectSecret = [];
 
         var x = Number(this.getData[i].x);
@@ -153,18 +154,18 @@ export default {
           secret = new Toxic();
         }
 
-        globe = new Globe();
+        globeSecret = new GlobeSecret();
 
         secret.mesh.name = this.getData[i].typeSecret+"_"+i;
         secret.mesh.position.set(x, y, z);
         this.scene.add(secret.mesh);
 
-        globe.mesh.name = this.getData[i].typeSecret+"_"+i;
-        globe.mesh.position.set(x, y, z);
-        this.scene.add(globe.mesh);
+        globeSecret.mesh.name = this.getData[i].typeSecret+"_"+i;
+        globeSecret.mesh.position.set(x, y, z);
+        this.scene.add(globeSecret.mesh);
 
         objectSecret.push(secret);
-        objectSecret.push(globe);
+        objectSecret.push(globeSecret);
 
         listOfObjectSecret.push(objectSecret);
       }
@@ -183,8 +184,8 @@ export default {
       this.cameraRay.setFromCamera(this.frontVec, this.scene.camera);
 
       for(let i=0; i<=this.listOfObjectSecret.length-1; i++){
-        var globe = this.listOfObjectSecret[i][1];
-        var intersectSecret = this.cameraRay.intersectObject( globe.mesh, true );
+        var globeSecret = this.listOfObjectSecret[i][1];
+        var intersectSecret = this.cameraRay.intersectObject( globeSecret.mesh, true );
 
         if(intersectSecret != 0 && intersectSecret[0].distance <= 1000){
           //&& this.getLockControls == false
@@ -287,9 +288,31 @@ export default {
       var text = "mon texte de test"
       return text
     },
-    cameraGlobe: function(){
-      //check les elemnts dans le cube et remove les objets a l'exterieurs.
-      //this.scene.remove(this.sugar2.mesh);
+		buildCameraGlobe: function(){
+			//check les elemnts dans le cube et remove les objets a l'exterieurs.
+			//this.scene.remove(this.sugar2.mesh);
+			this.globeCamera = new GlobeCamera();
+
+			var x = this.scene.camera.position.x;
+			var y = this.scene.camera.position.y + 200;
+			var z = this.scene.camera.position.z;
+
+			this.globeCamera.mesh.name = "globeCamera_1";
+			this.globeCamera.mesh.position.set(x, y, z);	//-100, 200, 500
+			this.scene.add(this.globeCamera.mesh);
+		},
+    cameraGlobeCollisionneur: function(){
+			this.globeCamera.mesh.position.x = this.scene.camera.position.x
+			this.globeCamera.mesh.position.y = this.scene.camera.position.y + 150;
+			this.globeCamera.mesh.position.z = this.scene.camera.position.z
+
+			var sugar = this.listOfObjectSecret[3][0];
+			var geometry = this.globeCamera.geometry;
+			//console.log(sugar, geometry);
+
+			// var intersect = this.globeCamera.containsBox();
+			// console.log(intersect);
+
     },
     postRequestSecretById: function(){
       //deposer -> raycaster pour recuperer x,y,z + post + refreshData
@@ -326,6 +349,7 @@ export default {
       this.particules.update();
       this.meshCollisionneur();
       this.terrainCollisionneur();
+			this.cameraGlobeCollisionneur();
     },
   }
 }

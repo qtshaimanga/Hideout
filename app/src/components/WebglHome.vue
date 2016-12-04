@@ -22,9 +22,12 @@ import Cube from '../webgl/meshes/Cube.js';
 import GlobeSecret from '../webgl/meshes/GlobeSecret.js';
 import GlobeCamera from '../webgl/meshes/GlobeCamera.js';
 import Terrain from '../webgl/meshes/Terrain.js';
+import Spline from '../webgl/meshes/Spline.js';
 import ParticleSystem from '../webgl/meshes/ParticleSystem.js';
 
-import { getSecretMessageState,
+import {
+	getPresState,
+	getSecretMessageState,
 	getLockControlsState,
 	getFocusState,
 	getDataState,
@@ -51,6 +54,7 @@ export default {
   },
   vuex: {
     getters: {
+			getPres: getPresState,
       getSecretMessage: getSecretMessageState,
       getLockControls: getLockControlsState,
 			getFocus: getFocusState,
@@ -74,6 +78,7 @@ export default {
       scene: Object(),
       controls: Object(),
       terrain: Object(),
+			spline: Object(),
       cameraRay: Object(),
       downVec: Object(),
       frontVec: Object(),
@@ -87,6 +92,7 @@ export default {
       tweenMove: Object(),
       currentObjectSecret: Object(),
       particules: Object(),
+			tick: Number(),
     }
   },
   watch:{
@@ -108,6 +114,7 @@ export default {
     this.terrainBuilder();
     this.secretBuilder();
     this.particleBuilder();
+		this.splineBuilder();
 
     this.downVec = new THREE.Vector3(0,-1,1);
     this.frontVec = new THREE.Vector3(0,0,1);
@@ -209,11 +216,10 @@ export default {
               this.meshId = this.getMeshId(intersectSecret[0].object.name);
               this.meshText = this.getRequestSecretMessageById(this.meshId);
 
-              //focus sur le mesh and show secretMessage component with props
-              this.setFocus();
+							this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
+							this.moveObject(this.scene.camera, intersectSecret[0].object);
+							this.setFocus();
 							this.setLockControls();
-              this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
-              this.moveObject(this.scene.camera, intersectSecret[0].object);
 
             }else if(time <= this.loading){
 							this.setCursorProgress(time+1);
@@ -246,7 +252,7 @@ export default {
 
       var curveCtrlLength1 = 220;
       var curveCtrlLength2 = 220;
-      var offset = new THREE.Vector2(50, 200);
+      var offset = new THREE.Vector2(80, 200);
       var upVec = new THREE.Vector3( 0, 1, 0);
 
       var diff = endPosition.clone().sub(startPosition);
@@ -255,7 +261,7 @@ export default {
       offset1.y = 0;
 
       var offset2 = diff.clone().setLength(offset.y).multiplyScalar(-1);
-      offset2.y = 0;
+      offset2.y = -0;
 
       var firstLookAt = endPosition.clone();
       var finalLookAt = endPosition.clone().add(offset1);
@@ -286,7 +292,7 @@ export default {
         "value": 0
       };
 
-      this.tweenMove = TweenMax.to(cameraTransition, 1.5, {
+      this.tweenMove = TweenMax.to(cameraTransition, 6.5, {
         value: 1,
         onUpdate: function(){
           var positionUpdated = curve.getPoint(cameraTransition.value);
@@ -319,6 +325,22 @@ export default {
       this.height = window.innerHeight;
       this.scene.resize(this.width, this.height);
     },
+		splineBuilder: function(){
+			this.spline = new Spline();
+			this.scene.add(this.spline.line);
+		},
+		splineMove: function(){
+			if(this.tick >= 1){
+				this.tick = 0;
+			}else{
+				this.tick += 0.001;
+			}
+			var splinePoint = this.spline.curve.getPoint(this.tick);
+			this.scene.camera.lookAt(splinePoint);
+			this.scene.camera.position.z = splinePoint.z;
+			this.scene.camera.position.x = splinePoint.x;
+			this.scene.camera.position.y = splinePoint.y;
+		},
     update: function(event){
       if(this.currentObjectSecret.mesh != null){
         this.currentObjectSecret.update();
@@ -334,16 +356,19 @@ export default {
 
       if(this.getLockControls == true){
 				this.controls.lockControls(0);
+				this.controls.update(false);
       }else{
 				this.controls.lockControls(0.1);
+				this.controls.update(true);
 			}
 
-			//console.log(this.scene.camera.rotation.x);
-			this.scene.camera.position.x += 0.5;
+			if(this.getPres == true){
+				this.splineMove();
+			}else{
+				this.scene.remove(this.spline.line);
+			}
 
-			this.controls.update();
-
-      this.particules.update();
+			this.particules.update();
       this.meshCollisionneur();
       this.terrainCollisionneur();
     },

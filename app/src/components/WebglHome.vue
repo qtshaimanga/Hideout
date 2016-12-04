@@ -224,6 +224,9 @@ export default {
           this.objectIntersected = intersectSecret[0].object.name;
 
         }else{
+					//when i == listOfObjectSecret.length
+					//check if numberOfIntersaction == 0
+					// if true -> time == 0
 					if(intersectSecret.length == 0){
 						//5
 						//console.log(0);
@@ -334,6 +337,9 @@ export default {
       }else{
 				this.controls.lockControls(0.1);
 			}
+
+			//console.log(this.scene.camera.rotation.x);
+			this.scene.camera.position.x += 0.5;
 
 			this.controls.update();
 

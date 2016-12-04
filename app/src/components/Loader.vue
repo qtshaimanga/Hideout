@@ -1,6 +1,6 @@
 <template>
   <div class="loader">
-    {{ progress }}%
+    <p>{{ progress }}%</p>
   </div>
 </template>
 
@@ -12,7 +12,8 @@ import Assets from '../resources';
 
 import {
   getLoaderState,
-  getRessourcesState } from '../vuex/getters'
+  getRessourcesState
+} from '../vuex/getters'
 
 import {
   setLoaderState,
@@ -82,16 +83,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/variables";
+@import "../styles/mixins";
 
   .loader{
-    position: absolute;
-    width: 100%;
-    height: 100%;
     margin: 0px;
     padding: 0px;
-    background-color: yellow;
-    color: red;
-    font-size: 30px;
+    p{
+      margin-right: 20px;
+      font-family: $font-poppins-regular;
+      font-size: 1.4rem;
+    }
   }
 
 </style>

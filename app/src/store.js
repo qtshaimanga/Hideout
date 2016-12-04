@@ -4,30 +4,29 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  skip: false,
-  pres: false,
-  choice: false,
+  pres: true,
+  loader: true,
+  lockControls: true,
   webglHome: false,
+
+  choice: false,
   share: false,
   writing: false,
   telling: false,
   type: { statut:false, from:"home"},
   sharechoice: false,
+
   secretMessage: false,
-  lockControls: false,
+
   data: Array(),
-  objectsMoved: Array(),
-  loader: true,
   ressources: Object(),
-  focus: false,
   cursorLoader: false,
-  cursorProgress: Number()
+  cursorProgress: Number(),
+  focus: false,
+  objectsMoved: Array(),
 }
 
 const mutations = {
-  SKIP (state){
-    state.skip = state.skip ? false : state.skip ? false : true;
-  },
   PRES (state)
   {
     state.pres = state.pres ? false : state.pres ? false : true;

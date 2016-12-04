@@ -1,8 +1,3 @@
-export const setSkipState = function ({ dispatch, state }) {
-  dispatch('SKIP')
-  dispatch('PRES')
-}
-
 export const setPresState = function ({ dispatch, state }) {
   dispatch('PRES')
 }

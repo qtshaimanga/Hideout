@@ -1,12 +1,5 @@
 <template>
 	<div class="home">
-		<transition name="fade" mode="out-in">
-			<loader v-show="getLoader"></loader>
-		</transition>
-
-		<transition name="fade" mode="out-in">
-			<video-screen v-show="getSkip"></video-screen>
-		</transition>
 
 		<transition name="fade" mode="out-in">
 			<presentation v-show="getPres"></presentation>
@@ -20,49 +13,40 @@
 			<share v-show="getShare"></share>
 		</transition>
 
-		<webgl-home v-if="getwebglHome"></webgl-home>
+		<webgl-home v-show="getwebglHome"></webgl-home>
 	</div>
 </template>
 
 <script>
-import VideoScreen from '../components/VideoScreen';
 import Presentation from '../components/Presentation';
 import Choice  from '../components/Choice';
 import WebglHome  from '../components/WebglHome';
 import Share  from '../components/Share';
-import Loader from '../components/Loader';
 
 import {
-	getSkipState,
 	getPresState,
 	getChoiceState,
 	getWebglHomeState,
 	getShareState,
-	getLoaderState
 } from '../vuex/getters';
 
 
 export default {
 	name: "home",
 	components: {
-		VideoScreen,
 		Presentation,
 		Choice,
 		WebglHome,
 		Share,
-		Loader
 	},
 	vuex: {
 		getters: {
-			getSkip: getSkipState,
 			getPres: getPresState,
 			getChoice: getChoiceState,
 			getwebglHome: getWebglHomeState,
 			getShare: getShareState,
-			getLoader: getLoaderState
 		},
-		actions: {
-		}
+		actions: {}
 	},
 	data () {
 		return {}

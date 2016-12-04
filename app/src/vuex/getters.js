@@ -1,7 +1,3 @@
-export function getSkipState (state) {
-  return state.skip
-}
-
 export function getPresState (state) {
   return state.pres
 }

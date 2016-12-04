@@ -14,27 +14,32 @@
 					--><span></span>
 				</span>
 			</div>
-			<div class="skip" @click="setSkip" v-show="getSkip">
-				<span class="separator"></span>
-				<span class="text">skip</span>
-			</div>
+			<transition name="fade" mode="out-in">
+				<loader v-if="getLoader"></loader>
+			</transition>
 		</div>
 	</div>
 </template>
 
 <script>
-import { getSkipState } from '../vuex/getters';
-import { setSkipState } from '../vuex/actions'
+import Loader from './Loader'
+
+import {
+	getLoaderState
+} from '../vuex/getters';
+
 import { TweenMax } from 'gsap';
 
 export default {
 	name: "navigation",
+	components: {
+		Loader
+	},
 	vuex: {
 		getters: {
-			getSkip: getSkipState
+			getLoader: getLoaderState
 		},
 		actions: {
-			setSkip: setSkipState,
 			// setVolume: setVolumeState,
 		}
 	},
@@ -52,7 +57,10 @@ export default {
 			//tween volume
 			var btnVolume = document.querySelector('.sound');
 			btnVolume = btnVolume.querySelectorAll('span');
-			TweenMax.staggerTo(btnVolume, 1, { height: 2, ease: Expo.easeOut});
+			TweenMax.staggerTo(btnVolume, 1, {
+				height: 2,
+				ease: Expo.easeOut
+			});
 		}
 	}
 }

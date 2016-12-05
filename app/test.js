@@ -81,3 +81,23 @@ console.log(secondControl);
 //TODO changer le material, remove out of box
 
 // var ratio = Math.min(Math.max(t / 100, 0), 1);
+
+
+
+
+// buildCameraGlobe: function(){
+  // this.globeCamera = new GlobeCamera();
+  // var x = this.scene.camera.position.x;
+  // var y = this.scene.camera.position.y + 200;
+  // var z = this.scene.camera.position.z;
+  // this.globeCamera.mesh.name = "globeCamera_1";
+  // this.globeCamera.mesh.position.set(x, y, z);
+  // this.scene.add(this.globeCamera.mesh);
+// },
+// cameraGlobeCollisionneur: function(){
+  // this.globeCamera.mesh.position.x = this.scene.camera.position.x
+  // this.globeCamera.mesh.position.y = this.scene.camera.position.y + 150;
+  // this.globeCamera.mesh.position.z = this.scene.camera.position.z
+  //this.boxCamera = THREE.Box3().setFromObject(this.globeCamera);
+  //this.scene.remove(this.sugar2.mesh);
+// },

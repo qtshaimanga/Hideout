@@ -30,9 +30,12 @@ class Controls {
      * @name render
      * @description Renders/Draw the scene
      */
-    update() {
+    update(actived) {
 
-      this.controls.update(this.clock.getDelta());
+      if(actived == true){
+        var time = this.clock.getDelta();
+        this.controls.update(time);
+      }
 
     }
 

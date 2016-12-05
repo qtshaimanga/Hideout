@@ -3,64 +3,30 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-<<<<<<< Updated upstream
 const state = {
-  skip: false,
-  pres: false,
-  choice: false,
-  webglHome: true,
-  share: false,
-  writing: false,
-  telling: false,
-  type: { statut:false, from:"home"},
-  sharechoice: false,
-  secretMessage: false,
-  lockControls: false,
-  data: Array(),
-  objectsMoved: Array(),
-  ressources: Object()
-}
-
-=======
->>>>>>> Stashed changes
-// const state = {
-//   skip: false,
-//   pres: false,
-//   choice: false,
-//   webglHome: true,
-//   share: false,
-//   writing: false,
-//   telling: false,
-//   type: { statut:false, from:"home"},
-//   sharechoice: false,
-//   secretMessage: false,
-//   lockControls: false,
-//   data: Array(),
-//   objectsMoved: Array(),
-//   ressources: Object()
-// }
-
-const state = {
-  skip: true,
-  pres: false,
-  choice: false,
+  pres: true,
+  loader: true,
+  lockControls: true,
   webglHome: false,
+
+  choice: false,
   share: false,
   writing: false,
   telling: false,
   type: { statut:false, from:"home"},
   sharechoice: false,
+
   secretMessage: false,
-    lockControls: false,
-    data: Array(),
-    objectsMoved: Array(),
-    ressources: Object()
+
+  data: Array(),
+  ressources: Object(),
+  cursorLoader: false,
+  cursorProgress: Number(),
+  focus: false,
+  objectsMoved: Array(),
 }
 
 const mutations = {
-  SKIP (state){
-    state.skip = state.skip ? false : state.skip ? false : true;
-  },
   PRES (state)
   {
     state.pres = state.pres ? false : state.pres ? false : true;
@@ -108,6 +74,10 @@ const mutations = {
   {
     state.lockControls = state.lockControls ? false : state.lockControls ? false : true;
   },
+  FOCUS (state)
+  {
+    state.focus = state.focus ? false : state.focus ? false : true;
+  },
   DATA (state, data)
   {
     state.data = data;
@@ -116,10 +86,22 @@ const mutations = {
   {
     state.objectsMoved = objectsMoved;
 	},
-	RESSOURCES(state, ressources)
-	{
-		state.ressources = ressources
-	}
+  LOADER (state)
+  {
+    state.loader = state.loader ? false : state.loader ? false : true;
+  },
+  RESSOURCES(state, ressources)
+  {
+    state.ressources = ressources
+  },
+  OPEN(state, cursorProgress)
+  {
+    state.cursorProgress = cursorProgress
+  },
+  CURSOR(state)
+  {
+    state.cursorLoader = state.cursorLoader ? false : state.cursorLoader ? false : true;
+  }
 }
 
 export default new Vuex.Store({

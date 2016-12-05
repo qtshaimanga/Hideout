@@ -1,16 +1,16 @@
 <template>
   <div class="secret-message">
     <div class="close">
-      <p @click="setLockControls">X</p>
+      <p @click="setFocus">X</p>
     </div>
     <div class="container">
-      <p>{{ meshId }} {{ meshText }}</p>
+      <p>{{ meshText }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { setLockControlsState } from '../vuex/actions';
+import { setFocusState } from '../vuex/actions';
 
 export default {
   name: "secretMessage",
@@ -22,7 +22,7 @@ export default {
     getters: {
     },
     actions: {
-      setLockControls: setLockControlsState
+      setFocus: setFocusState
     }
   },
   data () {

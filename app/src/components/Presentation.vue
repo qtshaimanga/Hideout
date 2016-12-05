@@ -107,19 +107,23 @@ import Navigation from './Navigation';
 
 import {
 	setPresState,
-	setChoiceState
+	setChoiceState,
+	setWebglHomeState,
+	setLockControlsState
 } from '../vuex/actions'
 
 export default {
 	name: "presentation",
 	components: {
-		Navigation
+		Navigation,
 	},
 	vuex: {
 		getters: {},
 		actions: {
 			setPres : setPresState,
-			setChoice: setChoiceState
+			setChoice: setChoiceState,
+			setWebglHome: setWebglHomeState,
+			setLockControls: setLockControlsState
 		}
 	},
 	data () {
@@ -152,6 +156,8 @@ export default {
 		// var svgSpacebarTopPath = document.querySelector('#svg_spacebar_top');
 		// var length = svgSpacebarTopPath.getTotalLength();
 		// TweenMax.set(svgSpacebarTopPath, {css:{strokeDasharray: length}});
+
+		//this.$el.style.cursor = "none";
 	},
 	methods:{
 		spacebarPressed: function(event){
@@ -163,6 +169,9 @@ export default {
 			if(this.counter == 1.2){
 				this.setPres();
 				this.setChoice();
+				this.setWebglHome();
+				this.setLockControls();
+				//cursor show
 			}
 		},
 		spacebarReleased: function(event){
@@ -181,15 +190,15 @@ export default {
 @import "../styles/mixins";
 
 .presentation{
+	z-index: 100;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-<<<<<<< Updated upstream
-	background-color: rgb(23, 25, 38);
-=======
+	// background-color: rgb(23, 25, 38);
 	background-color: rgba($color-blue, 0.3);
->>>>>>> Stashed changes
+
 	display: flex;
 	.container{
 		width: 33%;
@@ -224,9 +233,6 @@ export default {
 
 		.text-intro {
 			@include text-standard();
-			// font-family: $font-poppins-light;
-			// font-size: 1.5rem;
-			// line-height: 2rem;
 			margin-bottom: 50px;
 		}
 

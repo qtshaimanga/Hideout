@@ -93,6 +93,7 @@ export default {
       currentObjectSecret: Object(),
       particules: Object(),
 			tick: Number(),
+			numberOfIntersaction: Array(),
     }
   },
   watch:{
@@ -205,9 +206,9 @@ export default {
     },
     meshCollisionneur: function (){
       this.cameraRay.setFromCamera(this.frontVec, this.scene.camera);
-
+			var a = 0;
       for(let i=0; i<=this.listOfObjectSecret.length-1; i++){
-
+				a = i
         var globeSecret = this.listOfObjectSecret[i][1];
         var intersectSecret = this.cameraRay.intersectObject( globeSecret.mesh, true );
 
@@ -242,22 +243,20 @@ export default {
           }
 
           this.objectIntersected = intersectSecret[0].object.name;
+					this.numberOfIntersaction.push(intersectSecret[0].object.name);
 
-        }else{
-					//when i == listOfObjectSecret.length
-					//check if this.numberOfIntersaction == 0
-					// if true -> time == 0
-					if(intersectSecret.length == 0){
-						//5
-						//console.log(0);
-					}else{
-						//1
-						//console.log(1);
-					}
-					//console.log(intersectSecret, globeSecret);
-				}
-
+        }
       }
+
+			//RESET
+			if(this.numberOfIntersaction.length == 0){
+				this.time = 0;
+				this.setCursorProgress(0);
+				this.$el.style.cursor = "default";
+			}
+			if(a == this.listOfObjectSecret.length-1){
+				this.numberOfIntersaction = Array();
+			}
 
     },
     moveObject: function(startObject, endObject){

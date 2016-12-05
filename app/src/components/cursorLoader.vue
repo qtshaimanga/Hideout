@@ -1,11 +1,14 @@
 <template>
   <div class="cursor-loader">
-    {{ getCursorProgress }} %
+    <p v-if="!getPres">{{ getCursorProgress }} %</p>
   </div>
 </template>
 
 <script>
-import { getCursorProgressState } from '../vuex/getters';
+import {
+  getCursorProgressState,
+  getPresState
+} from '../vuex/getters';
 
 export default {
   components: {
@@ -13,7 +16,8 @@ export default {
   },
   vuex: {
     getters: {
-      getCursorProgress: getCursorProgressState
+      getCursorProgress: getCursorProgressState,
+      getPres: getPresState
     },
     actions: {}
   },
@@ -35,16 +39,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/variables";
+@import "../styles/mixins";
 
   .cursor-loader{
     position: absolute;
     width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    color: green;
-    font-size: 30px;
+    color: #FFFFFF;
     background-color: transparent;
+    font-family: $font-poppins-regular;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: flex-end;
+    bottom: 0px;
+    p{
+      margin-right: 20px;
+    }
   }
 
 </style>

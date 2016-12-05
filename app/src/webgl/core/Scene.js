@@ -22,7 +22,7 @@ class Scene {
         this.camera.position.x = 200;
         this.camera.position.y = 200;
         this.camera.position.z = 500;
-	      this.camera.lookAt(new THREE.Vector3(0,50,0));
+	    this.camera.lookAt(new THREE.Vector3(0,50,0));
 
         this.addLight();
 
@@ -41,7 +41,7 @@ class Scene {
         this.directional.lookAt(new THREE.Vector3());
         this.scene.add(this.directional);
 
-		this.directional = new THREE.DirectionalLight(0xa0a6ba);      
+		this.directional = new THREE.DirectionalLight(0xa0a6ba);
 
 		this.directional.position.set(0, 1, 1);
 		this.directional.lookAt(new THREE.Vector3());

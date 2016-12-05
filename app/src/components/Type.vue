@@ -3,10 +3,7 @@
 		<div class="container">
 			<div class="text">One more step,<br>what kind of secret is it ?</div>
 			<div class="type-secret">
-				<div> - </div>
-				<div> - </div>
-				<div> - </div>
-				<div> - </div>
+
 			</div>
 			<div class="controls">
 				<div class="previous" @click="previous">previous</div>
@@ -81,12 +78,28 @@ export default {
 	padding: 0px;
 	background-color: rgb(23, 25, 38);
 	display: flex;
+
 	.container{
+		width: 75%;
+		max-width: 780px;
 		margin: auto;
 		color: #FFFFFF;
+
 		.text{
 			@include text-title();
 			margin-bottom: 20px;
+			position: relative;
+
+			&:before {
+				content: "3.";
+				display: block;
+				position: absolute;
+				top: -11.5rem;
+				left: -2.5rem;
+				opacity: 0.2;
+				@include text-title('Otama', 17rem, $line-height: normal);
+				z-index: 0;
+			}
 		}
 		.type-secret{
 			display: flex;
@@ -96,6 +109,8 @@ export default {
 		.controls{
 			display: flex;
 			justify-content: space-between;
+			@include text-button();
+
 			&:hover>div{
 				cursor: pointer;
 			}

@@ -138,7 +138,7 @@ export default {
       this.scene.add(this.terrain.mesh);
     },
     particleBuilder: function() {
-      this.particules = new ParticleSystem();
+      this.particules = new ParticleSystem(this.getRessources.particle1);
       this.particules.mesh.name = "particules_1"
       this.scene.add(this.particules.mesh);
     },

@@ -121,7 +121,7 @@ export default {
     this.cameraRay = new THREE.Raycaster();
   },
   mounted: function() {
-		console.log("Ressource after loading", this.getRessources);
+		//console.log("Ressource after loading", this.getRessources);
 
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);

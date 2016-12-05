@@ -1,8 +1,5 @@
 <template>
 	<div class="home">
-		<transition name="fade" mode="out-in">
-			<video-screen v-show="getSkip"></video-screen>
-		</transition>
 
 		<transition name="fade" mode="out-in">
 			<presentation v-show="getPres"></presentation>
@@ -21,38 +18,33 @@
 </template>
 
 <script>
-import VideoScreen from '../components/VideoScreen';
 import Presentation from '../components/Presentation';
 import Choice  from '../components/Choice';
 import WebglHome  from '../components/WebglHome';
 import Share  from '../components/Share';
 
-import AssetsLoader from '../helpers/AssetsLoader';
-
 import {
-	getSkipState,
 	getPresState,
 	getChoiceState,
 	getWebglHomeState,
-	getShareState
+	getShareState,
 } from '../vuex/getters';
+
 
 export default {
 	name: "home",
 	components: {
-		VideoScreen,
 		Presentation,
 		Choice,
 		WebglHome,
-		Share
+		Share,
 	},
 	vuex: {
 		getters: {
-			getSkip: getSkipState,
 			getPres: getPresState,
 			getChoice: getChoiceState,
 			getwebglHome: getWebglHomeState,
-			getShare: getShareState
+			getShare: getShareState,
 		},
 		actions: {}
 	},
@@ -60,7 +52,6 @@ export default {
 		return {}
 	},
 	mounted: function() {
-		console.log(AssetsLoader);
 	},
 	methods:{
 	}

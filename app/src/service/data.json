@@ -16,7 +16,7 @@
     "sound": null,
     "text": "text 2",
     "typeSecret": "toxic",
-    "x":"-500",
+    "x":"-200",
     "y": "250",
     "z": "-1200",
     "date": "1/12/16"
@@ -26,10 +26,10 @@
     "typeContaint": "text",
     "sound": null,
     "text": "text 3",
-    "typeSecret": "sugar",
-    "x":"20",
-    "y": "400",
-    "z": "40",
+    "typeSecret": "toxic",
+    "x":"1200",
+    "y": "250",
+    "z": "200",
     "date": "1/12/16"
   },
   {
@@ -38,7 +38,29 @@
     "sound": null,
     "text": "text 4",
     "typeSecret": "sugar",
-    "x":"100",
+    "x":"20",
+    "y": "400",
+    "z": "40",
+    "date": "1/12/16"
+  },
+  {
+    "rowid":"5",
+    "typeContaint": "text",
+    "sound": null,
+    "text": "text 5",
+    "typeSecret": "sugar",
+    "x":"700",
+    "y": "500",
+    "z": "80",
+    "date": "1/12/16"
+  },
+  {
+    "rowid":"6",
+    "typeContaint": "text",
+    "sound": null,
+    "text": "text 6",
+    "typeSecret": "sugar",
+    "x":"1200",
     "y": "500",
     "z": "80",
     "date": "1/12/16"

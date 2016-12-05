@@ -1,18 +1,22 @@
 const THREE = require('three');
 
-class Globe {
+
+var size = 800;
+var geometry = new THREE.BoxGeometry(size, 200, size);
+
+class GlobeCamera {
 
     /**
      * @constructor
      */
     constructor() {
 
-      this.size = 110;
+      this.geometry = geometry;
 
-      this.geometry = new THREE.BoxGeometry(this.size, this.size, this.size);
       this.material = new THREE.MeshBasicMaterial({
-          wireframe: true,
-          color: 0x808080,
+          //wireframe: true,
+          color: 0xff0000,
+          side: THREE.DoubleSide
           // transparent: true,
           // opacity: 0
       });
@@ -32,4 +36,4 @@ class Globe {
 
 }
 
-export default Globe
+export default GlobeCamera

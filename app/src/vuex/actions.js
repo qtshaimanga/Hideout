@@ -1,8 +1,3 @@
-export const setSkipState = function ({ dispatch, state }) {
-  dispatch('SKIP')
-  dispatch('PRES')
-}
-
 export const setPresState = function ({ dispatch, state }) {
   dispatch('PRES')
 }
@@ -47,6 +42,10 @@ export const setLockControlsState = function ({ dispatch, state }) {
   dispatch('CONTROLS')
 }
 
+export const setFocusState = function ({ dispatch, state }) {
+  dispatch('FOCUS')
+}
+
 export const setDataState = function ({ dispatch, state }, data) {
   dispatch('DATA', data)
 }
@@ -55,6 +54,18 @@ export const setMoveObjectState = function ({ dispatch, state }, objectsMoved) {
   dispatch('MOVE', objectsMoved)
 }
 
+export const setLoaderState = function ({ dispatch, state }) {
+  dispatch('LOADER')
+}
+
 export const setRessourcesState = function({ dispatch, state }, ressources){
 	dispatch('RESSOURCES', ressources)
+}
+
+export const setCursorProgressState = function({ dispatch, state }, cursorProgress){
+	dispatch('OPEN', cursorProgress)
+}
+
+export const setCursorLoaderState = function ({ dispatch, state }) {
+  dispatch('CURSOR')
 }

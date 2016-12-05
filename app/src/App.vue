@@ -6,7 +6,6 @@
 
 <script>
 import store from './store'
-import AssetsLoader from './helpers/AssetsLoader'
 
 export default {
 	store: store,

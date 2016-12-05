@@ -7,7 +7,7 @@ class ParticleSystem {
 	*/
 	constructor() {
 
-		this.particleCount = 700;
+		this.particleCount = 1000;
 		this.clock = new THREE.Clock(true);
 		this.particles = new THREE.Geometry();
 
@@ -24,9 +24,10 @@ class ParticleSystem {
 			// Add the vertex to the geometry
 			this.particles.vertices.push(particle);
 		}
+
 		this.particleMaterial = new THREE.PointsMaterial({
 			color: 0x0000FF,
-			size: 3,
+			size: 10,
 			fog: true,
 			// map: THREE.TextureLoader("/static/textures/particle_1.png"),
 			// blending: THREE.AdditiveBlending,

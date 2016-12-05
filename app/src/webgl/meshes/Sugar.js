@@ -6,6 +6,12 @@ import { UniformsLib } from '../utils/UniformsLib';
 import vertexShader from '../shaders/toxicSecrets/vertexShader.vert';
 import fragmentShader from '../shaders/toxicSecrets/fragmentShader.frag';
 
+
+var size = 50;
+var widthSegments = 30;
+var heightSegments = 30;
+var geometry = new THREE.SphereGeometry(size, widthSegments, heightSegments);
+
 class Sugar {
 
     /**
@@ -13,12 +19,7 @@ class Sugar {
      */
     constructor() {
 
-        this.size = 50;
-        this.widthSegments = 30;
-        this.heightSegments = 30;
         this.time = 0.01;
-
-        this.geometry = new THREE.SphereGeometry(this.size, this.widthSegments, this.heightSegments);
 
         // tester phong
         this.material = new THREE.ShaderMaterial({
@@ -51,7 +52,7 @@ class Sugar {
             //wireframe: true
         });
 
-        this.mesh = new THREE.Mesh(this.geometry, this.material);
+        this.mesh = new THREE.Mesh(geometry, this.material);
 
     }
 
@@ -62,10 +63,19 @@ class Sugar {
      */
     update() {
 
-        // this.mesh.rotation.x += this.time;
-        // this.mesh.rotation.y += this.time;
-        // this.mesh.rotation.z += this.time;
         this.material.uniforms.u_time.value += this.time;
+
+    }
+
+    /**
+    */
+    rotation(start){
+
+      if(start == true){
+        this.mesh.rotation.x += this.time*0.5;
+        this.mesh.rotation.y += this.time*0.5;
+        this.mesh.rotation.z += this.time*0.5;
+      }
 
     }
 

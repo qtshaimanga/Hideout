@@ -2,9 +2,11 @@
 	<div class="telling">
 		<div class="container">
 			<div class="text">Now you can tell your secret here...</div>
+				<div class="icon-wrapper">
+					
+				</div>
 			<div class="controls">
 				<div class="previous" @click="previous">previous</div>
-				<div class="secret-sound"> | sound uploader | </div>
 				<div class="next" @click="type">next</div>
 			</div>
 		</div>
@@ -52,6 +54,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/variables";
+@import "../styles/mixins";
 
 .telling{
 	width: 100%;
@@ -62,16 +66,35 @@ export default {
 	color: #FFFFFF;
 	display: flex;
 	flex-direction: column;
+
 	.container{
 		margin: auto;
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		width: 75%;
+		max-width: 780px;
+
 		div{
 			margin-bottom: 20px;
 		}
 		.text{
 			width: 100%;
+			position: relative;
+			@include text-title();
+			margin-bottom: 20px;
+			max-width: 350px;
+
+			&:before {
+				content: "2.";
+				display: block;
+				position: absolute;
+				top: -11.5rem;
+				left: -2.5rem;
+				opacity: 0.2;
+				@include text-title('Otama', 17rem, $line-height: normal);
+				z-index: 0;
+			}
 		}
 		.controls{
 			width: 100%;
@@ -79,6 +102,8 @@ export default {
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: space-between;
+			@include text-button();
+
 			&:hover>div{
 				cursor: pointer;
 			}

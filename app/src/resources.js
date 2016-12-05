@@ -7,8 +7,8 @@ export default [
   },
   {
 	  type: 'png',
-	  id: 'particle',
-	  url: '../static/textures/particle_1.png'
+	  id: 'particle1',
+	  url: '../static/textures/particules_2.png'
   },
   {
     type: 'jpg',

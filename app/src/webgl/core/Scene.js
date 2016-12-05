@@ -11,12 +11,12 @@ class Scene {
 
         this.scene = new THREE.Scene();
 
-        this.fogColor = 0xF5F5F5;
-	      this.scene.fog = new THREE.FogExp2( this.fogColor, 0.0025 );
+        this.fogColor = 0x1f1f3b;
+	      this.scene.fog = new THREE.FogExp2( this.fogColor, 0.0020 );
 
         this.renderer = new THREE.WebGLRenderer({antialias: true});
         this.renderer.setSize(width, height);
-        this.renderer.setClearColor(0xF5F5F5);
+        this.renderer.setClearColor(this.fogColor);
 
         this.camera = new THREE.PerspectiveCamera(74, width / height, 1, 1000);
         this.camera.position.x = 200;
@@ -34,12 +34,18 @@ class Scene {
     */
     addLight(){
 
-        this.scene.add(new THREE.AmbientLight(0x404040));
+        this.scene.add(new THREE.AmbientLight(0x1f1f3b));
 
-        this.directional = new THREE.DirectionalLight(0x808080);
+        this.directional = new THREE.DirectionalLight(0xf4a6e9);
         this.directional.position.set(1, 1, 1);
         this.directional.lookAt(new THREE.Vector3());
         this.scene.add(this.directional);
+
+		this.directional = new THREE.DirectionalLight(0xa0a6ba);      
+
+		this.directional.position.set(0, 1, 1);
+		this.directional.lookAt(new THREE.Vector3());
+		this.scene.add(this.directional);
 
     }
 

@@ -57,6 +57,7 @@ export default {
 	margin: 0px;
 	padding: 0px;
 	background-color: rgb(23, 25, 38);
+	// background-color: rgba(23, 25, 38, 0.4);
 	color: #FFFFFF;
 	display: flex;
 	flex-direction: row;

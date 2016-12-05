@@ -106,7 +106,7 @@ export default {
 	.container{
 		width: 100%;
 		height: 100%;
-		background-color: #000000;
+		background-color: rgba(0,0,0,0);
 		color: #FFFFFF;
 		display: flex;
 		flex-flow: row;

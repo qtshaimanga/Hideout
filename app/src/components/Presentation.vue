@@ -113,7 +113,10 @@ import { CSSPlugin } from 'gsap';
 
 import Navigation from './Navigation';
 
-import{ getSkipeState } from '../vuex/getters';
+import{
+	getSkipeState,
+	getLoaderState
+} from '../vuex/getters';
 
 import {
 	setPresState,
@@ -129,7 +132,8 @@ export default {
 	},
 	vuex: {
 		getters: {
-			getSkipe: getSkipeState
+			getSkipe: getSkipeState,
+			getLoader: getLoaderState
 		},
 		actions: {
 			setPres : setPresState,
@@ -155,6 +159,11 @@ export default {
 			if(this.getSkipe == true){
 				this.skip();
 			}
+		},
+		getLoader: function(){
+			if(this.getLoader == false){
+				this.firstElement();
+			}
 		}
 	},
 	created : function(){
@@ -162,7 +171,6 @@ export default {
 		window.addEventListener('keyup', this.spacebarReleased.bind(this));
 	},
 	mounted: function() {
-		this.firstElement();
 	},
 	methods:{
 		spacebarPressed: function(event){
@@ -209,16 +217,16 @@ export default {
 			this.transition1 = setTimeout(function(){
 				that.element1 = false;
 				that.element2 = true;
-			}, 4000);
+			}, 6000);
 			this.transition2 = setTimeout(function(){
 				that.element2 = false;
 				that.element3 = true;
-			}, 8000);
+			}, 12000);
 			this.transition3 = setTimeout(function(){
 				that.element3 = false;
 				that.element4 = true;
 				that.animateSVG();
-			}, 12000);
+			}, 20000);
 		},
 		skip: function(){
 			clearTimeout(this.transition1);

@@ -19,7 +19,7 @@ import {
   setLoaderState,
   setRessourcesState,
   setInstanciateWebglHomeState,
-  setWebglHomeState
+  setWebglHomeState,
 } from '../vuex/actions'
 
 export default {
@@ -32,7 +32,7 @@ export default {
       setLoader: setLoaderState,
       setRessources: setRessourcesState,
       setInstanciateWebglHome: setInstanciateWebglHomeState,
-      setWebglHome: setWebglHomeState
+      setWebglHome: setWebglHomeState,
     }
   },
   data () {
@@ -57,10 +57,9 @@ export default {
       });
       if(this.progressValue == 100){
         this.setRessources(this.listOfRessources);
-        this.setLoader();
         this.setInstanciateWebglHome();
         this.setWebglHome();
-
+        this.setLoader();
       }
     }
   },
@@ -71,6 +70,7 @@ export default {
         assets: Assets
       })
       .on('error', function(error) {
+        console.log(error);
       })
       .on('progress', function(progress) {
         that.progressValue = (progress * 100).toFixed();

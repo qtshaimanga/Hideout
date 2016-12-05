@@ -173,7 +173,7 @@ export default {
         if(data[i].typeSecret == "sugar"){
           secret = new Sugar();
         }else if(data[i].typeSecret == "toxic"){
-					var texture = this.getRessources.texture1;
+					var texture = this.getRessources[data[i].texture];
           secret = new Toxic(texture);
         }
 
@@ -217,6 +217,7 @@ export default {
 
           if(this.objectIntersected != intersectSecret[0].object.name){
             this.time = 0;
+						this.$el.style.cursor = "default";
           }else{
             if(time == this.loading){
               this.meshId = this.getMeshId(intersectSecret[0].object.name);
@@ -230,9 +231,12 @@ export default {
             }else if(time <= this.loading){
 							this.setCursorProgress(time+1);
 							if(time == 1){
-								// var url = 'url("'+this.getRessources.cursorLoader.file.src+'")';
-								// this.$el.style.cursor = url; //"pointer";
-								// console.log("prop", this.$el.style.cursor, " - ", url, "- ");
+								var url = "url("+this.getRessources.cursorLoader1.file.src+"), wait";
+								this.$el.style.cursor = url;
+							}
+							if(time == 50){
+								var url = "url("+this.getRessources.cursorLoader2.file.src+"), wait";
+								this.$el.style.cursor = url;
 							}
             }
           }
@@ -241,7 +245,7 @@ export default {
 
         }else{
 					//when i == listOfObjectSecret.length
-					//check if numberOfIntersaction == 0
+					//check if this.numberOfIntersaction == 0
 					// if true -> time == 0
 					if(intersectSecret.length == 0){
 						//5
@@ -291,7 +295,7 @@ export default {
       var geometry = new THREE.Geometry();
       geometry.vertices = curve.getPoints(20);
 
-      var material = new THREE.LineBasicMaterial( { color : 0xff0000 } );
+      var material = new THREE.LineBasicMaterial( { transparent: true, opacity: 0 } );
 
       var curveObject = new THREE.Line( geometry, material );
       this.scene.add(curveObject);

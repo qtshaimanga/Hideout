@@ -25,11 +25,8 @@ class ParticleSystem {
 			this.particles.vertices.push(particle);
 		}
 
-		console.log(obj.file);
-
 		var texture = new THREE.Texture(obj.file);
 		texture.needsUpdate = true;
-		console.log(texture);
 
 		this.particleMaterial = new THREE.PointsMaterial({
 			size: 7,

@@ -4,12 +4,14 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  pres: true,
   loader: true,
   lockControls: true,
+
+  pres: true,
+  skipe: false,
+
   webglHome: false,
   instanciateWebglHome: false,
-  skipe: false,
 
   choice: false,
   share: false,

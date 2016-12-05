@@ -2,7 +2,9 @@
 	<div class="writing">
 		<div class="container">
 			<div class="text">Now you can write your secret here.</div>
+			<form>
 			<textarea name="message" placeholder="I have a secret ..."></textarea>
+		</form>
 			<div class="controls">
 				<div class="previous" @click="previous">previous</div>
 				<div class="next" @click="type">next</div>
@@ -73,6 +75,18 @@ export default {
 			@include text-title();
 			margin-bottom: 20px;
 			max-width: 350px;
+			position: relative;
+
+			&:before {
+				content: "2.";
+				display: block;
+				position: absolute;
+				top: -11.5rem;
+				left: -2.5rem;
+				opacity: 0.2;
+				@include text-title('Otama', 17rem, $line-height: normal);
+				z-index: 0;
+			}
 		}
 
 		textarea{
@@ -94,8 +108,18 @@ export default {
 		.controls{
 			display: flex;
 			justify-content: space-between;
+			@include text-button();
+
 			&:hover>div{
 				cursor: pointer;
+			}
+
+			.previous {
+
+			}
+
+			.skip {
+				// %extend .skip;
 			}
 		}
 	}

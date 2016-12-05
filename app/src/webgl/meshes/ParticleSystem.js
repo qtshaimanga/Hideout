@@ -5,18 +5,18 @@ class ParticleSystem {
 	/**
 	* @constructor
 	*/
-	constructor() {
+	constructor(obj) {
 
 		this.particleCount = 500;
 		this.clock = new THREE.Clock(true);
 		this.particles = new THREE.Geometry();
 
+
 		for (var p = 0; p < this.particleCount; p++) {
 
-			// This will create all the vertices in a range of -200 to 200 in all directions
-			var x = Math.random() * 4000;
-			var y = Math.random() * 4000;
-			var z = Math.random() * 4000;
+			var x = Math.random() * 4000 - 2000 ;
+			var y = Math.random() * 800 - 50;
+			var z = Math.random() * 4000 - 2000;
 
 			// Create the vertex
 			var particle = new THREE.Vector3(x, y, z);
@@ -25,12 +25,17 @@ class ParticleSystem {
 			this.particles.vertices.push(particle);
 		}
 
+		console.log(obj.file);
+
+		var texture = new THREE.Texture(obj.file);
+		texture.needsUpdate = true;
+		console.log(texture);
+
 		this.particleMaterial = new THREE.PointsMaterial({
-			color: 0x0000FF,
-			size: 10,
+			size: 7,
 			fog: true,
-			// map: THREE.TextureLoader("/static/textures/particle_1.png"),
-			// blending: THREE.AdditiveBlending,
+			map: texture,
+			opacity: 1,
 			transparent: true
 		});
 
@@ -49,7 +54,7 @@ class ParticleSystem {
 		for(var i = 0; i < verts.length; i++) {
 			var vert = verts[i];
 			if (vert.y < -200) {
-				vert.y = Math.random() * 400 - 200;
+				vert.y = Math.random() * 800 - 50;
 			}
 			vert.y = vert.y - (10 * this.deltaTime);
 			// vert.y = sin(vert.y - (10 * this.deltaTime));

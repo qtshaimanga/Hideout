@@ -6,8 +6,8 @@ export default [
     url: '../static/textures/toxic.png'
   },
   {
-	  type: 'png',
-	  id: 'particle',
-	  url: '../static/textures/particle_1.png'
-  },
+    type: 'png',
+    id: 'particle1',
+    url: '../static/textures/particules_2.png'
+}
 ];

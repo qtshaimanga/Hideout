@@ -115,12 +115,14 @@ import {
 
 	<style lang="scss" scoped>
 	@import "../styles/variables";
+	@import "../styles/mixins";
 
 	.share-choice{
 		width: 100%;
 		height: 90%;
 		margin: 0px;
 		padding: 0px;
+
 		.container{
 			width: 100%;
 			max-width: 950px;
@@ -129,6 +131,7 @@ import {
 			display: flex;
 			flex-direction: row;
 			color: #FFFFFF;
+			position: relative;
 
 			div{
 				margin: 20px;
@@ -141,11 +144,27 @@ import {
 				width: 55%;
 				font-family: $font-otama;
 				font-size: 3.5rem;
+				position: relative;
 
 				span {
 					display: block;
 					font-size: 28px;
 					margin-top: 35px;
+				}
+
+				&:first-child {
+				z-index: 1;
+
+					:before {
+						content: "1.";
+						display: block;
+						position: absolute;
+						top: -11.5rem;
+						left: -2.5rem;
+						opacity: 0.2;
+						@include text-title('Otama', 17rem, $line-height: normal);
+						z-index: 0;
+					}
 				}
 			}
 			.writing{

@@ -33,8 +33,11 @@ class Controls {
     update(actived) {
 
       if(actived == true){
+        //console.log("contorle released ", true);
         var time = this.clock.getDelta();
         this.controls.update(time);
+      }else{
+        //console.log("control locked");
       }
 
     }

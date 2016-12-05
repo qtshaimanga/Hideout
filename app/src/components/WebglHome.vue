@@ -106,9 +106,6 @@ export default {
 				this.currentObjectSecret = Object();
 			}
     },
-		getRessources: function(){
-			//console.log(this.getRessources);
-		}
   },
   created: function(){
     this.scene = new Scene(this.width, this.height);

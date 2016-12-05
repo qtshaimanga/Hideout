@@ -9,6 +9,9 @@ export function getChoiceState (state) {
 export function getWebglHomeState (state) {
   return state.webglHome
 }
+export function getInstanciateWebglHomeState (state) {
+  return state.instanciateWebglHome
+}
 
 export function getShareState (state) {
   return state.share

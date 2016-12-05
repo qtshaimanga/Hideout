@@ -13,7 +13,7 @@
 			<share v-show="getShare"></share>
 		</transition>
 
-		<webgl-home v-if="getwebglHome"></webgl-home>
+		<webgl-home v-if="getInstanciateWebglHome" v-show="getwebglHome"></webgl-home>
 	</div>
 </template>
 
@@ -28,6 +28,7 @@ import {
 	getChoiceState,
 	getWebglHomeState,
 	getShareState,
+	getInstanciateWebglHomeState
 } from '../vuex/getters';
 
 
@@ -44,6 +45,7 @@ export default {
 			getPres: getPresState,
 			getChoice: getChoiceState,
 			getwebglHome: getWebglHomeState,
+			getInstanciateWebglHome: getInstanciateWebglHomeState,
 			getShare: getShareState,
 		},
 		actions: {}

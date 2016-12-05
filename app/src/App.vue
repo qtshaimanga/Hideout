@@ -31,6 +31,17 @@ export default {
 
 html {
 	font-size: 62.5%;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+body {
+	height: 100%;
+	padding: 0;
+	overflow: auto;
+	margin: 0;
+	-webkit-overflow-scrolling: touch;
 }
 
 html, body {

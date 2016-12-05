@@ -185,7 +185,11 @@ export default {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
+<<<<<<< Updated upstream
 	background-color: rgb(23, 25, 38);
+=======
+	background-color: rgba($color-blue, 0.3);
+>>>>>>> Stashed changes
 	display: flex;
 	.container{
 		width: 33%;

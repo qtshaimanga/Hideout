@@ -9,6 +9,7 @@ const state = {
   lockControls: true,
   webglHome: false,
   instanciateWebglHome: false,
+  skipe: false,
 
   choice: false,
   share: false,
@@ -31,6 +32,10 @@ const mutations = {
   PRES (state)
   {
     state.pres = state.pres ? false : state.pres ? false : true;
+  },
+  SKIPE (state)
+  {
+    state.skipe = state.skipe ? false : state.skipe ? false : true;
   },
   CHOICE (state)
   {

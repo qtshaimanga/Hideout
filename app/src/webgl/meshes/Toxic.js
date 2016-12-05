@@ -17,37 +17,38 @@ class Toxic {
     /**
      * @constructor
      */
-    constructor() {
+    constructor(objectTexture) {
 
 
         this.time = 0.01;
 
         this.loader = new THREE.TextureLoader();
 
+        var texture = new THREE.Texture(objectTexture.file);
+        texture.needsUpdate = true;
+
         this.material = new THREE.ShaderMaterial({
-            uniforms: UniformsUtils.merge([
-        			UniformsLib.common,
-        			UniformsLib.aomap,
-        			UniformsLib.lightmap,
-        			UniformsLib.emissivemap,
-        			UniformsLib.bumpmap,
-        			UniformsLib.normalmap,
-        			UniformsLib.displacementmap,
-        			UniformsLib.roughnessmap,
-        			UniformsLib.metalnessmap,
-        			UniformsLib.fog,
-        			UniformsLib.lights,
-        			{
-        				emissive : { value: new THREE.Color( 0x000000 ) },
-        				roughness: { value: 1.0 },
-        				metalness: { value: 1. },
-        				envMapIntensity : { value: 1 },
-                u_time: { type: "f", value: 0.1 },
-                u_speed: { type: 'f', value: 0.4 },
-                u_amp: { type: 'f', value: 80.0 },
-                //u_texture:   { value: new THREE.TextureLoader().load( "../../static/textures/toxic.png" ) },
-              }
-        		]),
+            uniforms: {
+        			...UniformsLib.common,
+        			...UniformsLib.aomap,
+        			...UniformsLib.lightmap,
+        			...UniformsLib.emissivemap,
+        			...UniformsLib.bumpmap,
+        			...UniformsLib.normalmap,
+        			...UniformsLib.displacementmap,
+        			...UniformsLib.roughnessmap,
+        			...UniformsLib.metalnessmap,
+        			...UniformsLib.fog,
+        			...UniformsLib.lights,
+      				emissive : { value: new THREE.Color( 0x000000 ) },
+      				roughness: { value: 1.0 },
+      				metalness: { value: 1. },
+      				envMapIntensity : { value: 1 },
+              u_time: { type: "f", value: 0.1 },
+              u_speed: { type: 'f', value: 0.4 },
+              u_amp: { type: 'f', value: 80.0 },
+              u_texture:   { type:"t", value: texture },
+            },
             fragmentShader: fragmentShader,
             vertexShader: vertexShader,
             shading: THREE.FlatShading,

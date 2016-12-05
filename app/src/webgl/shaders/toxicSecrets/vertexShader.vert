@@ -6,6 +6,7 @@ uniform float u_amp;
 
 #define PHYSICAL
 
+varying vec2 vUV;
 varying vec3 vViewPosition;
 
 #ifndef FLAT_SHADED
@@ -57,6 +58,7 @@ void main() {
 	#include <clipping_planes_vertex>
 
 	vViewPosition = - mvPosition.xyz;
+	vUV = uv;
 
 	#include <worldpos_vertex>
 	#include <shadowmap_vertex>

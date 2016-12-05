@@ -1,6 +1,12 @@
 <template>
 	<div class="presentation">
 		<div class="container">
+
+			<div class="element" v-show="element1">1 Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor</div>
+			<div class="element" v-show="element2">2 Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor</div>
+			<div class="element" v-show="element3">3 Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor</div>
+
+			<div class="element" v-if="true"  v-show="element4">
 			<div class="logo">
 				<svg id="svg_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 412.96 75.88">
 					<defs>
@@ -93,6 +99,8 @@
 				</span>
 				to begin
 			</div>
+		</div>
+
 			<div class="loader__bar"></div>
 		</div>
 		<navigation></navigation>
@@ -104,6 +112,8 @@ import { TweenMax } from 'gsap';
 import { CSSPlugin } from 'gsap';
 
 import Navigation from './Navigation';
+
+import{ getSkipeState } from '../vuex/getters';
 
 import {
 	setPresState,
@@ -118,7 +128,9 @@ export default {
 		Navigation,
 	},
 	vuex: {
-		getters: {},
+		getters: {
+			getSkipe: getSkipeState
+		},
 		actions: {
 			setPres : setPresState,
 			setChoice: setChoiceState,
@@ -128,7 +140,21 @@ export default {
 	},
 	data () {
 		return {
-			counter: 0
+			counter: 0,
+			element1: false,
+			element2: false,
+			element3: false,
+			element4: false,
+			transition1: Object(),
+			transition2: Object(),
+			transition3: Object(),
+		}
+	},
+	watch: {
+		getSkipe: function(){
+			if(this.getSkipe == true){
+				this.skip();
+			}
 		}
 	},
 	created : function(){
@@ -136,28 +162,7 @@ export default {
 		window.addEventListener('keyup', this.spacebarReleased.bind(this));
 	},
 	mounted: function() {
-		var tl_spacebar_gradient = new TimelineMax({
-			paused:true,
-			repeatDelay:0,
-			repeat:-1,
-			yoyo:true
-		});
-
-		tl_spacebar_gradient.staggerTo("#svg_spacebar_color_top stop", 1, {
-			// stopColor:'#cc0000',
-			cycle:{
-				/* number of <stop> elements and ending value */
-				stopColor: ['#2200e8','#7700af', '#b50085', '#db006b', '#ea0061', '#ffa736' ]
-			}
-		}, 2, 0)
-		.progress(1).progress(0)
-		.play();
-
-		// var svgSpacebarTopPath = document.querySelector('#svg_spacebar_top');
-		// var length = svgSpacebarTopPath.getTotalLength();
-		// TweenMax.set(svgSpacebarTopPath, {css:{strokeDasharray: length}});
-
-		//this.$el.style.cursor = "none";
+		this.firstElement();
 	},
 	methods:{
 		spacebarPressed: function(event){
@@ -171,7 +176,6 @@ export default {
 				this.setChoice();
 				this.setWebglHome();
 				this.setLockControls();
-				//cursor show
 			}
 		},
 		spacebarReleased: function(event){
@@ -180,6 +184,51 @@ export default {
 			if(bar != null){
 				TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
 			}
+		},
+		animateSVG: function(){
+			var tl_spacebar_gradient = new TimelineMax({
+				paused:true,
+				repeatDelay:0,
+				repeat:-1,
+				yoyo:true
+			});
+
+			tl_spacebar_gradient.staggerTo("#svg_spacebar_color_top stop", 1, {
+				// stopColor:'#cc0000',
+				cycle:{
+					/* number of <stop> elements and ending value */
+					stopColor: ['#2200e8','#7700af', '#b50085', '#db006b', '#ea0061', '#ffa736' ]
+				}
+			}, 2, 0)
+			.progress(1).progress(0)
+			.play();
+		},
+		firstElement: function(){
+			var that = this;
+			this.element1 = true;
+			this.transition1 = setTimeout(function(){
+				that.element1 = false;
+				that.element2 = true;
+			}, 4000);
+			this.transition2 = setTimeout(function(){
+				that.element2 = false;
+				that.element3 = true;
+			}, 8000);
+			this.transition3 = setTimeout(function(){
+				that.element3 = false;
+				that.element4 = true;
+				that.animateSVG();
+			}, 12000);
+		},
+		skip: function(){
+			clearTimeout(this.transition1);
+			clearTimeout(this.transition2);
+			clearTimeout(this.transition3);
+			this.element1 = false
+			this.element2 = false
+			this.element3 = false
+			this.element4 = true;
+			this.animateSVG();
 		}
 	}
 }
@@ -196,7 +245,6 @@ export default {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	// background-color: rgb(23, 25, 38);
 	background-color: rgba($color-blue-dark, 0.3);
 
 	display: flex;
@@ -210,6 +258,17 @@ export default {
 		color: #FFFFFF;
 		display: flex;
 		flex-direction: column;
+
+		.element{
+			margin-top: auto;
+			margin-bottom: auto;
+			@include text-standard();
+			-webkit-animation: fadein 4s;
+       -moz-animation: fadein 4s;
+        -ms-animation: fadein 4s;
+         -o-animation: fadein 4s;
+            animation: fadein 4s;
+		}
 
 		.logo {
 			margin-top: auto;

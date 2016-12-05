@@ -27,6 +27,9 @@
 			<transition name="fade" mode="out-in">
 				<loader v-if="getLoader"></loader>
 			</transition>
+			<transition name="fade" mode="out-in">
+				<p class="skip" v-show="!getSkipe" @click="skip">skip</p>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -35,8 +38,13 @@
 import Loader from './Loader'
 
 import {
-	getLoaderState
+	getLoaderState,
+	getSkipeState
 } from '../vuex/getters';
+
+import {
+	setSkipeState,
+} from '../vuex/actions'
 
 import { TweenMax } from 'gsap';
 
@@ -47,9 +55,11 @@ export default {
 	},
 	vuex: {
 		getters: {
-			getLoader: getLoaderState
+			getLoader: getLoaderState,
+			getSkipe: getSkipeState
 		},
 		actions: {
+			setSkipe: setSkipeState,
 			// setVolume: setVolumeState,
 		}
 	},
@@ -84,6 +94,9 @@ export default {
 				this.tlSound.reverse();
 				this.testSound = true;
 			}
+		},
+		skip: function(){
+			this.setSkipe();
 		}
 	}
 }

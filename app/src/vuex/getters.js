@@ -2,6 +2,10 @@ export function getPresState (state) {
   return state.pres
 }
 
+export function getSkipeState (state) {
+  return state.skipe
+}
+
 export function getChoiceState (state) {
   return state.choice
 }

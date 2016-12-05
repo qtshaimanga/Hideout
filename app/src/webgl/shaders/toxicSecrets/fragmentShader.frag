@@ -7,6 +7,7 @@ uniform float roughness;
 uniform float metalness;
 uniform float opacity;
 
+varying vec2 vUV;
 uniform sampler2D u_texture;
 
 #ifndef STANDARD
@@ -78,7 +79,8 @@ void main() {
 	vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;
 
 	gl_FragColor = vec4( outgoingLight, diffuseColor.a );
-	//gl_FragColor = texture2D(u_texture, vec2(0.5));
+
+	gl_FragColor *= texture2D(u_texture, vUV);
 
 
 	#include <premultiplied_alpha_fragment>

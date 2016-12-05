@@ -3,8 +3,8 @@ import * as THREE from 'three';
 import { UniformsUtils } from '../utils/UniformsUtils';
 import { UniformsLib } from '../utils/UniformsLib';
 
-import vertexShader from '../shaders/toxicSecrets/vertexShader.vert';
-import fragmentShader from '../shaders/toxicSecrets/fragmentShader.frag';
+import vertexShader from '../shaders/sugarSecrets/vertexShader.vert';
+import fragmentShader from '../shaders/sugarSecrets/fragmentShader.frag';
 
 
 var size = 50;

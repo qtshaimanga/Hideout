@@ -173,7 +173,8 @@ export default {
         if(data[i].typeSecret == "sugar"){
           secret = new Sugar();
         }else if(data[i].typeSecret == "toxic"){
-          secret = new Toxic();
+					var texture = this.getRessources.texture1;
+          secret = new Toxic(texture);
         }
 
         globeSecret = new GlobeSecret();
@@ -228,7 +229,11 @@ export default {
 
             }else if(time <= this.loading){
 							this.setCursorProgress(time+1);
-
+							if(time == 1){
+								// var url = 'url("'+this.getRessources.cursorLoader.file.src+'")';
+								// this.$el.style.cursor = url; //"pointer";
+								// console.log("prop", this.$el.style.cursor, " - ", url, "- ");
+							}
             }
           }
 

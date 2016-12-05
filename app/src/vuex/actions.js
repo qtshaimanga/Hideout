@@ -2,6 +2,10 @@ export const setPresState = function ({ dispatch, state }) {
   dispatch('PRES')
 }
 
+export const setSkipeState = function ({ dispatch, state }) {
+  dispatch('SKIPE')
+}
+
 export const setChoiceState = function ({ dispatch, state }) {
   dispatch('CHOICE')
 }

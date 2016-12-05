@@ -93,6 +93,9 @@ export default {
       color: #FFFFFF;
       display: flex;
       flex-flow: row;
+	//   position: absolute;
+	//   top: 0;
+	//   right:0;
       .text{
         margin: auto;
       }

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+<<<<<<< Updated upstream
 const state = {
   skip: false,
   pres: false,
@@ -20,18 +21,41 @@ const state = {
   ressources: Object()
 }
 
+=======
+>>>>>>> Stashed changes
 // const state = {
-//   skip: true,
+//   skip: false,
 //   pres: false,
 //   choice: false,
-//   webglHome: false,
+//   webglHome: true,
 //   share: false,
 //   writing: false,
 //   telling: false,
 //   type: { statut:false, from:"home"},
 //   sharechoice: false,
 //   secretMessage: false,
+//   lockControls: false,
+//   data: Array(),
+//   objectsMoved: Array(),
+//   ressources: Object()
 // }
+
+const state = {
+  skip: true,
+  pres: false,
+  choice: false,
+  webglHome: false,
+  share: false,
+  writing: false,
+  telling: false,
+  type: { statut:false, from:"home"},
+  sharechoice: false,
+  secretMessage: false,
+    lockControls: false,
+    data: Array(),
+    objectsMoved: Array(),
+    ressources: Object()
+}
 
 const mutations = {
   SKIP (state){

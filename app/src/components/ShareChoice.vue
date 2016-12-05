@@ -1,7 +1,7 @@
 <template>
 	<div class="share-choice">
 		<div class="container">
-			<div class="text">It's time to share you secret, and lay it down here.<span>Do you want to reveal it by ...</span></div>
+			<div class="text">It's time to share you secret, and lay it down here.<span>Do you want to reveal it by :</span></div>
 			<div class="writing" @click="writing">
 				<span class="icon-writing">
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 39.37 59.05" id="svg_writing_icon">
@@ -41,11 +41,11 @@
 							</g>
 						</g>
 					</svg>
-</span>
-<span class="text">telling it</span>
-</div>
-</div>
-</div>
+				</span>
+				<span class="text">telling it</span>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -74,12 +74,11 @@ import {
 		mounted: function() {
 			var tl_writing = new TimelineMax({
 				paused:true,
-				// repeatDelay:0,
+				repeatDelay:0,
 				repeat:-1,
 				yoyo:true
 			});
 			var tl_telling = tl_writing;
-
 
 			tl_writing.staggerTo("#svg_writing_icon stop", 1, {
 				// stopColor:'#cc0000',
@@ -124,7 +123,9 @@ import {
 		padding: 0px;
 		.container{
 			width: 100%;
+			max-width: 950px;
 			height: 100%;
+			margin: 0 auto;
 			display: flex;
 			flex-direction: row;
 			color: #FFFFFF;
@@ -134,14 +135,17 @@ import {
 				margin: auto;
 				width: 10%;
 			}
+
 			.text{
-				width: 25%;
+				// margin: auto 10px auto auto;
+				width: 55%;
 				font-family: $font-otama;
 				font-size: 3.5rem;
 
 				span {
 					display: block;
 					font-size: 28px;
+					margin-top: 35px;
 				}
 			}
 			.writing{

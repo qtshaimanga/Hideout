@@ -13,7 +13,7 @@
 			<share v-show="getShare"></share>
 		</transition>
 
-		<webgl-home v-show="getwebglHome"></webgl-home>
+		<webgl-home v-if="getwebglHome"></webgl-home>
 	</div>
 </template>
 

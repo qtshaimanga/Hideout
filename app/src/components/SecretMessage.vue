@@ -4,7 +4,7 @@
       <p @click="setFocus">X</p>
     </div>
     <div class="container">
-      <p>{{ meshId }} {{ meshText }}</p>
+      <p>{{ meshText }}</p>
     </div>
   </div>
 </template>

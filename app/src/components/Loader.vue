@@ -54,9 +54,9 @@ export default {
        }
       });
       if(this.progressValue == 100){
+        this.setRessources(this.listOfRessources);
         this.setLoader();
         this.setWebglHome();
-        this.setRessources(this.listOfRessources);
       }
     }
   },

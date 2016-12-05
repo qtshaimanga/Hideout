@@ -106,6 +106,9 @@ export default {
 				this.currentObjectSecret = Object();
 			}
     },
+		getRessources: function(){
+			//console.log(this.getRessources);
+		}
   },
   created: function(){
     this.scene = new Scene(this.width, this.height);
@@ -121,6 +124,8 @@ export default {
     this.cameraRay = new THREE.Raycaster();
   },
   mounted: function() {
+		console.log("Ressource after loading", this.getRessources);
+
     window.addEventListener('resize', this.onResize);
     TweenMax.ticker.addEventListener('tick', this.update);
 
@@ -142,42 +147,45 @@ export default {
     },
     secretBuilder: function(){
       var that = this;
-      this.getRequestAllSecrets(function(request){
-        if(request == true){
-          that.listOfObjectSecret = that.buildSecret();
+      this.getRequestAllSecrets(function(data){
+        if(data){
+					var objectSecretBuilded = that.buildSecret(data);
+					for(let i=0; i<=objectSecretBuilded.length-1; i++){
+						that.listOfObjectSecret.push(objectSecretBuilded[i]);
+					}
         }
       });
     },
     getRequestAllSecrets: function(callback){
       this.setData(data);
-      callback(true);
+      callback(data);
     },
-    buildSecret: function(){
+    buildSecret: function(data){
       var listOfObjectSecret = [];
 
-      for(let i=0; i<=this.getData.length-1;i++){
-        var secret = this.getData[i].typeSecret+"_"+i;
+      for(let i=0; i<=data.length-1;i++){
+        var secret = data[i].typeSecret+"_"+i;
         var globeSecret = secret;
         var objectSecret = [];
 
-        var x = Number(this.getData[i].x);
-        var y = Number(this.getData[i].y);
-        var z = Number(this.getData[i].z);
+        var x = Number(data[i].x);
+        var y = Number(data[i].y);
+        var z = Number(data[i].z);
 
         //set secret type
-        if(this.getData[i].typeSecret == "sugar"){
+        if(data[i].typeSecret == "sugar"){
           secret = new Sugar();
-        }else if(this.getData[i].typeSecret == "toxic"){
+        }else if(data[i].typeSecret == "toxic"){
           secret = new Toxic();
         }
 
         globeSecret = new GlobeSecret();
 
-        secret.mesh.name = this.getData[i].typeSecret+"_"+i;
+        secret.mesh.name = data[i].typeSecret+"_"+i;
         secret.mesh.position.set(x, y, z);
         this.scene.add(secret.mesh);
 
-        globeSecret.mesh.name = this.getData[i].typeSecret+"_"+i;
+        globeSecret.mesh.name = data[i].typeSecret+"_"+i;
         globeSecret.mesh.position.set(x, y, z);
         this.scene.add(globeSecret.mesh);
 
@@ -292,7 +300,7 @@ export default {
         "value": 0
       };
 
-      this.tweenMove = TweenMax.to(cameraTransition, 6.5, {
+      this.tweenMove = TweenMax.to(cameraTransition, 2, {
         value: 1,
         onUpdate: function(){
           var positionUpdated = curve.getPoint(cameraTransition.value);
@@ -307,13 +315,15 @@ export default {
 
     },
     getRequestSecretMessageById: function(meshId){
-      //get request by id
-      var text = "mon texte de test"
+      var text = this.getData[meshId].text;
       return text
     },
 		postRequestSecretById: function(){
-			//deposer -> raycaster pour recuperer x,y,z + post + refreshData
-			//post request -> update State + send secret with meshId and meshPosition
+			//var data = this.getDataToSave(); //is an array() with object(rowid, typeContaint, sound, text, typeSecret, x, y, z, date )
+			//this.listOfDataSecret.push(data);
+			//this.listOfObjectSecret.push(data)
+			//this.buildSecret(data);
+			//and post api
 		},
     getMeshId: function(name){
       var regex = /_(.*)/;

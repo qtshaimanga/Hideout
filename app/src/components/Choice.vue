@@ -68,7 +68,6 @@ export default {
 		margin: auto;
 
 		.button{
-			margin-top: 50px;
 			padding: 16px 22px 16px 22px;
 			text-align: center;
 			color: #FFFFFF;
@@ -80,14 +79,20 @@ export default {
 			}
 		}
 	}
+
 	.share{
+		width: 49.5%;
+
 		.text {
 			@include text-title();
-			// font-family: $font-otama;
-			// font-size: 5.5rem;
 			text-align: right;
 			margin-right: 5.5rem;
-			// line-height: 8.3rem;
+			padding-left: 2rem;
+			@include box-sizing(border-box);
+		}
+
+		.button {
+			margin: 5rem 5.5rem auto auto;
 		}
 	}
 
@@ -98,13 +103,18 @@ export default {
 	}
 
 	.visit{
+		width: 49.5%;
+
 		.text {
 			@include text-title();
-			// font-family: $font-otama;
-			// font-size: 5.5rem;
 			text-align: left;
 			margin-left: 5.5rem;
-			// line-height: 8.3rem;
+			padding-right: 2rem;
+			@include box-sizing(border-box);
+		}
+
+		.button {
+			margin: 5rem auto auto 5.5rem;
 		}
 	}
 }

@@ -28,6 +28,8 @@ const state = {
   cursorProgress: Number(),
   focus: false,
   objectsMoved: Array(),
+
+  about: false,
 }
 
 const mutations = {
@@ -113,6 +115,10 @@ const mutations = {
   CURSOR(state)
   {
     state.cursorLoader = state.cursorLoader ? false : state.cursorLoader ? false : true;
+  },
+  ABOUT(state)
+  {
+    state.about = state.about ? false : state.about ? false : true;
   }
 }
 

@@ -115,7 +115,8 @@ import Navigation from './Navigation';
 
 import{
 	getSkipeState,
-	getLoaderState
+	getLoaderState,
+	getAboutState
 } from '../vuex/getters';
 
 import {
@@ -133,7 +134,8 @@ export default {
 	vuex: {
 		getters: {
 			getSkipe: getSkipeState,
-			getLoader: getLoaderState
+			getLoader: getLoaderState,
+			getAbout: getAboutState
 		},
 		actions: {
 			setPres : setPresState,
@@ -157,7 +159,18 @@ export default {
 	watch: {
 		getSkipe: function(){
 			if(this.getSkipe == true){
+			}
+			this.skip();
+
+		},
+		getAbout: function(){
+			if(this.getAbout == true){
 				this.skip();
+			}else{
+				this.firstElement();
+				if(this.getSkipe == true){
+					this.skip();
+				}
 			}
 		},
 		getLoader: function(){
@@ -235,7 +248,11 @@ export default {
 			this.element1 = false
 			this.element2 = false
 			this.element3 = false
-			this.element4 = true;
+			if(this.getAbout == true){
+				this.element4 = false;
+			}else{
+				this.element4 = true;
+			}
 			this.animateSVG();
 		}
 	}

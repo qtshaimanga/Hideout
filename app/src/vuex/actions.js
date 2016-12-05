@@ -77,3 +77,7 @@ export const setCursorProgressState = function({ dispatch, state }, cursorProgre
 export const setCursorLoaderState = function ({ dispatch, state }) {
   dispatch('CURSOR')
 }
+
+export const setAboutState = function ({ dispatch, state }) {
+  dispatch('ABOUT')
+}

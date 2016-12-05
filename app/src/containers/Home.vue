@@ -13,6 +13,10 @@
 			<share v-show="getShare"></share>
 		</transition>
 
+		<transition name="fade" mode="out-in">
+			<about v-show="getAbout"></about>
+		</transition>
+
 		<webgl-home v-if="getInstanciateWebglHome" v-show="getwebglHome"></webgl-home>
 	</div>
 </template>
@@ -22,13 +26,15 @@ import Presentation from '../components/Presentation';
 import Choice  from '../components/Choice';
 import WebglHome  from '../components/WebglHome';
 import Share  from '../components/Share';
+import About  from '../components/About';
 
 import {
 	getPresState,
 	getChoiceState,
 	getWebglHomeState,
 	getShareState,
-	getInstanciateWebglHomeState
+	getInstanciateWebglHomeState,
+	getAboutState
 } from '../vuex/getters';
 
 
@@ -39,6 +45,7 @@ export default {
 		Choice,
 		WebglHome,
 		Share,
+		About
 	},
 	vuex: {
 		getters: {
@@ -47,6 +54,7 @@ export default {
 			getwebglHome: getWebglHomeState,
 			getInstanciateWebglHome: getInstanciateWebglHomeState,
 			getShare: getShareState,
+			getAbout: getAboutState
 		},
 		actions: {}
 	},

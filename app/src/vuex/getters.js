@@ -72,3 +72,7 @@ export function getCursorProgressState (state, cursorProgress) {
 export function getCursorLoaderState (state) {
   return state.cursorLoader
 }
+
+export function getAboutState (state) {
+  return state.about
+}

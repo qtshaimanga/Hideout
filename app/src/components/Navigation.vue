@@ -1,7 +1,7 @@
 <template>
 	<div class="navigation">
 		<div class="container">
-			<div class="about">
+			<div class="about" @click="aboutDisplayer">
 				<span @click="about" class="about-icon">
 					<svg id="svg_icon_about" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.45 27.45">
 						<g id="Calque_2" data-name="Calque 2">
@@ -28,7 +28,7 @@
 				<loader v-if="getLoader"></loader>
 			</transition>
 			<transition name="fade" mode="out-in">
-				<p class="skip" v-show="!getSkipe" @click="skip">skip</p>
+				<p class="skip" v-show="!getSkipe && !getAbout" @click="skip">skip</p>
 			</transition>
 		</div>
 	</div>
@@ -39,11 +39,13 @@ import Loader from './Loader'
 
 import {
 	getLoaderState,
-	getSkipeState
+	getSkipeState,
+	getAboutState
 } from '../vuex/getters';
 
 import {
 	setSkipeState,
+	setAboutState
 } from '../vuex/actions'
 
 import { TweenMax } from 'gsap';
@@ -56,10 +58,12 @@ export default {
 	vuex: {
 		getters: {
 			getLoader: getLoaderState,
-			getSkipe: getSkipeState
+			getSkipe: getSkipeState,
+			getAbout: getAboutState
 		},
 		actions: {
 			setSkipe: setSkipeState,
+			setAbout: setAboutState
 			// setVolume: setVolumeState,
 		}
 	},
@@ -97,6 +101,9 @@ export default {
 		},
 		skip: function(){
 			this.setSkipe();
+		},
+		aboutDisplayer: function(){
+			this.setAbout();
 		}
 	}
 }

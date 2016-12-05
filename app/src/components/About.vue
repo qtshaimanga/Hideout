@@ -1,6 +1,6 @@
 <template>
 	<div class="about">
-		<div class="close"></div>
+		<div class="close" @click="aboutClose"></div>
 		<div class="secret-img"></div>
 		<div class="text">
 			<div class="title">About</div>
@@ -15,10 +15,21 @@
 </template>
 
 <script>
+import {
+	setSkipeState,
+	setAboutState
+} from '../vuex/actions'
 
 export default {
 	components: {
 
+	},
+	vuex: {
+		getters: {},
+		actions: {
+			setSkipe: setSkipeState,
+			setAbout: setAboutState
+		}
 	},
 	data () {
 		return {
@@ -26,10 +37,11 @@ export default {
 		}
 	},
 	mounted: function() {
-
 	},
 	methods:{
-
+		aboutClose: function(){
+			this.setAbout();
+		}
 	}
 }
 </script>
@@ -39,11 +51,13 @@ export default {
 @import "../styles/mixins";
 
 .about{
+	z-index: 200;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: rgba($color-blue-dark, 1);
+	background-color: transparent;
 	color: $color-white;
 	display: flex;
 	flex-flow: row;
@@ -71,7 +85,7 @@ export default {
 				outline: none;
 
 				&:hover {
-					
+
 				}
 			}
 		}

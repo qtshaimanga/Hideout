@@ -196,7 +196,9 @@ export default {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: transparent;
+	// background-color: rgb(23, 25, 38);
+	background-color: rgba($color-blue-dark, 0.3);
+
 	display: flex;
 	.container{
 		width: 33%;

@@ -8,6 +8,7 @@ const state = {
   loader: true,
   lockControls: true,
   webglHome: false,
+  instanciateWebglHome: false,
 
   choice: false,
   share: false,
@@ -38,6 +39,10 @@ const mutations = {
   WEBGLHOME (state)
   {
     state.webglHome = state.webglHome ? false : state.webglHome ? false : true;
+  },
+  INSTANCIATEWEBGLHOME (state)
+  {
+    state.instanciateWebglHome = state.instanciateWebglHome ? false : state.instanciateWebglHome ? false : true;
   },
   SHARE (state)
   {

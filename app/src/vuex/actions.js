@@ -10,6 +10,10 @@ export const setWebglHomeState = function ({ dispatch, state }) {
   dispatch('WEBGLHOME')
 }
 
+export const setInstanciateWebglHomeState = function ({ dispatch, state }) {
+  dispatch('INSTANCIATEWEBGLHOME')
+}
+
 export const setShareState = function ({ dispatch, state }) {
   dispatch('SHARE')
 }

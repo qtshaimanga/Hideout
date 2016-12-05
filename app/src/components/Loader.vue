@@ -18,6 +18,7 @@ import {
 import {
   setLoaderState,
   setRessourcesState,
+  setInstanciateWebglHomeState,
   setWebglHomeState
 } from '../vuex/actions'
 
@@ -30,6 +31,7 @@ export default {
     actions: {
       setLoader: setLoaderState,
       setRessources: setRessourcesState,
+      setInstanciateWebglHome: setInstanciateWebglHomeState,
       setWebglHome: setWebglHomeState
     }
   },
@@ -56,7 +58,9 @@ export default {
       if(this.progressValue == 100){
         this.setRessources(this.listOfRessources);
         this.setLoader();
+        this.setInstanciateWebglHome();
         this.setWebglHome();
+
       }
     }
   },

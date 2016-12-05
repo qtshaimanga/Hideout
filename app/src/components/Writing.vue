@@ -53,6 +53,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../styles/variables";
+@import "../styles/mixins";
 
 .writing{
 	width: 100%;
@@ -64,18 +65,30 @@ export default {
 	display: flex;
 
 	.container{
+		width: 75%;
+		max-width: 780px;
 		margin: auto;
 
 		.text{
-			font-size: 35px;
-			font-family: $font-otama;
+			@include text-title();
 			margin-bottom: 20px;
 			max-width: 350px;
 		}
 
 		textarea{
 			margin-bottom: 20px;
-			max-width: 450px;
+			width: 100%;
+			height: 250px;
+			background-color: rgba(0,0,0,0);
+			border: none;
+			resize: none;
+			outline: none;
+			color: $color-white;
+			@include placeholder {
+				color: white;
+				font-family: $font-otama;
+				font-size: 2.8rem;
+			}
 		}
 
 		.controls{

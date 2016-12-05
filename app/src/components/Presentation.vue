@@ -2,7 +2,7 @@
 	<div class="presentation">
 		<div class="container">
 			<div class="logo">
-				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 412.96 75.88">
+				<svg id="svg_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 412.96 75.88">
 					<defs>
 						<linearGradient id="Dégradé_sans_nom_20" x1="3397.35" y1="32.36" x2="3517.43" y2="32.36" gradientTransform="matrix(-1, 0, 0, 1, 3570.91, 0)" gradientUnits="userSpaceOnUse">
 							<stop offset="0" stop-color="#2b4b9b"/>
@@ -18,7 +18,6 @@
 							<stop offset="1" stop-color="#f7a638"/>
 						</linearGradient>
 					</defs>
-					<title>Fichier 1</title>
 					<g id="Calque_2" data-name="Calque 2">
 						<g id="Calque_1-2" data-name="Calque 1">
 							<path class="cls-1" d="M84.67,16.45A68.3,68.3,0,0,0,97.58,9.21a7.41,7.41,0,0,0-6.9-4.52,7.57,7.57,0,0,0-7.62,7.62,7.42,7.42,0,0,0,1.35,4.25Z"/>
@@ -37,7 +36,63 @@
 				</svg>
 			</div>
 			<div class="text-intro"> Enter into the intemporel world of the buried secrets.<br>Let yourself be carried away into a subtle journey, let the secrets talk to you and reveal yours</div>
-			<div class="hold-spacebar">Hold <span class="spacebar">SPACEBAR</span> to begin</div>
+			<div class="hold-spacebar">
+				Hold
+				<span class="spacebar">
+					SPACEBAR
+					<svg id="svg_spacebar_blank_top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.83 9.77">
+						<g id="Calque_2" data-name="Calque 2">
+							<g id="Calque_1-2" data-name="Calque 1">
+								<polygon class="cls-1" points="82.83 0 82.83 8.77 1 8.77 1 0 0 0 0 9.77 83.83 9.77 83.83 0 82.83 0"/>
+							</g>
+						</g>
+					</svg>
+					<svg id="svg_spacebar_blank_bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.83 9.77">
+						<g id="Calque_2" data-name="Calque 2">
+							<g id="Calque_1-2" data-name="Calque 1">
+								<polygon class="cls-1" points="82.83 0 82.83 8.77 1 8.77 1 0 0 0 0 9.77 83.83 9.77 83.83 0 82.83 0"/>
+							</g>
+						</g>
+					</svg>
+					<svg id="svg_spacebar_color_top" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 83.83 9.77">
+						<defs>
+							<linearGradient id="Dégradé_sans_nom_21" y1="4.89" x2="83.83" y2="4.89" gradientUnits="userSpaceOnUse">
+								<stop offset="0" stop-color="blue"/>
+								<stop offset="0.07" stop-color="#2200e8"/>
+								<stop offset="0.24" stop-color="#7700af"/>
+								<stop offset="0.38" stop-color="#b50085"/>
+								<stop offset="0.48" stop-color="#db006b"/>
+								<stop offset="0.53" stop-color="#ea0061"/>
+								<stop offset="0.91" stop-color="#ffa736"/>
+							</linearGradient>
+						</defs>
+						<g id="Calque_2" data-name="Calque 2">
+							<g id="Calque_1-2" data-name="Calque 1">
+								<polygon id="svg_spacebar_top" class="cls-1" points="82.83 0 82.83 8.77 1 8.77 1 0 0 0 0 9.77 83.83 9.77 83.83 0 82.83 0"/>
+							</g>
+						</g>
+					</svg>
+					<svg id="svg_spacebar_color_bottom" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 83.83 9.77">
+						<defs>
+							<linearGradient id="Dégradé_sans_nom_21" y1="4.89" x2="83.83" y2="4.89" gradientUnits="userSpaceOnUse">
+								<stop offset="0" stop-color="blue"/>
+								<stop offset="0.07" stop-color="#2200e8"/>
+								<stop offset="0.24" stop-color="#7700af"/>
+								<stop offset="0.38" stop-color="#b50085"/>
+								<stop offset="0.48" stop-color="#db006b"/>
+								<stop offset="0.53" stop-color="#ea0061"/>
+								<stop offset="0.91" stop-color="#ffa736"/>
+							</linearGradient>
+						</defs>
+						<g id="Calque_2" data-name="Calque 2">
+							<g id="Calque_1-2" data-name="Calque 1">
+								<polygon class="cls-1" points="82.83 0 82.83 8.77 1 8.77 1 0 0 0 0 9.77 83.83 9.77 83.83 0 82.83 0"/>
+							</g>
+						</g>
+					</svg>
+				</span>
+				to begin
+			</div>
 			<div class="loader__bar"></div>
 		</div>
 		<navigation></navigation>
@@ -46,6 +101,7 @@
 
 <script>
 import { TweenMax } from 'gsap';
+import { CSSPlugin } from 'gsap';
 
 import Navigation from './Navigation';
 
@@ -80,7 +136,28 @@ export default {
 		window.addEventListener('keyup', this.spacebarReleased.bind(this));
 	},
 	mounted: function() {
-		this.$el.style.cursor = "none";
+		var tl_spacebar_gradient = new TimelineMax({
+			paused:true,
+			repeatDelay:0,
+			repeat:-1,
+			yoyo:true
+		});
+
+		tl_spacebar_gradient.staggerTo("#svg_spacebar_color_top stop", 1, {
+			// stopColor:'#cc0000',
+			cycle:{
+				/* number of <stop> elements and ending value */
+				stopColor: ['#2200e8','#7700af', '#b50085', '#db006b', '#ea0061', '#ffa736' ]
+			}
+		}, 2, 0)
+		.progress(1).progress(0)
+		.play();
+
+		// var svgSpacebarTopPath = document.querySelector('#svg_spacebar_top');
+		// var length = svgSpacebarTopPath.getTotalLength();
+		// TweenMax.set(svgSpacebarTopPath, {css:{strokeDasharray: length}});
+
+		//this.$el.style.cursor = "none";
 	},
 	methods:{
 		spacebarPressed: function(event){
@@ -136,7 +213,7 @@ export default {
 			margin-top: auto;
 			margin-bottom: 25px;
 
-			svg {
+			#svg_logo {
 				width: 375px;
 				height: 68px;
 
@@ -161,6 +238,58 @@ export default {
 			font-family: $font-poppins-regular;
 			font-size: 1.4rem;
 			margin-bottom: auto;
+
+			.spacebar {
+				position: relative;
+				display: inline-block;
+				padding: 0 10px;
+				@include box-sizing(border-box);
+
+				#svg_spacebar_blank_top,
+				#svg_spacebar_blank_bottom,
+				#svg_spacebar_color_top,
+				#svg_spacebar_color_bottom {
+					position: absolute;
+					width: 85px;
+					left: 50%;
+				}
+
+				#svg_spacebar_color_top,
+				#svg_spacebar_blank_top  {
+					top: -2px;
+					@include transform(rotate3d(1,0,0,180deg) translate3d(-50%, 0,0));
+				}
+
+				#svg_spacebar_blank_top {
+					.cls-1 {
+						fill:#fff;
+					}
+				}
+
+				#svg_spacebar_color_top {
+					.cls-1{
+						fill:url(#Dégradé_sans_nom_21);
+					}
+				}
+
+				#svg_spacebar_color_bottom,
+				#svg_spacebar_blank_bottom {
+					bottom: -2px;
+					@include transform(translate3d(-50%, 0,0));
+				}
+
+				#svg_spacebar_blank_bottom {
+					.cls-1 {
+						fill:#fff;
+					}
+				}
+
+				#svg_spacebar_color_bottom {
+					.cls-1{
+						fill:url(#Dégradé_sans_nom_21);
+					}
+				}
+			}
 		}
 
 		.loader__bar {

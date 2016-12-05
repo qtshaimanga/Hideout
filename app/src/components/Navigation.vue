@@ -2,7 +2,17 @@
 	<div class="navigation">
 		<div class="container">
 			<div class="about">
-				<span @click="about" class="about-icon">i</span>
+				<span @click="about" class="about-icon">
+					<svg id="svg_icon_about" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.45 27.45">
+						<g id="Calque_2" data-name="Calque 2">
+							<g id="Calque_1-2" data-name="Calque 1">
+								<path class="cls-1" d="M13.72,0A13.72,13.72,0,1,0,27.45,13.72,13.74,13.74,0,0,0,13.72,0Zm0,26.45A12.72,12.72,0,1,1,26.45,13.72,12.74,12.74,0,0,1,13.72,26.45Z"/>
+								<rect class="cls-1" x="12.98" y="11.11" width="0.9" height="8.76"/>
+								<path class="cls-1" d="M13,7.28a.69.69,0,0,0-.2.5.7.7,0,0,0,.2.52.63.63,0,0,0,.91,0,.7.7,0,0,0,.21-.52.69.69,0,0,0-.2-.5A.65.65,0,0,0,13,7.28Z"/>
+							</g>
+						</g>
+					</svg>
+				</span>
 				<span @click="setSound" class="sound">
 					<span></span><!--
 					--><span></span><!--
@@ -44,9 +54,19 @@ export default {
 		}
 	},
 	data () {
-		return {}
+		return {
+			testSound: true,
+			tlSound: 0
+		}
 	},
 	mounted: function() {
+		this.tlSound = new TimelineMax();
+		var btnVolume = document.querySelector('.sound');
+		btnVolume = btnVolume.querySelectorAll('span');
+		this.tlSound.pause();
+		this.tlSound.add(TweenMax.staggerTo(btnVolume, 0.5, { height: 2, ease: Expo.easeOut}));
+	},
+	created: function(){
 
 	},
 	methods:{
@@ -55,12 +75,15 @@ export default {
 		},
 		setSound: function(){
 			//tween volume
-			var btnVolume = document.querySelector('.sound');
-			btnVolume = btnVolume.querySelectorAll('span');
-			TweenMax.staggerTo(btnVolume, 1, {
-				height: 2,
-				ease: Expo.easeOut
-			});
+			console.log(this.testSound, this.tlSound);
+
+			if(this.testSound) {
+				this.tlSound.play();
+				this.testSound = false;
+			} else {
+				this.tlSound.reverse();
+				this.testSound = true;
+			}
 		}
 	}
 }
@@ -97,6 +120,7 @@ export default {
 		}
 		.about{
 			margin-left: 20px;
+
 			&:hover{
 				cursor: pointer;
 			}
@@ -104,11 +128,21 @@ export default {
 			.about-icon {
 				display: inline-block;
 				vertical-align: middle;
+
+				#svg_icon_about {
+					display: inline-block;
+					width: 24px;
+					height: 24px;
+
+					.cls-1 {
+						fill: #fff;
+					}
+				}
 			}
 
 			.sound {
 				width: 31px;
-				height: 27px;
+				height: auto;
 				display: inline-block;
 				vertical-align: middle;
 				margin-left: 15px;
@@ -119,6 +153,7 @@ export default {
 					vertical-align: middle;
 					background-color: $color-white;
 					margin-right: 2px;
+
 					&:nth-child(1) {
 						height: 4px;
 					}

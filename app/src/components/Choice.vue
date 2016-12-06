@@ -101,6 +101,7 @@ export default {
 		width: 1px;
 		height: 80%;
 		background-color: #FFFFFF;
+		opacity: 0.3;
 	}
 
 	.visit{

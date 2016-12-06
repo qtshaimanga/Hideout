@@ -136,7 +136,7 @@ import {
 			div{
 				margin: 20px;
 				margin: auto;
-				width: 10%;
+				width: 15%;
 			}
 
 			.text{
@@ -192,6 +192,7 @@ import {
 				.text {
 					font-family: $font-poppins-light;
 					font-size: 15px;
+					letter-spacing: 0.1rem;
 					text-transform: uppercase;
 				}
 
@@ -224,6 +225,7 @@ import {
 				.text {
 					font-family: $font-poppins-light;
 					font-size: 15px;
+					letter-spacing: 0.1rem;
 					text-transform: uppercase;
 				}
 

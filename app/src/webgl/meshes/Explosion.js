@@ -1,7 +1,13 @@
 import * as THREE from 'three';
 import TessellateModifier from '../utils/TessellateModifier.js'
+
+import { UniformsUtils } from '../utils/UniformsUtils';
+import { UniformsLib } from '../utils/UniformsLib';
+
 import vertexShader from '../shaders/explosionSecrets/vertexShader.vert';
 import fragmentShader from '../shaders/explosionSecrets/fragmentShader.frag';
+
+
 
 class Explosion {
 
@@ -12,10 +18,10 @@ class Explosion {
 
 		this.time = 0;
 
-		this.geometry = new THREE.IcosahedronGeometry(20, 1);
+		this.geometry = new THREE.IcosahedronGeometry(50, 1);
 
-		var tessellateModifier = new THREE.TessellateModifier( 8 );
-		for ( var i = 0; i < 6; i ++ ) {
+		var tessellateModifier = new THREE.TessellateModifier( 1 );
+		for ( var i = 0; i < 3; i ++ ) {
 			tessellateModifier.modify( this.geometry );
 		}
 
@@ -38,11 +44,13 @@ class Explosion {
 		this.geometry.addAttribute( 'displacement', new THREE.BufferAttribute( displacement, 3 ) );
 
 		var uniforms = THREE.UniformsUtils.merge( [
-
 			THREE.UniformsLib[ "ambient" ],
-			THREE.UniformsLib[ "lights" ]
-
-		] );
+			THREE.UniformsLib[ "lights" ],
+			UniformsLib.fog,
+			{
+				emissive : { value: new THREE.Color( 0xdce04b ) },
+			}
+		]);
 
 		uniforms.amplitude = {value: 0};
 
@@ -50,8 +58,10 @@ class Explosion {
 			uniforms,
 			vertexShader: vertexShader,
 			fragmentShader: fragmentShader,
-			lights: true
-		} );
+			lights: true,
+			fog: true,
+			opacity: 0.5
+		});
 
 		this.geometry.verticesNeedUpdate = true;
 		this.mesh = new THREE.Mesh(this.geometry, this.material);
@@ -68,20 +78,19 @@ class Explosion {
 		this.time = Date.now() * 0.01;
 		this.material.uniforms.amplitude.value = 1.0 + (Math.sin( this.time * 0.5 ) + 0.3);
 
-		// console.log(this.material.uniforms.time.value);
-
 		this.mesh.rotation.x += 0.01;
 		this.mesh.rotation.y += 0.01;
-		// this.mesh.rotation.z += 0.01;
 
 	}
 
 	rotation(start){
 
 		if(start == true){
+			this.time = Date.now() * 0.01;
+			this.material.uniforms.amplitude.value = 1.0 + (Math.sin( this.time * 0.1 ) + 0.1);
+
 			this.mesh.rotation.x += this.time*0.5;
 			this.mesh.rotation.y += this.time*0.5;
-			this.mesh.rotation.z += this.time*0.5;
 		}
 
 	}

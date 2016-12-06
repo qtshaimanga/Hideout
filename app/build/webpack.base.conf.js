@@ -61,6 +61,14 @@ module.exports = {
         }
       },
       {
+        test: /\.(mp3)(\?.*)?$/,
+        loader: 'url',
+        query: {
+          limit: 50000,
+          name: utils.assetsPath('sounds/[name].[hash:7].[ext]')
+        }
+      },
+      {
         test: /\.(glsl|frag|vert)$/,
         exclude: /node_modules/,
         loader: 'raw!glslify'

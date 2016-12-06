@@ -4,12 +4,9 @@ uniform float u_time;
 uniform float u_speed;
 uniform float u_amp;
 
-uniform float amplitude;
-attribute vec3 customColor;
-attribute vec3 displacement;
-
 #define PHYSICAL
 
+varying vec2 vUV;
 varying vec3 vViewPosition;
 
 #ifndef FLAT_SHADED
@@ -50,8 +47,9 @@ void main() {
 
 	#include <begin_vertex>
 
-	// float displacement = u_amp * cnoise2( vec2( position * 0.01 ) + u_time * u_speed );
-	// transformed += normal * displacement;
+	float displacement = u_amp * cnoise2( vec2( position * 0.8 ) + u_time * u_speed );
+	//u_amp * cnoise2( vec2( position * 0.01 ) + u_time * u_speed );
+	transformed += normal * displacement;
 
 	#include <displacementmap_vertex>
 	#include <morphtarget_vertex>
@@ -60,9 +58,8 @@ void main() {
 	#include <logdepthbuf_vertex>
 	#include <clipping_planes_vertex>
 
-	// vViewPosition = - mvPosition.xyz;
-	vec3 newPosition = position + normal * amplitude * displacement;
-	gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+	vViewPosition = - mvPosition.xyz;
+	vUV = uv;
 
 	#include <worldpos_vertex>
 	#include <shadowmap_vertex>

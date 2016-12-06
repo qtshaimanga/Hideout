@@ -1,5 +1,6 @@
 <template>
 	<div class="home">
+		<navigation></navigation>
 
 		<transition name="fade" mode="out-in">
 			<presentation v-show="getPres"></presentation>
@@ -27,7 +28,7 @@ import Choice  from '../components/Choice';
 import WebglHome  from '../components/WebglHome';
 import Share  from '../components/Share';
 import About  from '../components/About';
-
+import Navigation from '../components/Navigation';
 import {
 	getPresState,
 	getChoiceState,
@@ -45,7 +46,8 @@ export default {
 		Choice,
 		WebglHome,
 		Share,
-		About
+		About,
+		Navigation
 	},
 	vuex: {
 		getters: {

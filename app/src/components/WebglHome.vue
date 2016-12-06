@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import data from '../service/data.json';
-import models from '../service/models.json';
+import data from '../services/data.json';
+import models from '../services/models';
 
 import { TweenMax } from 'gsap';
 
@@ -20,7 +20,8 @@ import * as THREE from 'three';
 /** Secrets **/
 import Toxic from '../webgl/meshes/Toxic.js';
 import Sugar from '../webgl/meshes/Sugar.js';
-// import Explosion from '../webgl/meshes/Explosion.js';
+import Confuse from '../webgl/meshes/Confuse.js';
+import Explosion from '../webgl/meshes/Explosion.js';
 
 import Cube from '../webgl/meshes/Cube.js';
 import GlobeSecret from '../webgl/meshes/GlobeSecret.js';
@@ -140,7 +141,7 @@ export default {
 	},
 	methods:{
 		terrainBuilder: function(){
-			this.terrain = new Terrain();
+			this.terrain = new Terrain(this.getRessources.heightmap.file.src);
 			this.terrain.mesh.name = "terrain_1"
 			this.scene.add(this.terrain.mesh);
 		},
@@ -183,9 +184,12 @@ export default {
 					var texture = this.getRessources[data[i].texture];
 					secret = new Toxic(texture);
 				}else if(data[i].typeSecret == "explosion"){
-					// secret = new Explosion();
+					secret = new Explosion();
 					// console.log(">>>>>>>>>");
 					// console.log(secret);
+				}else if(data[i].typeSecret == "confuse"){
+					var texture = this.getRessources[data[i].texture];
+					secret = new Confuse(texture);
 				}
 
 				if(secret && secret.mesh) {
@@ -420,8 +424,9 @@ export default {
 			}
 		},
 		soundBuilder: function(){
+			var audio= require('../../static/sounds/backgroundLoop.mp3');
 			var audioLoader = new Sound(this.scene.camera);
-			audioLoader.load(this.terrain.mesh, '../../static/sounds/backgroundLoop.mp3');
+			audioLoader.load(this.terrain.mesh, audio);
 		},
   }
 

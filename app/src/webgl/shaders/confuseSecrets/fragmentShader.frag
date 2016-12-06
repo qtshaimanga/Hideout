@@ -1,3 +1,4 @@
+#pragma glslify: cnoise2 = require(glsl-noise/classic/2d);
 #define PHYSICAL
 
 uniform vec3 diffuse;
@@ -6,7 +7,8 @@ uniform float roughness;
 uniform float metalness;
 uniform float opacity;
 
-uniform float amplitude;
+varying vec2 vUV;
+uniform sampler2D u_texture;
 
 #ifndef STANDARD
 	uniform float clearCoat;
@@ -47,7 +49,6 @@ varying vec3 vViewPosition;
 #include <logdepthbuf_pars_fragment>
 #include <clipping_planes_pars_fragment>
 
-
 void main() {
 
 	#include <clipping_planes_fragment>
@@ -76,15 +77,15 @@ void main() {
 	#include <aomap_fragment>
 
 	vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;
-	gl_FragColor = vec4(outgoingLight, diffuseColor.a );
 
-	//gl_FragColor *= vec4(outgoingLight * sin(amplitude) , diffuseColor.a);
-	//gl_FragColor = vec4(133, 133, 133, 1);
+	gl_FragColor = vec4( outgoingLight, diffuseColor.a );
 
+	gl_FragColor *= texture2D(u_texture, vUV);
 
 
 	#include <premultiplied_alpha_fragment>
 	#include <tonemapping_fragment>
 	#include <encodings_fragment>
 	#include <fog_fragment>
+
 }

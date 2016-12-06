@@ -5,7 +5,7 @@ class Terrain {
 	/**
 	* @constructor
 	*/
-	constructor(url) {
+	constructor(heightmap) {
 
 		this.width = 4000;
 		this.height = 4000;
@@ -32,7 +32,7 @@ class Terrain {
 		]);
 
 		this.img = new Image();
-		this.img.src = "/static/textures/heightmap-small.png";
+		this.img.src = heightmap;
 
 		this.img.onload = () => {
 			this.getHeightData();

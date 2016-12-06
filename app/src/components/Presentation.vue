@@ -103,7 +103,6 @@
 
 			<div class="loader__bar"></div>
 		</div>
-		<navigation></navigation>
 	</div>
 </template>
 
@@ -111,12 +110,12 @@
 import { TweenMax } from 'gsap';
 import { CSSPlugin } from 'gsap';
 
-import Navigation from './Navigation';
-
 import{
 	getSkipeState,
 	getLoaderState,
-	getAboutState
+	getAboutState,
+	getPresState,
+	getLockControlsState
 } from '../vuex/getters';
 
 import {
@@ -129,13 +128,14 @@ import {
 export default {
 	name: "presentation",
 	components: {
-		Navigation,
 	},
 	vuex: {
 		getters: {
 			getSkipe: getSkipeState,
 			getLoader: getLoaderState,
-			getAbout: getAboutState
+			getAbout: getAboutState,
+			getPres: getPresState,
+			getLockControls: getLockControlsState
 		},
 		actions: {
 			setPres : setPresState,
@@ -193,10 +193,14 @@ export default {
 				TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
 			}
 			if(this.counter == 1.2){
-				this.setPres();
+				if(this.getPres == true){
+					this.setPres();
+				}
 				this.setChoice();
 				this.setWebglHome();
-				this.setLockControls();
+				if(this.getLockControls == true){
+					this.setLockControls();
+				}
 			}
 		},
 		spacebarReleased: function(event){

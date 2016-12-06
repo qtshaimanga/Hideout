@@ -6,8 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "NODE_ENV=production node build/build.js",
-    "test": ""
+    "build": "NODE_ENV=production node build/build.js"
   },
   "dependencies": {
     "assets-loader": "^0.4.0",

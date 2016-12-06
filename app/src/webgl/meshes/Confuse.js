@@ -3,16 +3,16 @@ import * as THREE from 'three';
 import { UniformsUtils } from '../utils/UniformsUtils';
 import { UniformsLib } from '../utils/UniformsLib';
 
-import vertexShader from '../shaders/toxicSecrets/vertexShader.vert';
-import fragmentShader from '../shaders/toxicSecrets/fragmentShader.frag';
+import vertexShader from '../shaders/confuseSecrets/vertexShader.vert';
+import fragmentShader from '../shaders/confuseSecrets/fragmentShader.frag';
 
 
-var size = 50;
-var widthSegments = 8;
-var heightSegments = 8;
+var size = 60;
+var widthSegments = 6;
+var heightSegments = 6;
 var geometry = new THREE.SphereGeometry(size, widthSegments, heightSegments);
 
-class Toxic {
+class Confuse {
 
 	/**
 	* @constructor
@@ -46,15 +46,15 @@ class Toxic {
 				envMapIntensity : { value: 1 },
 				u_time: { type: "f", value: 0.1 },
 				u_speed: { type: 'f', value: 0.4 },
-				u_amp: { type: 'f', value: 49.0 },
+				u_amp: { type: 'f', value: 100.0 },
 				u_texture:   { type:"t", value: texture },
 			},
 			fragmentShader: fragmentShader,
 			vertexShader: vertexShader,
 			shading: THREE.FlatShading,
 			lights: true,
-			fog: true
-			// wireframe: true
+			fog: true,
+			wireframe: true
 		});
 
 		this.mesh = new THREE.Mesh(geometry, this.material);
@@ -86,4 +86,4 @@ class Toxic {
 
 }
 
-export default Toxic
+export default Confuse

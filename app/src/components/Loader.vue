@@ -7,8 +7,10 @@
 <script>
 import { TweenMax } from 'gsap';
 
+import audioLoad from 'audio-loader';
+
 import AssetsLoader from 'assets-loader';
-import Assets from '../resources';
+import Assets from '../services/resources';
 
 import {
   getLoaderState,
@@ -66,7 +68,10 @@ export default {
   methods:{
     assetsLoader: function(){
       var that = this;
+      var audioContext = new AudioContext();
+
       var loader = new AssetsLoader({
+        webAudioContext: audioContext,
         assets: Assets
       })
       .on('error', function(error) {
@@ -81,7 +86,7 @@ export default {
         });
       })
       .start();
-    }
+    },
   }
 }
 </script>

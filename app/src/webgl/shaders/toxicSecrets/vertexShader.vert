@@ -47,7 +47,7 @@ void main() {
 
 	#include <begin_vertex>
 
-	float displacement = u_amp * cnoise2( vec2( position * 0.01 ) + u_time * u_speed );
+	float displacement = u_amp * cnoise2( vec2( position * 0.05 ) + u_time * u_speed );
 	//u_amp * cnoise2( vec2( position * 0.01 ) + u_time * u_speed );
 	transformed += normal * displacement;
 

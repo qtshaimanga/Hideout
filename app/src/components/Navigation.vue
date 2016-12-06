@@ -28,7 +28,7 @@
 				<loader v-if="getLoader"></loader>
 			</transition>
 			<transition name="fade" mode="out-in">
-				<p class="skip" v-show="!getSkipe && !getAbout" @click="skip">skip</p>
+				<p class="skip" v-show="!getSkipe && !getAbout && getPres" @click="skip">skip</p><!-- -->
 			</transition>
 		</div>
 	</div>
@@ -40,7 +40,8 @@ import Loader from './Loader'
 import {
 	getLoaderState,
 	getSkipeState,
-	getAboutState
+	getAboutState,
+	getPresState
 } from '../vuex/getters';
 
 import {
@@ -59,7 +60,8 @@ export default {
 		getters: {
 			getLoader: getLoaderState,
 			getSkipe: getSkipeState,
-			getAbout: getAboutState
+			getAbout: getAboutState,
+			getPres: getPresState
 		},
 		actions: {
 			setSkipe: setSkipeState,
@@ -89,8 +91,7 @@ export default {
 		},
 		setSound: function(){
 			//tween volume
-			console.log(this.testSound, this.tlSound);
-
+			// console.log(this.testSound, this.tlSound);
 			if(this.testSound) {
 				this.tlSound.play();
 				this.testSound = false;
@@ -116,7 +117,9 @@ export default {
 @import '../styles/utils/buttons.scss';
 
 .navigation{
+	z-index: 150;
 	position: absolute;
+	bottom: 0px;
 	width: 100%;
 	height: 10%;
 	margin: 0px;

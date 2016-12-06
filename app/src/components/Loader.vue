@@ -70,7 +70,7 @@ export default {
         assets: Assets
       })
       .on('error', function(error) {
-        console.log(error);
+        console.log("loading error", error);
       })
       .on('progress', function(progress) {
         that.progressValue = (progress * 100).toFixed();

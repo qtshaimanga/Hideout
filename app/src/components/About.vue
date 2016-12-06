@@ -123,20 +123,22 @@ export default {
 			display: flex;
 			flex-flow: row;
 			align-self: flex-end;
+			margin-top: 20px;
 
 			div {
 				width: 50%;
 			}
 
 			#logo_gobelins {
-				width: 30%;
-				height: 30%;
+				width: 35%;
+				height: 20%;
 				opacity: 0.4;
+				margin-right: 20px;
 			}
 
 			#logo_cci {
-				width: 30%;
-				height: 30%;
+				width: 15%;
+				height: 15%;
 				opacity: 0.4;
 			}
 		}

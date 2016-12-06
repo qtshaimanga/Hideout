@@ -35,6 +35,7 @@ class Alpha {
 					opacity: 0.8
 				});
 
+				console.log(this.mesh);
 				this.geometry = this.mesh.geometry.clone();
 
 				this.mesh = THREE.SceneUtils.createMultiMaterialObject( this.geometry, [

@@ -45,15 +45,6 @@ varying vec3 vViewPosition;
 #include <logdepthbuf_pars_fragment>
 #include <clipping_planes_pars_fragment>
 
-uniform vec3 fog_color;
-uniform float fog_density;
-
-vec3 addFog(vec3 color) {
-	float depth = gl_FragCoord.z / gl_FragCoord.w;
-	float fogFactor = exp(-depth * depth * fog_density * fog_density);
-	fogFactor = clamp(fogFactor, 0.0, 1.0);
-	return mix(fog_color, color, fogFactor);
-}
 
 void main() {
 
@@ -84,7 +75,7 @@ void main() {
 
 	vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;
 
-	gl_FragColor = vec4(addFog(outgoingLight), diffuseColor.a );
+	gl_FragColor = vec4(outgoingLight, diffuseColor.a );
 
 	#include <premultiplied_alpha_fragment>
 	#include <tonemapping_fragment>

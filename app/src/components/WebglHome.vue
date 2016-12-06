@@ -13,6 +13,7 @@ import { TweenMax } from 'gsap';
 
 import Scene from '../webgl/core/Scene.js';
 import Controls from '../webgl/core/Controls.js';
+import Sound from '../webgl/core/Sound.js';
 
 import * as THREE from 'three';
 
@@ -24,6 +25,7 @@ import GlobeCamera from '../webgl/meshes/GlobeCamera.js';
 import Terrain from '../webgl/meshes/Terrain.js';
 import Spline from '../webgl/meshes/Spline.js';
 import ParticleSystem from '../webgl/meshes/ParticleSystem.js';
+import Model from '../webgl/core/ModelLoader.js';
 
 import {
 	getPresState,
@@ -116,6 +118,8 @@ export default {
     this.secretBuilder();
     this.particleBuilder();
 		this.splineBuilder();
+		this.modelBuilder();
+		this.soundBuilder();
 
     this.downVec = new THREE.Vector3(0,-1,1);
     this.frontVec = new THREE.Vector3(0,0,1);
@@ -387,6 +391,17 @@ export default {
       this.meshCollisionneur();
       this.terrainCollisionneur();
     },
+		modelBuilder: function(){
+			var model = new Model();
+			model.load()
+			.then(() => {
+				this.scene.add(model.mesh);
+			});
+		},
+		soundBuilder: function(){
+			var audioLoader = new Sound(this.scene.camera);
+			audioLoader.load(this.terrain.mesh, '../../static/sounds/backgroundLoop.mp3');
+		},
   }
 }
 </script>

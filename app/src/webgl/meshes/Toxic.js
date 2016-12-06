@@ -1,7 +1,5 @@
 import * as THREE from 'three';
 
-import { _config } from '../config';
-
 import { UniformsUtils } from '../utils/UniformsUtils';
 import { UniformsLib } from '../utils/UniformsLib';
 
@@ -23,9 +21,6 @@ class Toxic {
 
 
 		this.time = 0.01;
-
-		this.fogDensity = _config.fog.density;
-		this.fogColor = new THREE.Color("rgb(" + _config.fog.colorRGB.r + "," + _config.fog.colorRGB.g + "," + _config.fog.colorRGB.b + ")");
 
 		this.loader = new THREE.TextureLoader();
 
@@ -53,13 +48,13 @@ class Toxic {
 				u_speed: { type: 'f', value: 0.4 },
 				u_amp: { type: 'f', value: 49.0 },
 				u_texture:   { type:"t", value: texture },
-				fog_color: { type: 'v3', value: this.fogColor },
-				fog_density: { type: 'f', value: this.fogDensity }
 			},
 			fragmentShader: fragmentShader,
 			vertexShader: vertexShader,
 			shading: THREE.FlatShading,
-			lights: true
+			lights: true,
+			fog: true
+			// wireframe: true
 		});
 
 		this.mesh = new THREE.Mesh(geometry, this.material);

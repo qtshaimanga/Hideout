@@ -1,13 +1,10 @@
 import * as THREE from 'three';
 
-import { _config } from '../config';
-
 import { UniformsUtils } from '../utils/UniformsUtils';
 import { UniformsLib } from '../utils/UniformsLib';
 
 import vertexShader from '../shaders/sugarSecrets/vertexShader.vert';
 import fragmentShader from '../shaders/sugarSecrets/fragmentShader.frag';
-
 
 var size = 50;
 var widthSegments = 30;
@@ -22,8 +19,6 @@ class Sugar {
 	constructor() {
 
 		this.time = 0.01;
-		this.fogDensity = _config.fog.density;
-		this.fogColor = new THREE.Color("rgb(" + _config.fog.colorRGB.r + "," + _config.fog.colorRGB.g + "," + _config.fog.colorRGB.b + ")");
 
 		// tester phong
 		this.material = new THREE.ShaderMaterial({
@@ -46,14 +41,13 @@ class Sugar {
 					envMapIntensity : { value: 1 },
 					u_time: { type: "f", value: 0.1 },
 					u_speed: { type: 'f', value: 0.3 },
-					u_amp: { type: 'f', value: 40.0 },
-					fog_color: { type: 'v3', value: this.fogColor },
-					fog_density: { type: 'f', value: this.fogDensity }
+					u_amp: { type: 'f', value: 40.0 }
 				}
 			]),
 			fragmentShader: fragmentShader,
 			vertexShader: vertexShader,
 			lights: true,
+			fog: true
 			//shading: THREE.FlatShading,
 			//wireframe: true
 		});

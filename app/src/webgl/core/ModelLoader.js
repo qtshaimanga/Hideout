@@ -15,7 +15,7 @@ class Alpha {
 	}
 
 	load(model, x, y, z) {
-		
+
 		let loader = new Loader.AWDLoader();
 
 		return new Promise(resolve => {
@@ -35,6 +35,7 @@ class Alpha {
 					opacity: 0.8
 				});
 
+				console.log(this.mesh);
 				this.geometry = this.mesh.geometry.clone();
 
 				this.mesh = THREE.SceneUtils.createMultiMaterialObject( this.geometry, [

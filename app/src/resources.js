@@ -55,6 +55,11 @@ export default [
     id: 'texture11',
     url: '../static/textures/texture12.jpg'
   },
+  {
+    type: 'jpg',
+    id: 'texture12',
+    url: '../static/textures/texture13.jpg'
+  },
   // ==== Images
   {
     type: 'png',

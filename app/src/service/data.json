@@ -8,7 +8,7 @@
 		"x":"-600",
 		"y": "300",
 		"z": "-1000",
-		"texture": "texture1",
+		"texture": "texture12",
 		"color": "color",
 		"date": "1/12/16"
 	},
@@ -21,7 +21,7 @@
 		"x":"-200",
 		"y": "250",
 		"z": "-1200",
-		"texture": "texture8",
+		"texture": "texture12",
 		"color": "color",
 		"date": "1/12/16"
 	},
@@ -34,7 +34,7 @@
 		"x":"1200",
 		"y": "250",
 		"z": "200",
-		"texture": "texture9",
+		"texture": "texture12",
 		"color": "color",
 		"date": "1/12/16"
 	},

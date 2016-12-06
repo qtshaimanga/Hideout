@@ -6,8 +6,8 @@
 </template>
 
 <script>
-//TEST
 import data from '../service/data.json';
+import models from '../service/models.json';
 
 import { TweenMax } from 'gsap';
 
@@ -99,6 +99,7 @@ export default {
 			particules: Object(),
 			tick: Number(),
 			numberOfIntersaction: Array(),
+			listOfModelObject: Array(),
 		}
 	},
 	watch:{
@@ -129,8 +130,6 @@ export default {
 		this.cameraRay = new THREE.Raycaster();
 	},
 	mounted: function() {
-		//console.log("Ressource after loading", this.getRessources);
-
 		window.addEventListener('resize', this.onResize);
 		TweenMax.ticker.addEventListener('tick', this.update);
 
@@ -215,6 +214,16 @@ export default {
 			var intersectCamera = this.cameraRay.intersectObject( this.terrain.mesh, true );
 			if(intersectCamera!= 0 && intersectCamera[0].distance <= 50){
 				this.scene.camera.position.y = this.scene.camera.position.y + 50 - intersectCamera[0].distance;
+			}
+		},
+		modelCollisionneur: function(){
+			this.cameraRay.setFromCamera(this.frontVec, this.scene.camera);
+			for(let i=0; i<=this.listOfModelObject.length-1; i++){
+				var model = this.listOfModelObject[i];
+				var intersectCamera = this.cameraRay.intersectObject( model.mesh, true );
+				if(intersectCamera!= 0 && intersectCamera[0].distance <= 20){
+					this.scene.camera.position.y = this.scene.camera.position.y + 50;
+				}
 			}
 		},
 		meshCollisionneur: function (){
@@ -402,12 +411,13 @@ export default {
     },
 		modelBuilder: function(){
 			var model = new Model();
-			//list collision
-			model.load('../../../static/models/planetbig_test5.awd', 150, 800, 500)
-			.then(() => {
-				this.scene.add(model.mesh);
-			});
-
+			for(let i=0; i<=models.length-1; i++){
+				model.load(models[i].url, models[i].x, models[i].y, models[i].z)
+				.then(() => {
+					this.listOfModelObject.push(model);
+					this.scene.add(model.mesh);
+				});
+			}
 		},
 		soundBuilder: function(){
 			var audioLoader = new Sound(this.scene.camera);

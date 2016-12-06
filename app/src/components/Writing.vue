@@ -115,11 +115,11 @@ export default {
 			}
 
 			.previous {
-
+				letter-spacing: 0.1rem;
 			}
 
-			.skip {
-				// %extend .skip;
+			.next {
+				letter-spacing: 0.1rem;
 			}
 		}
 	}

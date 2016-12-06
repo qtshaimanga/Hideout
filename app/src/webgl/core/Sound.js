@@ -25,14 +25,11 @@ class Sound {
       var positionalAudio = new THREE.PositionalAudio(this.listener.children[0]);
       var audioLoader = new THREE.AudioLoader();
 
-      console.log(positionalAudio, audioLoader, sound, mesh);
-
       audioLoader.load( sound, function( buffer ) {
         positionalAudio.setBuffer( buffer );
         positionalAudio.setRefDistance( 50 );
         positionalAudio.setLoop(true);
         positionalAudio.play();
-        console.log(positionalAudio);
       });
 
       mesh.add( positionalAudio );

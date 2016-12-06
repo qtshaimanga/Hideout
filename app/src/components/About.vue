@@ -4,12 +4,26 @@
 		<div class="secret-img"></div>
 		<div class="text">
 			<div class="title">About</div>
-			<p>HideOut is a WebGL project, made by <a href="#">Léna PINOT</a> and <a href="#">Mélanie LO</a> as designers, and <a href="#">Quentin TSHAIMANGA</a> and <a href="#">Kirgan SOMVILLE</a> as developers.</p>
+			<p>HideOut is a WebGL project, made by <a href="http://lenapinot.fr" target="_blank">Léna PINOT</a> and <a href="http://melanie-lo.com" target="_blank">Mélanie
+			LO</a> as designers, and <a href="https://fr.linkedin.com/in/quentin-tshaimanga-946a5a10b" target="_blank">Quentin TSHAIMANGA</a> and <a href="http://kirgansomville.com" target="_blank">Kirgan SOMVILLE</a> as developers.</p>
 
-			<p>It raises issues about the suitability of private data, as a secret, in a public space.
-				Does it still make sense if there is no identity linked to data?  If data is anonymous ? Are they still secrets once released on the internet ?</p>
+			<p>It raises issues about the suitability of private data, as a secret,
+			in a public space.<br>
+			Does it still make sense if there is no identity linked to data?
+			If data is anonymous ? Are they still secrets once released
+			on the internet ?</p>
 
-			<p>This project has been made in the contexts of our 4th grade degree at Gobelins School in Paris. Thanks a lot to <a href="#">Juliette BEHA</a> for her work on sound design.</p>
+			<p>This project has been made in the contexts of our 4th grade
+			degree at Gobelins School in Paris.</p>
+
+			<p>Thanks a lot to <a href="https://fr.linkedin.com/in/juliette-beha-a2241a103" target="_blank">Juliette Beha</a> for her work on sound design.
+			Thanks also to <a href="https://fr.linkedin.com/in/veroniqueficara" target="_blank">Véronique Ficara</a>, <a href="http://epure.it/" target="_blank">Béatrice Lartigue</a>, <a href="https://www.linkedin.com/in/muriel-mehong-0774779">Muriel Mehong</a>, <a href="https://vimeo.com/mehdihadi" target="_blank">Mehdi Hadi</a>, <a href="http://www.christophemassolin.com/" target="_blank">Christophe Massolin</a> and
+			<a href="http://www.grgrdvrt.com/" target="_blank">Grégoire Divaret</a>.</p>
+
+			<div class="logo-wrapper">
+				<img src="" id="logo_gobelins" />
+				<img src="" id="logo_cci" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -20,12 +34,18 @@ import {
 	setAboutState
 } from '../vuex/actions'
 
+import {
+	getRessourcesState
+} from '../vuex/getters';
+
 export default {
 	components: {
 
 	},
 	vuex: {
-		getters: {},
+		getters: {
+			getRessources: getRessourcesState
+		},
 		actions: {
 			setSkipe: setSkipeState,
 			setAbout: setAboutState
@@ -36,11 +56,20 @@ export default {
 
 		}
 	},
+	watch: {
+		getRessources: function(){
+			this.imageSRC(this.getRessources);
+		}
+	},
 	mounted: function() {
 	},
 	methods:{
 		aboutClose: function(){
 			this.setAbout();
+		},
+		imageSRC: function(sources){
+			logo_gobelins.src = sources.logo_gobelins.file.src;
+			logo_cci.src = sources.logo_cci.file.src;
 		}
 	}
 }
@@ -87,6 +116,28 @@ export default {
 				&:hover {
 
 				}
+			}
+		}
+
+		.logo-wrapper {
+			display: flex;
+			flex-flow: row;
+			align-self: flex-end;
+
+			div {
+				width: 50%;
+			}
+
+			#logo_gobelins {
+				width: 30%;
+				height: 30%;
+				opacity: 0.4;
+			}
+
+			#logo_cci {
+				width: 30%;
+				height: 30%;
+				opacity: 0.4;
 			}
 		}
 	}

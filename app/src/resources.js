@@ -45,6 +45,7 @@ export default [
     id: 'texture8',
     url: '../static/textures/texture8.jpg'
   },
+
   // ==== Images
   {
     type: 'png',
@@ -56,4 +57,16 @@ export default [
     id: 'cursorLoader2',
     url: '../static/images/cursorLoader/cursorLoader2.png'
   },
+
+  // ==== Logo
+	{
+		type: 'png',
+		id: 'logo_gobelins',
+		url: '../static/images/logo_gobelins.png'
+	},
+	{
+		type: 'png',
+		id: 'logo_cci',
+		url: '../static/images/logo_cci.png'
+	}
 ];

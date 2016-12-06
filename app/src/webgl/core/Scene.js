@@ -11,7 +11,7 @@ class Scene {
 
 		this.scene = new THREE.Scene();
 
-		console.log( _config );
+		// console.log( _config );
 
 		this.fogColor = new THREE.Color("rgb(" + _config.fog.colorRGB.r + "," + _config.fog.colorRGB.g + "," + _config.fog.colorRGB.b + ")");
 		this.fogDensity = _config.fog.density;

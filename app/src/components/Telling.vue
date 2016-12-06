@@ -108,6 +108,7 @@ export default {
 		flex-wrap: wrap;
 		width: 75%;
 		max-width: 780px;
+		min-height: 320px;
 
 		div{
 			margin-bottom: 20px;
@@ -132,9 +133,13 @@ export default {
 		}
 
 		.wrapper {
+			position: absolute;
+			left: 50%;
+			@include transform(translate3d(-50%, 0, 0));
+
 			.circle {
-				width: 170px;
-				height: 170px;
+				width: 110px;
+				height: 110px;
 				position: relative;
 
 				svg.svg_circle {
@@ -159,15 +164,12 @@ export default {
 			.placeholder {
 				@include text-title-small;
 				margin-bottom: 0;
+				text-align: center;
 			}
 
 			.caption {
 				@include text-standard;
-			}
-
-			.yolo {
-				@include text-title;
-
+				text-align: center;
 			}
 		}
 
@@ -177,6 +179,7 @@ export default {
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: space-between;
+			align-items: flex-end;
 			@include text-button();
 
 			&:hover>div{
@@ -185,10 +188,12 @@ export default {
 
 			.previous {
 				letter-spacing: 0.1rem;
+				margin: 0;
 			}
 
 			.next {
 				letter-spacing: 0.1rem;
+				margin: 0;
 			}
 		}
 	}

@@ -12,6 +12,11 @@ export default [
   },
   {
     type: 'jpg',
+    id: 'texture2',
+    url: '../static/textures/texture2.jpg'
+  },
+  {
+    type: 'jpg',
     id: 'texture3',
     url: '../static/textures/texture3.jpg'
   },
@@ -39,26 +44,6 @@ export default [
     type: 'jpg',
     id: 'texture8',
     url: '../static/textures/texture8.jpg'
-  },
-  {
-    type: 'jpg',
-    id: 'texture9',
-    url: '../static/textures/texture9.jpg'
-  },
-  {
-    type: 'jpg',
-    id: 'texture10',
-    url: '../static/textures/texture10.jpg'
-  },
-  {
-    type: 'jpg',
-    id: 'texture11',
-    url: '../static/textures/texture12.jpg'
-  },
-  {
-    type: 'jpg',
-    id: 'texture12',
-    url: '../static/textures/texture13.jpg'
   },
   // ==== Images
   {

@@ -15,7 +15,7 @@ class Alpha {
 	}
 
 	load(model, x, y, z) {
-		
+
 		let loader = new Loader.AWDLoader();
 
 		return new Promise(resolve => {

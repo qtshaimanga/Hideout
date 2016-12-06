@@ -1,3 +1,5 @@
+import * as THREE from 'three'
+
 var Loader = require('../utils/AWDLoader');
 
 class Alpha {
@@ -12,14 +14,35 @@ class Alpha {
 
 	}
 
-	load() {
+	load(model, x, y, z) {
+		
 		let loader = new Loader.AWDLoader();
 
 		return new Promise(resolve => {
-			loader.load( '../../../static/models/planet.awd', function ( mesh ) {
+			loader.load(model, function ( mesh ) {
 
-				this.mesh = mesh.children[0];
-				this.mesh.position.set(200, 300, 500);
+				this.mesh = mesh.children[0].clone();
+
+				this.materialAlpha = new THREE.MeshPhongMaterial({
+					color: 0x2c3544,
+					wireframe: false
+				});
+
+				this.materialBeta = new THREE.MeshPhongMaterial({
+					color: 0xfff6e3,
+					wireframe: true,
+					transparent: true,
+					opacity: 0.8
+				});
+
+				this.geometry = this.mesh.geometry.clone();
+
+				this.mesh = THREE.SceneUtils.createMultiMaterialObject( this.geometry, [
+					this.materialAlpha,
+					this.materialBeta
+				]);
+
+				this.mesh.position.set(x, y, z);
 
 				resolve('success');
 			}.bind(this));

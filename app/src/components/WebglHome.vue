@@ -402,10 +402,12 @@ export default {
     },
 		modelBuilder: function(){
 			var model = new Model();
-			model.load()
+			//list collision
+			model.load('../../../static/models/planetbig_test5.awd', 150, 800, 500)
 			.then(() => {
 				this.scene.add(model.mesh);
 			});
+
 		},
 		soundBuilder: function(){
 			var audioLoader = new Sound(this.scene.camera);

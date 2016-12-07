@@ -179,14 +179,14 @@ export default {
 
 				//set secret type
 				if(data[i].typeSecret == "sugar"){
-					secret = new Sugar();
+					var color = data[i].color;
+					secret = new Sugar(color);
 				}else if(data[i].typeSecret == "toxic"){
 					var texture = this.getRessources[data[i].texture];
 					secret = new Toxic(texture);
 				}else if(data[i].typeSecret == "explosion"){
-					secret = new Explosion();
-					// console.log(">>>>>>>>>");
-					// console.log(secret);
+					var color = data[i].color;
+					secret = new Explosion(color);
 				}else if(data[i].typeSecret == "confuse"){
 					var texture = this.getRessources[data[i].texture];
 					secret = new Confuse(texture);

@@ -16,9 +16,9 @@ class Sugar {
 	/**
 	* @constructor
 	*/
-	constructor() {
-
+	constructor(color) {
 		this.time = 0.01;
+		this.color = Number(color);
 
 		// tester phong
 		this.material = new THREE.ShaderMaterial({
@@ -35,7 +35,7 @@ class Sugar {
 				UniformsLib.fog,
 				UniformsLib.lights,
 				{
-					emissive : { value: new THREE.Color( 0xff60b5 ) },
+					emissive : { value: new THREE.Color( this.color ) },
 					roughness: { value: .8 },
 					metalness: { value: 1.0 },
 					envMapIntensity : { value: 1 },

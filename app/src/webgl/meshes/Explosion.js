@@ -14,11 +14,11 @@ class Explosion {
 	/**
 	* @constructor
 	*/
-	constructor() {
-
+	constructor(color) {
 		this.time = 0;
+		this.color = Number(color);
 
-		this.geometry = new THREE.IcosahedronGeometry(50, 1);
+		this.geometry = new THREE.IcosahedronGeometry(5, 1);
 
 		var tessellateModifier = new THREE.TessellateModifier( 1 );
 		for ( var i = 0; i < 3; i ++ ) {
@@ -33,7 +33,7 @@ class Explosion {
 
 		for ( var f = 0; f < numFaces; f ++ ) {
 			var index = 9 * f;
-			var d = 10 * ( 0.5 - Math.random() );
+			var d = 60 * ( 0.5 - Math.random() );
 			for ( var i = 0; i < 3; i ++ ) {
 				displacement[ index + ( 3 * i )     ] = d;
 				displacement[ index + ( 3 * i ) + 1 ] = d;
@@ -48,7 +48,7 @@ class Explosion {
 			THREE.UniformsLib[ "lights" ],
 			UniformsLib.fog,
 			{
-				emissive : { value: new THREE.Color( 0xdce04b ) },
+				emissive : { value: new THREE.Color( this.color ) },
 			}
 		]);
 

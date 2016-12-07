@@ -4,12 +4,12 @@
 		"typeContaint": "text",
 		"sound": null,
 		"text": " 1Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		"typeSecret": "toxic",
-		"x":"-600",
-		"y": "300",
-		"z": "-1000",
+		"typeSecret": "sugar",
+		"x":"900",
+		"y": "250",
+		"z": "200",
 		"texture": "texture1",
-		"color": "color",
+		"color": "0xff60b5",
 		"date": "1/12/16"
 	},
 	{
@@ -18,9 +18,9 @@
 		"sound": null,
 		"text": "2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 		"typeSecret": "confuse",
-		"x":"-200",
+		"x":"1100",
 		"y": "250",
-		"z": "-1200",
+		"z": "200",
 		"texture": "texture2",
 		"color": "color",
 		"date": "1/12/16"
@@ -31,8 +31,8 @@
 		"sound": null,
 		"text": "3Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 		"typeSecret": "toxic",
-		"x":"1200",
-		"y": "450",
+		"x":"1300",
+		"y": "250",
 		"z": "200",
 		"texture": "texture3",
 		"color": "color",
@@ -43,12 +43,12 @@
 		"typeContaint": "text",
 		"sound": null,
 		"text": "4Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-		"typeSecret": "sugar",
-		"x":"20",
-		"y": "400",
-		"z": "40",
+		"typeSecret": "explosion",
+		"x":"1500",
+		"y": "250",
+		"z": "200",
 		"texture": "url",
-		"color": "color",
+		"color": "0xdce04b",
 		"date": "1/12/16"
 	},
 	{
@@ -61,7 +61,7 @@
 		"y": "500",
 		"z": "80",
 		"texture": "url",
-		"color": "color",
+		"color": "0xff60b5",
 		"date": "1/12/16"
 	},
 	{
@@ -74,7 +74,7 @@
 		"y": "500",
 		"z": "80",
 		"texture": "url",
-		"color": "color",
+		"color": "0xff60b5",
 		"date": "1/12/16"
 	},
 	{
@@ -87,7 +87,7 @@
 		"y": "50",
 		"z": "0",
 		"texture": null,
-		"color": "color",
+		"color": "0xdce04b",
 		"date": "1/12/16"
 	},
 	{
@@ -97,10 +97,10 @@
 		"text": " 8Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 		"typeSecret": "explosion",
 		"x":"1200",
-		"y": "250",
-		"z": "200",
+		"y": "1000",
+		"z": "100",
 		"texture": null,
-		"color": "color",
+		"color": "0xdce04b",
 		"date": "1/12/16"
 	}
 ]

@@ -13,26 +13,38 @@
 </template>
 
 <script>
+import { getChoiceState } from '../vuex/getters';
+
 import {
 	setShareState,
 	setWebglHomeState,
-	setChoiceState
+	setChoiceState,
+	setLockControlsState
 } from '../vuex/actions'
 
 export default {
 	vuex: {
-		getters: {},
+		getters: {
+			getChoice: getChoiceState
+		},
 		actions: {
 			setChoice: setChoiceState,
 			setShare: setShareState,
-			setWebglHome: setWebglHomeState
+			setLockControls: setLockControlsState
 		}
 	},
 	data () {
 		return {}
 	},
+	watch: {
+		// getChoice: function(){
+		// 	console.log("lock");
+		// 	if(this.getChoice == true){
+		// 		this.setLockControls();
+		// 	}
+		// }
+	},
 	mounted: function() {
-
 	},
 	methods:{
 		share: function(event){
@@ -52,6 +64,7 @@ export default {
 @import "../styles/mixins";
 
 .choice{
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin: 0px;

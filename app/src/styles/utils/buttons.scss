@@ -22,3 +22,35 @@
 		cursor: pointer;
 	}
 }
+
+%controls {
+	display: flex;
+	justify-content: space-between;
+	@include text-button();
+
+	&:hover>div{
+		cursor: pointer;
+	}
+}
+
+%previous {
+	letter-spacing: 0.1rem;
+
+	svg.svg_previous {
+		width: 18px;
+		vertical-align: middle;
+		.cls-1{fill:url(#Dégradé_sans_nom_23);}
+		.cls-2{fill:url(#Dégradé_sans_nom_2);}
+	}
+}
+
+%next {
+	letter-spacing: 0.1rem;
+
+	svg.svg_next {
+		width: 18px;
+		vertical-align: middle;
+		.cls-1{fill:url(#Dégradé_sans_nom_36);}
+		.cls-2{fill:url(#Dégradé_sans_nom_44);}
+	}
+}

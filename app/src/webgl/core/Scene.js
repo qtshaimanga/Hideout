@@ -1,5 +1,4 @@
 import * as THREE from 'three';
-import { _config } from '../config';
 
 class Scene {
 
@@ -13,8 +12,8 @@ class Scene {
 
 		// console.log( _config );
 
-		this.fogColor = new THREE.Color("rgb(" + _config.fog.colorRGB.r + "," + _config.fog.colorRGB.g + "," + _config.fog.colorRGB.b + ")");
-		this.fogDensity = _config.fog.density;
+		this.fogColor = 0x1f1f3b;
+		this.fogDensity = 0.0020;
 		this.scene.fog = new THREE.FogExp2( this.fogColor, this.fogDensity );
 
 		this.renderer = new THREE.WebGLRenderer({antialias: true});

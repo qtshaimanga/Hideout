@@ -113,6 +113,7 @@ export default {
 @import "../styles/mixins";
 
 .share{
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin: 0px;

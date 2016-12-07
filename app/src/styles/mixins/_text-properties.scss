@@ -26,3 +26,9 @@
 	font-size: $font-size;
 	line-height: $line-height;
 }
+
+@mixin text-standard-small ($font-family: 'poppins-light', $font-size: 1.2rem, $line-height: normal) {
+	font-family: $font-family;
+	font-size: $font-size;
+	line-height: $line-height;
+}

@@ -197,7 +197,8 @@ export default {
 					this.setPres();
 				}
 				this.setChoice();
-				this.setWebglHome();
+				//TODO
+				// this.setWebglHome();
 				if(this.getLockControls == true){
 					this.setLockControls();
 				}

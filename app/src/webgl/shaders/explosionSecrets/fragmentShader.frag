@@ -8,6 +8,9 @@ uniform float opacity;
 
 uniform float amplitude;
 
+varying vec2 vUV;
+uniform sampler2D u_texture;
+
 #ifndef STANDARD
 	uniform float clearCoat;
 	uniform float clearCoatRoughness;
@@ -76,9 +79,11 @@ void main() {
 	#include <aomap_fragment>
 
 	vec3 outgoingLight = reflectedLight.directDiffuse + reflectedLight.indirectDiffuse + reflectedLight.directSpecular + reflectedLight.indirectSpecular + totalEmissiveRadiance;
-	gl_FragColor = vec4(outgoingLight, diffuseColor.a );
 
-	//gl_FragColor *= vec4(outgoingLight * sin(amplitude) , diffuseColor.a);
+	gl_FragColor = vec4(outgoingLight, diffuseColor.a );
+	// gl_FragColor = vec4(outgoingLight * sin(amplitude) , diffuseColor.a);
+
+	gl_FragColor *= texture2D(u_texture, vUV);
 	//gl_FragColor = vec4(133, 133, 133, 1);
 
 

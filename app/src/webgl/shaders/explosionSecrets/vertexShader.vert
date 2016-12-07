@@ -10,7 +10,9 @@ attribute vec3 displacement;
 
 #define PHYSICAL
 
+varying vec2 vUV;
 varying vec3 vViewPosition;
+
 
 #ifndef FLAT_SHADED
 
@@ -63,6 +65,8 @@ void main() {
 	// vViewPosition = - mvPosition.xyz;
 	vec3 newPosition = position + normal * amplitude * displacement;
 	gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+
+	vUV = uv;
 
 	#include <worldpos_vertex>
 	#include <shadowmap_vertex>

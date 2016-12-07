@@ -124,7 +124,7 @@ export default {
 		this.particleBuilder();
 		this.splineBuilder();
 		this.modelBuilder();
-		this.soundBuilder();
+		//this.soundBuilder();
 
 		this.downVec = new THREE.Vector3(0,-1,1);
 		this.frontVec = new THREE.Vector3(0,0,1);
@@ -186,7 +186,8 @@ export default {
 					secret = new Toxic(texture);
 				}else if(data[i].typeSecret == "explosion"){
 					var color = data[i].color;
-					secret = new Explosion(color);
+					var texture = this.getRessources[data[i].texture];
+					secret = new Explosion(color, texture);
 				}else if(data[i].typeSecret == "confuse"){
 					var texture = this.getRessources[data[i].texture];
 					secret = new Confuse(texture);

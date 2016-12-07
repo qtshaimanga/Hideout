@@ -47,7 +47,7 @@
 		"x":"1500",
 		"y": "250",
 		"z": "200",
-		"texture": "url",
+		"texture": "texture1",
 		"color": "0xdce04b",
 		"date": "1/12/16"
 	},
@@ -86,7 +86,7 @@
 		"x":"0",
 		"y": "50",
 		"z": "0",
-		"texture": null,
+		"texture": "texture1",
 		"color": "0xdce04b",
 		"date": "1/12/16"
 	},
@@ -99,7 +99,7 @@
 		"x":"1200",
 		"y": "1000",
 		"z": "100",
-		"texture": null,
+		"texture": "texture1",
 		"color": "0xdce04b",
 		"date": "1/12/16"
 	}

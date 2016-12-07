@@ -50,6 +50,7 @@ export default {
 		window.addEventListener('keyup', this.spacebarReleased.bind(this));
 	},
 	mounted: function() {
+		console.log("spaceBar");
 	},
 	methods:{
 		spacebarPressed: function(event){
@@ -62,6 +63,7 @@ export default {
 				if(this.getPres == true){
 					this.setPres();
 				}
+				//TODO
 				this.setChoice();
 				this.setWebglHome();
 				this.setLockControls();
@@ -82,44 +84,25 @@ export default {
 @import "../styles/variables";
 @import "../styles/mixins";
 
-.presentation{
-	z-index: 100;
+.space-bar{
+	z-index: 200;
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: rgba($color-blue-dark, 0.3);
 	display: flex;
+	pointer-events: none;
 
 	.container{
-		width: 33%;
-		min-width: 380px;
-		max-width: 450px;
-		height: 100%;
-		margin: auto;
+		width: 70%;
+		margin-top: auto;
+		margin-left: auto;
+		margin-right: auto;
 		text-align: center;
 		color: #FFFFFF;
 		display: flex;
 		flex-direction: column;
-
-		.text-intro {
-			@include text-standard();
-			margin-bottom: 50px;
-		}
-
-		.hold-spacebar {
-			font-family: $font-poppins-regular;
-			font-size: 1.4rem;
-			margin-bottom: auto;
-
-			.spacebar {
-				position: relative;
-				display: inline-block;
-				padding: 0 10px;
-				@include box-sizing(border-box);
-			}
-		}
 
 		.loader__bar {
 			width: 100%;

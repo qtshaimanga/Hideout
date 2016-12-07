@@ -101,7 +101,7 @@
 			</div>
 		</div>
 
-			<div class="loader__bar"></div>
+			<!-- <div class="loader__bar"></div> -->
 		</div>
 	</div>
 </template>

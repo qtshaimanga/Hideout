@@ -2,6 +2,8 @@
 	<div class="home">
 		<navigation></navigation>
 
+		<space-bar></space-bar>
+
 		<transition name="fade" mode="out-in">
 			<presentation v-show="getPres"></presentation>
 		</transition>
@@ -29,6 +31,8 @@ import WebglHome  from '../components/WebglHome';
 import Share  from '../components/Share';
 import About  from '../components/About';
 import Navigation from '../components/Navigation';
+import SpaceBar from '../components/SpaceBar';
+
 import {
 	getPresState,
 	getChoiceState,
@@ -47,7 +51,8 @@ export default {
 		WebglHome,
 		Share,
 		About,
-		Navigation
+		Navigation,
+		SpaceBar
 	},
 	vuex: {
 		getters: {

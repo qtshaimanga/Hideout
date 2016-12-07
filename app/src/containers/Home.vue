@@ -2,7 +2,7 @@
 	<div class="home">
 		<navigation></navigation>
 
-		<space-bar></space-bar>
+		<space-bar v-if="getInstanciateSpaceBar"></space-bar>
 
 		<transition name="fade" mode="out-in">
 			<presentation v-show="getPres"></presentation>
@@ -39,7 +39,8 @@ import {
 	getWebglHomeState,
 	getShareState,
 	getInstanciateWebglHomeState,
-	getAboutState
+	getAboutState,
+	getInstanciateSpaceBarState
 } from '../vuex/getters';
 
 
@@ -61,7 +62,8 @@ export default {
 			getwebglHome: getWebglHomeState,
 			getInstanciateWebglHome: getInstanciateWebglHomeState,
 			getShare: getShareState,
-			getAbout: getAboutState
+			getAbout: getAboutState,
+			getInstanciateSpaceBar: getInstanciateSpaceBarState
 		},
 		actions: {}
 	},
@@ -78,11 +80,15 @@ export default {
 <style lang="scss" scoped>
 
 .home{
+	z-index: 999;
 	width: 100%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
 	background-color: #000000;
+	textarea{
+		z-index: 999;
+	}
 }
 
 </style>

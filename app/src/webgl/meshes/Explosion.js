@@ -18,7 +18,7 @@ class Explosion {
 		this.time = 0;
 		this.color = Number(color);
 
-		this.geometry = new THREE.IcosahedronGeometry(5, 1);
+		this.geometry = new THREE.IcosahedronGeometry(2.5, 4);
 
 		var texture = new THREE.Texture(objectTexture.file);
 		texture.needsUpdate = true;
@@ -45,17 +45,6 @@ class Explosion {
 		}
 
 		this.geometry.addAttribute( 'displacement', new THREE.BufferAttribute( displacement, 3 ) );
-
-		// var uniforms = THREE.UniformsUtils.merge( [
-			// THREE.UniformsLib[ "ambient" ],
-			// THREE.UniformsLib[ "lights" ],
-			// UniformsLib.fog,
-			// {
-			// 	emissive : { value: new THREE.Color( this.color ) },
-			// 	u_texture:   { type:"t", value: texture },
-			// }
-		// ]);
-		//uniforms.amplitude = {value: 0};
 
 		this.material = new THREE.ShaderMaterial( {
 			uniforms: {
@@ -100,7 +89,7 @@ class Explosion {
 	update() {
 
 		this.time = Date.now() * 0.01;
-		this.material.uniforms.amplitude.value = 1.0 + (Math.sin( this.time * 0.5 ) + 0.3);
+		this.material.uniforms.amplitude.value = 2.5; //+ (Math.sin( this.time * 0.1 ) + 0.3);
 
 		this.mesh.rotation.x += 0.01;
 		this.mesh.rotation.y += 0.01;
@@ -111,10 +100,10 @@ class Explosion {
 
 		if(start == true){
 			this.time = Date.now() * 0.01;
-			this.material.uniforms.amplitude.value = 1.0 + (Math.sin( this.time * 0.1 ) + 0.1);
+			this.material.uniforms.amplitude.value = 2.5; //+ (Math.sin( this.time * 0.1 ) + 0.1);
 
-			this.mesh.rotation.x += this.time*0.5;
-			this.mesh.rotation.y += this.time*0.5;
+			this.mesh.rotation.x += this.time*0.01;
+			this.mesh.rotation.y += this.time*0.01;
 		}
 
 	}

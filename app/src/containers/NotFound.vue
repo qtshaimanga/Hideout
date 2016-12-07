@@ -1,5 +1,7 @@
 <template>
   <div class="not-found">
+    <textarea placeholder="add multiple lines"></textarea>
+
   </div>
 </template>
 

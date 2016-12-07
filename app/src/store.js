@@ -9,6 +9,7 @@ const state = {
 
   pres: true,
   skipe: false,
+  instanciateSpaceBar: false,
 
   webglHome: false,
   instanciateWebglHome: false,
@@ -40,6 +41,10 @@ const mutations = {
   SKIPE (state)
   {
     state.skipe = state.skipe ? false : state.skipe ? false : true;
+  },
+  SPACEBAR(state)
+  {
+    state.instanciateSpaceBar = state.instanciateSpaceBar ? false : state.instanciateSpaceBar ? false : true;
   },
   CHOICE (state)
   {

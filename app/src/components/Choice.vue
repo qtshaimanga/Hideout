@@ -13,35 +13,45 @@
 </template>
 
 <script>
+import { getLockControlsState } from '../vuex/getters';
+
 import {
 	setShareState,
 	setWebglHomeState,
-	setChoiceState
+	setChoiceState,
+	setLockControlsState
 } from '../vuex/actions'
 
 export default {
 	vuex: {
-		getters: {},
+		getters: {
+			getLockControls: getLockControlsState
+		},
 		actions: {
 			setChoice: setChoiceState,
 			setShare: setShareState,
-			setWebglHome: setWebglHomeState
+			setWebglHome: setWebglHomeState,
+			setLockControls: setLockControlsState
 		}
 	},
 	data () {
 		return {}
 	},
 	mounted: function() {
-
 	},
 	methods:{
 		share: function(event){
 			this.setChoice();
 			this.setShare();
+			if(this.getLockControls == true){
+				this.setLockControls();
+			}
 		},
 		visit: function(event){
 			this.setChoice();
-			this.setWebglHome();
+			if(this.getLockControls == true){
+				this.setLockControls();
+			}
 		}
 	}
 }
@@ -52,12 +62,12 @@ export default {
 @import "../styles/mixins";
 
 .choice{
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	// background-color: rgb(23, 25, 38);
-	background-color: transparent !important;
+	background-color: transparent;
 	color: #FFFFFF;
 	display: flex;
 	flex-direction: row;
@@ -73,10 +83,24 @@ export default {
 			text-align: center;
 			color: #FFFFFF;
 			border: solid 1px #FFFFFF;
+			position: relative;
 			@include text-button();
-
+			&:after {
+				 position: absolute;
+				 transition: .3s;
+				 content: '';
+				 width: 0;
+				 left: 50%;
+				 bottom: 0;
+				 height: 3px;
+				 background: #f7f7f7;
+			 }
 			&:hover{
 				cursor: pointer;
+				&:after {
+		      width: 100%;
+		      left: 0;
+		    }
 			}
 		}
 	}

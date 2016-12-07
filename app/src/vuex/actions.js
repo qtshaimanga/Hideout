@@ -81,3 +81,7 @@ export const setCursorLoaderState = function ({ dispatch, state }) {
 export const setAboutState = function ({ dispatch, state }) {
   dispatch('ABOUT')
 }
+
+export const setInstanciateSpaceBarState = function ({ dispatch, state }) {
+  dispatch('SPACEBAR')
+}

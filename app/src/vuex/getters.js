@@ -76,3 +76,7 @@ export function getCursorLoaderState (state) {
 export function getAboutState (state) {
   return state.about
 }
+
+export function getInstanciateSpaceBarState (state) {
+  return state.instanciateSpaceBar
+}

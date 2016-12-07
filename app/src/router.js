@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from './containers/Home'
+import NotFound from './containers/NotFound'
+
 
 Vue.use(VueRouter)
 const routes = [
@@ -13,7 +15,7 @@ const routes = [
   {
     path: '*',
     name: 'notFound',
-    component: Home
+    component: NotFound
   }
 ];
 

@@ -7,10 +7,11 @@ class Controls {
     /**
      * @constructor
      */
-    constructor(scene) {
+    constructor(scene, domElement) {
 
         this.clock = new THREE.Clock();
-        this.controls = new THREE.FirstPersonControls(scene.camera);
+
+        this.controls = new THREE.FirstPersonControls(scene.camera, domElement);
         this.controls.movementSpeed = 150;
  	      this.controls.lookSpeed = 0.1;
 

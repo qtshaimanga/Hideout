@@ -27,7 +27,7 @@ class Sound {
 
       audioLoader.load( sound, function( buffer ) {
         positionalAudio.setBuffer( buffer );
-        positionalAudio.setRefDistance( 50 );
+        positionalAudio.setRefDistance( 1000 );
         positionalAudio.setLoop(true);
         positionalAudio.play();
       });

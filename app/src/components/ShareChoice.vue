@@ -122,7 +122,7 @@ import {
 		height: 90%;
 		margin: 0px;
 		padding: 0px;
-
+		background-color: rgba(23, 25, 38, 0.5);
 		.container{
 			width: 100%;
 			max-width: 950px;

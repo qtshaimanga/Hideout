@@ -205,7 +205,6 @@ export default {
 		save: function(event){
 			this.setType();
 			this.setShare();
-			this.setWebglHome();
 		},
 		previous: function(event){
 			if(this.getType.from == "writing"){
@@ -229,7 +228,7 @@ export default {
 	height: 90%;
 	margin: 0px;
 	padding: 0px;
-	background-color: rgb(23, 25, 38);
+	background-color: rgba(23, 25, 38, 0.5);
 	display: flex;
 
 	.container{

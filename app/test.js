@@ -112,21 +112,25 @@ console.log(secondControl);
 // export default TessellateModifier(THREE);
 
 
-gl_FragColor = vec4(vec3(0.8, 0.8, 0.6) * sin(amplitude) , 1.0);
+// gl_FragColor = vec4(vec3(0.8, 0.8, 0.6) * sin(amplitude) , 1.0);
+//
+// gl_FragColor *= vec4(133, 133, 133, 1);
+//
+//
+//
+// uniform float amplitude;
+// attribute vec3 customColor;
+// attribute vec3 displacement;
+// // varying vec3 vNormal;
+// // varying vec3 vColor;
+//
+// void main() {
+// 	// vNormal = normal;
+// 	// vColor = customColor;
+// 	vec3 newPosition = position + normal * amplitude * displacement;
+// 	gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
+// }
 
-gl_FragColor *= vec4(133, 133, 133, 1);
 
 
-
-uniform float amplitude;
-attribute vec3 customColor;
-attribute vec3 displacement;
-// varying vec3 vNormal;
-// varying vec3 vColor;
-
-void main() {
-	// vNormal = normal;
-	// vColor = customColor;
-	vec3 newPosition = position + normal * amplitude * displacement;
-	gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0 );
-}
+//POST //  SPLINE, AUIDO FAKE

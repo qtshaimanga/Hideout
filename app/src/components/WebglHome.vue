@@ -1,6 +1,6 @@
 <template>
-	<div class="webgl-home">
-		<cursor-loader></cursor-loader>
+	<div class="webgl-home" id="webgl">
+		<cursor-loader v-show="cursorLoader"></cursor-loader>
 		<secret-message v-show="this.getSecretMessage" :meshId="meshId" :meshText="meshText"></secret-message>
 	</div>
 </template>
@@ -38,7 +38,9 @@ import {
 	getFocusState,
 	getDataState,
 	getMoveObjectState,
-	getRessourcesState
+	getRessourcesState,
+	getChoiceState,
+	getShareState
 } from '../vuex/getters';
 
 import { setSecretMessageState,
@@ -66,7 +68,9 @@ export default {
 			getFocus: getFocusState,
 			getData: getDataState,
 			getMoveObject: getMoveObjectState,
-			getRessources: getRessourcesState
+			getRessources: getRessourcesState,
+			getChoice: getChoiceState,
+			getShare: getShareState
 		},
 		actions: {
 			setSecretMessage: setSecretMessageState,
@@ -101,6 +105,7 @@ export default {
 			tick: Number(),
 			numberOfIntersaction: Array(),
 			listOfModelObject: Array(),
+			cursorLoader: true,
 		}
 	},
 	watch:{
@@ -114,23 +119,29 @@ export default {
 				this.currentObjectSecret = Object();
 			}
 		},
+		getChoice: function(){
+			this.splineMove();
+		}
 	},
 	created: function(){
+		this.downVec = new THREE.Vector3(0,-1,1);
+		this.frontVec = new THREE.Vector3(0,0,1);
+		this.cameraRay = new THREE.Raycaster();
+	},
+	mounted: function() {
 		this.scene = new Scene(this.width, this.height);
-		this.controls = new Controls(this.scene);
+
+		var domElement = document.querySelector(".webgl-home");
+		this.controls = new Controls(this.scene, domElement);
 
 		this.terrainBuilder();
 		this.secretBuilder();
 		this.particleBuilder();
 		this.splineBuilder();
 		this.modelBuilder();
-		//this.soundBuilder();
+		this.soundBuilder();
 
-		this.downVec = new THREE.Vector3(0,-1,1);
-		this.frontVec = new THREE.Vector3(0,0,1);
-		this.cameraRay = new THREE.Raycaster();
-	},
-	mounted: function() {
+
 		window.addEventListener('resize', this.onResize);
 		TweenMax.ticker.addEventListener('tick', this.update);
 
@@ -404,10 +415,12 @@ export default {
 				this.controls.update(true);
 			}
 
-			if(this.getPres == true){
+			if(this.getPres == true | this.getChoice == true | this.getShare == true ){	// | this.getShare == true | this.getChoice == true
 				this.splineMove();
+				this.cursorLoader = false;
 			}else{
-				this.scene.remove(this.spline.line);
+				this.scene.remove(this.spline);
+				this.cursorLoader = true;
 			}
 
 			this.particules.update();

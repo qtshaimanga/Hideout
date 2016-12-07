@@ -2,9 +2,7 @@
 	<div class="writing">
 		<div class="container">
 			<div class="text">Now you can write your secret here.</div>
-			<form>
-			<textarea name="message" placeholder="I have a secret ..."></textarea>
-		</form>
+			<textarea name="textarea"></textarea>
 			<div class="controls">
 				<div class="previous" @click="previous">previous</div>
 				<div class="next" @click="type">next</div>
@@ -14,10 +12,15 @@
 </template>
 
 <script>
+import { getWritingState } from '../vuex/getters';
+
 import {
 	setTypeState,
 	setWritingState,
-	setShareChoiceState
+	setShareChoiceState,
+	setInstanciateWebglHomeState,
+	setWebglHomeState,
+	setLockControlsState
 } from '../vuex/actions';
 
 export default {
@@ -25,20 +28,32 @@ export default {
 
 	},
 	vuex: {
-		getters: {},
+		getters: {
+			getWriting: getWritingState
+		},
 		actions: {
 			setType: setTypeState,
 			setWriting: setWritingState,
-			setShareChoice: setShareChoiceState
+			setShareChoice: setShareChoiceState,
+			setWebglHome: setWebglHomeState,
+			setInstanciateWebglHome: setInstanciateWebglHomeState,
+			setLockControls: setLockControlsState
 		}
 	},
 	data () {
 		return {
-
+			textarea: String(),
+			letters: String()
+		}
+	},
+	watch: {
+		getWriting: function(){
+			if(this.getWriting == true){
+				window.addEventListener('keydown', this.setTextarea.bind(this));
+			}
 		}
 	},
 	mounted: function() {
-
 	},
 	methods:{
 		type: function(event){
@@ -48,6 +63,18 @@ export default {
 		previous: function(event){
 			this.setWriting();
 			this.setShareChoice();
+		},
+		setText: function(event){
+			console.log(event);
+		},
+		setTextarea: function(element){
+			// var textarea = document.getquerySelector('.textarea');
+			// if( textarea == null){
+			// 	console.log("reset");
+			// }
+			this.letters += element.key
+			this.textarea = this.letters.toString();
+			//saut de ligne, effacer, caractere spaciaux etc
 		}
 	}
 }
@@ -62,7 +89,7 @@ export default {
 	height: 90%;
 	margin: 0px;
 	padding: 0px;
-	background-color: rgb(23, 25, 38);
+	background-color: rgba(23, 25, 38, 0.5);
 	color: #FFFFFF;
 	display: flex;
 
@@ -98,6 +125,15 @@ export default {
 			resize: none;
 			outline: none;
 			color: $color-white;
+			background-image: -webkit-linear-gradient(left, transparent 10px, transparent 10px), -webkit-linear-gradient(right, transparent 10px, transparent 10px), -webkit-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+			background-image: -moz-linear-gradient(left, transparent 10px, transparent 10px), -moz-linear-gradient(right, transparent 10px, transparent 10px), -moz-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+			background-image: -ms-linear-gradient(left, transparent 10px, transparent 10px), -ms-linear-gradient(right, transparent 10px, transparent 10px), -ms-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+			background-image: -o-linear-gradient(left, transparent 10px, transparent 10px), -o-linear-gradient(right, transparent 10px, transparent 10px), -o-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+			background-image: linear-gradient(left, transparent 10px, transparent 10px), linear-gradient(right, transparent 10px, transparent 10px), linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+			background-size: 100% 100%, 100% 100%, 100% 31px;
+			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+			line-height: 31px;
+			padding: 8px;
 			@include placeholder {
 				color: white;
 				font-family: $font-otama;

@@ -100,8 +100,6 @@
 				to begin
 			</div>
 		</div>
-
-			<!-- <div class="loader__bar"></div> -->
 		</div>
 	</div>
 </template>
@@ -122,7 +120,9 @@ import {
 	setPresState,
 	setChoiceState,
 	setWebglHomeState,
-	setLockControlsState
+	setLockControlsState,
+	setInstanciateSpaceBarState,
+	setSkipeState
 } from '../vuex/actions'
 
 export default {
@@ -141,7 +141,9 @@ export default {
 			setPres : setPresState,
 			setChoice: setChoiceState,
 			setWebglHome: setWebglHomeState,
-			setLockControls: setLockControlsState
+			setLockControls: setLockControlsState,
+			setInstanciateSpaceBar: setInstanciateSpaceBarState,
+			setSkipe: setSkipeState
 		}
 	},
 	data () {
@@ -180,36 +182,11 @@ export default {
 		}
 	},
 	created : function(){
-		window.addEventListener('keydown', this.spacebarPressed.bind(this));
-		window.addEventListener('keyup', this.spacebarReleased.bind(this));
+
 	},
 	mounted: function() {
 	},
 	methods:{
-		spacebarPressed: function(event){
-			this.counter += 0.1;
-			var bar = document.querySelector('.loader__bar');
-			if(bar != null){
-				TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
-			}
-			if(this.counter == 1.2){
-				if(this.getPres == true){
-					this.setPres();
-				}
-				this.setChoice();
-				this.setWebglHome();
-				if(this.getLockControls == true){
-					this.setLockControls();
-				}
-			}
-		},
-		spacebarReleased: function(event){
-			this.counter = 0;
-			var bar = document.querySelector('.loader__bar');
-			if(bar != null){
-				TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
-			}
-		},
 		animateSVG: function(){
 			var tl_spacebar_gradient = new TimelineMax({
 				paused:true,
@@ -242,6 +219,8 @@ export default {
 			this.transition3 = setTimeout(function(){
 				that.element3 = false;
 				that.element4 = true;
+				that.setInstanciateSpaceBar();
+				that.setSkipe();
 				that.animateSVG();
 			}, 20000);
 		},

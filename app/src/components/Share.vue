@@ -56,7 +56,8 @@ import {
 	getShareChoiceState,
 	getTellingState,
 	getWritingState,
-	getTypeState
+	getTypeState,
+	getShareState
 } from '../vuex/getters';
 
 import {
@@ -77,6 +78,7 @@ export default {
 	vuex: {
 		getters: {
 			getShareChoice: getShareChoiceState,
+			getShare: getShareState,
 			getTelling: getTellingState,
 			getWriting: getWritingState,
 			getType: getTypeState
@@ -100,9 +102,13 @@ export default {
 	methods:{
 		close: function(event){
 			this.setResetShare();
-			this.setShare();
 			this.setChoice();
-			this.setShareChoice();
+			if(this.getShare == true){
+				this.setShare();
+			}
+			if(this.getShareChoice == false){
+				this.setShareChoice();
+			}
 		}
 	}
 }
@@ -113,24 +119,22 @@ export default {
 @import "../styles/mixins";
 
 .share{
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: rgb(23, 25, 38);
+	background-color: rgba(23, 25, 38, 0.5);
 	display: flex;
 	flex-direction: row;
 	flex-flow: wrap;
 	.top{
 		width: 100%;
 		height: 10%;
-		// background-color: rgba(0, 0, 0, 0.1);
 		color: #FFFFFF;
 		display: flex;
 		flex-flow: row;
-		//   position: absolute;
-		//   top: 0;
-		//   right:0;
+		background-color: rgba(23, 25, 38, 0.5);
 		.text{
 			margin: auto;
 

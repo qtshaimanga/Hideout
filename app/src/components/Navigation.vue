@@ -28,7 +28,7 @@
 				<loader v-if="getLoader"></loader>
 			</transition>
 			<transition name="fade" mode="out-in">
-				<p class="skip" v-show="!getSkipe && !getAbout && getPres" @click="skip">skip</p><!-- -->
+				<p class="skip" v-show="!getSkipe && !getAbout" @click="skip">skip</p><!-- && getPres -->
 			</transition>
 		</div>
 	</div>
@@ -41,12 +41,14 @@ import {
 	getLoaderState,
 	getSkipeState,
 	getAboutState,
-	getPresState
+	getPresState,
+	getInstanciateSpaceBarState
 } from '../vuex/getters';
 
 import {
 	setSkipeState,
-	setAboutState
+	setAboutState,
+	setInstanciateSpaceBarState
 } from '../vuex/actions'
 
 import { TweenMax } from 'gsap';
@@ -61,11 +63,13 @@ export default {
 			getLoader: getLoaderState,
 			getSkipe: getSkipeState,
 			getAbout: getAboutState,
-			getPres: getPresState
+			getPres: getPresState,
+			getInstanciateSpaceBar: getInstanciateSpaceBarState
 		},
 		actions: {
 			setSkipe: setSkipeState,
-			setAbout: setAboutState
+			setAbout: setAboutState,
+			setInstanciateSpaceBar: setInstanciateSpaceBarState
 			// setVolume: setVolumeState,
 		}
 	},
@@ -102,6 +106,9 @@ export default {
 		},
 		skip: function(){
 			this.setSkipe();
+			if(this.getInstanciateSpaceBar == false){
+				this.setInstanciateSpaceBar();
+			}
 		},
 		aboutDisplayer: function(){
 			this.setAbout();

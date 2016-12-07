@@ -96,7 +96,7 @@ export default {
 	height: 90%;
 	margin: 0px;
 	padding: 0px;
-	background-color: rgb(23, 25, 38);
+	background-color: rgba(23, 25, 38, 0.5);
 	color: #FFFFFF;
 	display: flex;
 	flex-direction: column;
@@ -106,6 +106,7 @@ export default {
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
+		justify-content: center;
 		width: 75%;
 		max-width: 780px;
 		min-height: 320px;
@@ -114,6 +115,7 @@ export default {
 			margin-bottom: 20px;
 		}
 		.text{
+			margin-right: auto;
 			width: 100%;
 			position: relative;
 			@include text-title;
@@ -133,14 +135,25 @@ export default {
 		}
 
 		.wrapper {
-			position: absolute;
-			left: 50%;
-			@include transform(translate3d(-50%, 0, 0));
+			width: 100%;
+			margin: auto;
+			display: flex;
+			flex-direction: column;
+			margin-top: 5%;
+			margin-bottom: 9%;
+			// @include transform(translate3d(-50%, 0, 0));
+			// position: absolute;
+			// left: 50%;
 
 			.circle {
 				width: 110px;
 				height: 110px;
 				position: relative;
+				margin: auto;
+
+				&:hover{
+					cursor: pointer;
+				}
 
 				svg.svg_circle {
 					.st0{fill:url(#SVGID_1_);}

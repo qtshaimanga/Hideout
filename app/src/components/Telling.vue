@@ -254,9 +254,8 @@ export default {
 $transition-text: opacity 250ms ease-out;
 
 .telling{
-	position: absolute;
 	width: 100%;
-	height: 100%;
+	height: 90%;
 	margin: 0px;
 	padding: 0px;
 	background-color: rgba(23, 25, 38, 0.5);

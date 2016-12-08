@@ -163,13 +163,13 @@ import {
 
 	.share-choice{
 		width: 100%;
-		height: 90%;
+		height: 100%;
 		margin: 0px;
 		padding: 0px;
 		background-color: rgba(23, 25, 38, 0.5);
 		.container{
 			width: 100%;
-			max-width: 950px;
+			max-width: 780px;
 			height: 100%;
 			margin: 0 auto;
 			display: flex;
@@ -215,7 +215,7 @@ import {
 				text-align: center;
 
 				svg.svg_before_writing {
-					width: 18px;
+					width: 20px;
 					vertical-align: middle;
 					.cls-1{fill:url(#Dégradé_sans_nom_23);}
 					.cls-2{fill:url(#Dégradé_sans_nom_2);}
@@ -255,7 +255,7 @@ import {
 				text-align: center;
 
 				svg.svg_before_telling {
-					width: 18px;
+					width: 20px;
 					vertical-align: middle;
 					.cls-1{fill:url(#Dégradé_sans_nom_36);}
 					.cls-2{fill:url(#Dégradé_sans_nom_44);}

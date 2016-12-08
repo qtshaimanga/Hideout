@@ -134,7 +134,9 @@ export default {
 		color: #FFFFFF;
 		display: flex;
 		flex-flow: row;
-		background-color: rgba(23, 25, 38, 0.5);
+		z-index: 99999;
+		position: absolute;
+		
 		.text{
 			margin: auto;
 

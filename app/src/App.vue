@@ -28,6 +28,13 @@ export default {
 @import "./styles/transitions.scss";
 @import "./styles/mixins.scss";
 
+* {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 html {
 	font-size: 62.5%;
 	height: 100%;

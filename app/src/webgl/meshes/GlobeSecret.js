@@ -1,7 +1,7 @@
 const THREE = require('three');
 
 
-var size = 110;
+var size = 60;
 var geometry = new THREE.BoxGeometry(size, size, size);
 
 class GlobeSecret {

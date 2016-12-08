@@ -113,6 +113,7 @@ export default {
 			if(this.getFocus == true){
 				this.setSecretMessage();
 			}else{
+				console.log("ok");
 				this.tweenMove.reverse();
 				this.setLockControls();
 				this.setSecretMessage();
@@ -244,14 +245,17 @@ export default {
 		},
 		meshCollisionneur: function (){
 			this.cameraRay.setFromCamera(this.frontVec, this.scene.camera);
+
 			var a = 0;
+			var time = this.time;
+
 			for(let i=0; i<=this.listOfObjectSecret.length-1; i++){
 				a = i
 				var globeSecret = this.listOfObjectSecret[i][1];
 				var intersectSecret = this.cameraRay.intersectObject( globeSecret.mesh, true );
 
 				if(intersectSecret != 0 && intersectSecret[0].distance <= 800){
-					var time = this.time;
+					// var time = this.time;
 					this.time++
 
 					if(this.objectIntersected != intersectSecret[0].object.name){
@@ -259,14 +263,15 @@ export default {
 						this.$el.style.cursor = "default";
 					}else{
 						if(time == this.loading){
-							this.meshId = this.getMeshId(intersectSecret[0].object.name);
-							this.meshText = this.getRequestSecretMessageById(this.meshId);
+								if(this.getFocus == false){
+									this.meshId = this.getMeshId(intersectSecret[0].object.name);
+									this.meshText = this.getRequestSecretMessageById(this.meshId);
 
-							this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
-							this.moveObject(this.scene.camera, intersectSecret[0].object);
-							this.setFocus();
-							this.setLockControls();
-
+									this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
+									this.moveObject(this.scene.camera, intersectSecret[0].object);
+									this.setFocus();
+									this.setLockControls();
+								}
 						}else if(time <= this.loading){
 							this.setCursorProgress(time+1);
 							if(time == 1){
@@ -288,10 +293,12 @@ export default {
 
 			//RESET
 			if(this.numberOfIntersaction.length == 0){
-				this.time = 0;
+				time = 0;
+				// this.time = 0;
 				this.setCursorProgress(0);
 				this.$el.style.cursor = "default";
 			}
+
 			if(a == this.listOfObjectSecret.length-1){
 				this.numberOfIntersaction = Array();
 			}

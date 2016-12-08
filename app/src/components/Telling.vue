@@ -69,7 +69,7 @@
 	<div class="controls">
 		<div class="previous" @click="previous">previous
 			<svg class="svg_previous" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18.87 1">
-				<linearGradient id="Dégradé_sans_nom_23" y1="0.5" x2="12.34" y2="0.5" gradientUnits="userSpaceOnUse">
+				<linearGradient id="svg_previous_gradient_1" y1="0.5" x2="12.34" y2="0.5" gradientUnits="userSpaceOnUse">
 					<stop offset="0.14" stop-color="#ffa836"/>
 					<stop offset="0.29" stop-color="#ffa537"/>
 					<stop offset="0.42" stop-color="#fd9a3a"/>
@@ -79,7 +79,7 @@
 					<stop offset="0.91" stop-color="#f02757"/>
 					<stop offset="1" stop-color="#eb0061"/>
 				</linearGradient>
-				<linearGradient id="Dégradé_sans_nom_2" x1="15.01" y1="0.5" x2="18.87" y2="0.5" gradientUnits="userSpaceOnUse">
+				<linearGradient id="svg_previous_gradient_2" x1="15.01" y1="0.5" x2="18.87" y2="0.5" gradientUnits="userSpaceOnUse">
 					<stop offset="0" stop-color="#f34350"/>
 					<stop offset="0.02" stop-color="#f23b52"/>
 					<stop offset="0.1" stop-color="#ef2558"/>
@@ -99,12 +99,12 @@
 		<div class="next" @click="type">
 			<svg class="svg_next" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18.87 1">
 				<defs>
-					<linearGradient id="Dégradé_sans_nom_36" y1="0.5" x2="12.34" y2="0.5" gradientUnits="userSpaceOnUse">
+					<linearGradient id="svg_next_gradient_1" y1="0.5" x2="12.34" y2="0.5" gradientUnits="userSpaceOnUse">
 						<stop offset="0" stop-color="#4eeef2"/>
 						<stop offset="0" stop-color="#47d8f3"/>
 						<stop offset="1" stop-color="#184afb"/>
 					</linearGradient>
-					<linearGradient id="Dégradé_sans_nom_44" x1="15.01" y1="0.5" x2="18.87" y2="0.5" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1d58fa"/><stop offset="1" stop-color="blue"/></linearGradient>
+					<linearGradient id="svg_next_gradient_2" x1="15.01" y1="0.5" x2="18.87" y2="0.5" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1d58fa"/><stop offset="1" stop-color="blue"/></linearGradient>
 				</defs>
 				<title>icon-next</title>
 				<g id="Calque_2" data-name="Calque 2">
@@ -254,8 +254,9 @@ export default {
 $transition-text: opacity 250ms ease-out;
 
 .telling{
+	position: absolute;
 	width: 100%;
-	height: 90%;
+	height: 100%;
 	margin: 0px;
 	padding: 0px;
 	background-color: rgba(23, 25, 38, 0.5);
@@ -295,22 +296,11 @@ $transition-text: opacity 250ms ease-out;
 		}
 
 		.wrapper-icon {
-			width: 100%;
-			margin: auto;
-			display: flex;
-			flex-direction: column;
-			margin-top: 5%;
-			margin-bottom: 9%;
-			// position: absolute;
-			// left: 50%;
-			// @include transform(translate3d(-50%, 0, 0));
-
-			// .wrapper-icon {
-			// 	position: absolute;
-			// 	left: 50%;
-			// 	top: 50%;
-			// 	text-align: center;
-			// 	@include transform(translate3d(-50%, -50%, 0));
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			text-align: center;
+			@include transform(translate3d(-50%, -50%, 0));
 
 			.circle {
 				width: 110px;

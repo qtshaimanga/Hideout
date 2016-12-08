@@ -116,6 +116,7 @@ export default {
 
 	.share{
 		width: 49.5%;
+		padding-bottom: 150px;
 
 		.text {
 			@include text-title();
@@ -139,6 +140,7 @@ export default {
 
 	.visit{
 		width: 49.5%;
+		padding-top: 150px;
 
 		.text {
 			@include text-title();

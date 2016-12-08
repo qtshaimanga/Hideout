@@ -1,8 +1,8 @@
 <template>
 	<div class="navigation">
 		<div class="container">
-			<div class="about" @click="aboutDisplayer">
-				<span @click="about" class="about-icon">
+			<div class="about">
+				<span class="about-icon"  @click="aboutDisplayer">
 					<svg id="svg_icon_about" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.45 27.45">
 						<g id="Calque_2" data-name="Calque 2">
 							<g id="Calque_1-2" data-name="Calque 1">
@@ -13,7 +13,7 @@
 						</g>
 					</svg>
 				</span>
-				<span @click="setSound" class="sound">
+				<span @click="soundDisplayer" class="sound" v-show="audioPlayer">
 					<span></span><!--
 					--><span></span><!--
 					--><span></span><!--
@@ -42,13 +42,16 @@ import {
 	getSkipeState,
 	getAboutState,
 	getPresState,
-	getInstanciateSpaceBarState
+	getInstanciateSpaceBarState,
+	getSoundState,
+	getPlayerState
 } from '../vuex/getters';
 
 import {
 	setSkipeState,
 	setAboutState,
-	setInstanciateSpaceBarState
+	setInstanciateSpaceBarState,
+	setSoundState
 } from '../vuex/actions'
 
 import { TweenMax } from 'gsap';
@@ -64,19 +67,27 @@ export default {
 			getSkipe: getSkipeState,
 			getAbout: getAboutState,
 			getPres: getPresState,
-			getInstanciateSpaceBar: getInstanciateSpaceBarState
+			getInstanciateSpaceBar: getInstanciateSpaceBarState,
+			getSound: getSoundState,
+			getPlayer: getPlayerState
 		},
 		actions: {
 			setSkipe: setSkipeState,
 			setAbout: setAboutState,
-			setInstanciateSpaceBar: setInstanciateSpaceBarState
-			// setVolume: setVolumeState,
+			setInstanciateSpaceBar: setInstanciateSpaceBarState,
+			setSound: setSoundState,
 		}
 	},
 	data () {
 		return {
 			testSound: true,
-			tlSound: 0
+			tlSound: 0,
+			audioPlayer: false
+		}
+	},
+	watch: {
+		getPlayer: function(){
+			this.audioPlayer = true;
 		}
 	},
 	mounted: function() {
@@ -91,17 +102,23 @@ export default {
 	},
 	methods:{
 		about: function(event){
-			this.$router.push({ name: 'about'});
+			// this.$router.push({ name: 'about'});
 		},
-		setSound: function(){
-			//tween volume
-			// console.log(this.testSound, this.tlSound);
+		soundDisplayer: function(){
 			if(this.testSound) {
+				this.getPlayer.pause();
 				this.tlSound.play();
 				this.testSound = false;
+				this.setSound();
+				if(this.getInstanciateSpaceBar == true){
+				}
 			} else {
+				this.getPlayer.play();
 				this.tlSound.reverse();
 				this.testSound = true;
+				this.setSound();
+				if(this.getInstanciateSpaceBar == true){
+				}
 			}
 		},
 		skip: function(){
@@ -118,7 +135,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 @import "../styles/variables";
 @import '../styles/mixins.scss';
 @import '../styles/utils/buttons.scss';
@@ -177,6 +193,11 @@ export default {
 				display: inline-block;
 				vertical-align: middle;
 				margin-left: 15px;
+				-webkit-animation: fadein 2.5s;
+				 -moz-animation: fadein 2.5s;
+					-ms-animation: fadein 2.5s;
+					 -o-animation: fadein 2.5s;
+							animation: fadein 2.5s;
 
 				span {
 					width: 1px;

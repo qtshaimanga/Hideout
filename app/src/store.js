@@ -31,6 +31,9 @@ const state = {
   objectsMoved: Array(),
 
   about: false,
+
+  sound: true,
+  player: Object(),
 }
 
 const mutations = {
@@ -124,7 +127,15 @@ const mutations = {
   ABOUT(state)
   {
     state.about = state.about ? false : state.about ? false : true;
-  }
+  },
+  SOUND(state)
+  {
+    state.sound = state.sound ? false : state.sound ? false : true;
+  },
+  PLAYER(state, player)
+  {
+    state.player = player
+  },
 }
 
 export default new Vuex.Store({

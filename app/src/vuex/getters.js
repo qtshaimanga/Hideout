@@ -80,3 +80,11 @@ export function getAboutState (state) {
 export function getInstanciateSpaceBarState (state) {
   return state.instanciateSpaceBar
 }
+
+export function getSoundState (state) {
+  return state.sound
+}
+
+export function getPlayerState (state, player) {
+  return state.player
+}

@@ -133,10 +133,11 @@ export default {
 	padding: 0px;
 	display: flex;
 	align-self: flex-end;
+	// background-color: rgba(23, 25, 38, 0.5);
+
 	.container{
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0,0,0,0);
 		color: #FFFFFF;
 		display: flex;
 		flex-flow: row;

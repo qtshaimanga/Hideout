@@ -256,7 +256,7 @@ $transition-text: opacity 250ms ease-out;
 .telling{
 	position: absolute;
 	width: 100%;
-	height: 90%;
+	height: 100%;
 	margin: 0px;
 	padding: 0px;
 	background-color: rgba(23, 25, 38, 0.5);
@@ -274,10 +274,6 @@ $transition-text: opacity 250ms ease-out;
 		max-width: 780px;
 		min-height: 320px;
 		position: relative;
-
-		div{
-			// margin-bottom: 20px;
-		}
 
 		.text{
 			margin-right: auto;

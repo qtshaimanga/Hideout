@@ -14,7 +14,9 @@ import{
 	getLoaderState,
 	getAboutState,
 	getPresState,
-	getWebglHomeState
+	getWebglHomeState,
+	getSoundState,
+	getPlayerState
 } from '../vuex/getters';
 
 import {
@@ -35,7 +37,9 @@ export default {
 			getLoader: getLoaderState,
 			getAbout: getAboutState,
 			getPres: getPresState,
-			getWebglHome: getWebglHomeState
+			getWebglHome: getWebglHomeState,
+			getSound: getSoundState,
+			getPlayer: getPlayerState
 		},
 		actions: {
 			setPres : setPresState,
@@ -47,7 +51,13 @@ export default {
 	},
 	data () {
 		return {
-			audioPlayer: Object()
+			audioPlayer: Object(),
+			getPlay : true
+		}
+	},
+	watch: {
+		getSound: function(){
+			this.getPlay = this.getSound
 		}
 	},
 	created : function(){
@@ -56,10 +66,11 @@ export default {
 		this.audio();
 	},
 	mounted: function() {
+
 	},
 	methods:{
 		audio: function(){
-			var audioFile = require("../../static/sounds/backgroundLoop.mp3");
+			var audioFile = require("../../static/sounds/spacebar.mp3");
 			this.audioPlayer = new Audio(audioFile);
 				this.audioPlayer.addEventListener('ended', function() {
 			    this.currentTime = 0;
@@ -79,7 +90,9 @@ export default {
 		spacebarPressed: function(){
 			this.counter += 0.1;
 
-			this.audioPlayer.play();
+			if(this.getPlay == true){
+				this.audioPlayer.play();
+			}
 
 			var bar = document.querySelector('.loader__bar');
 			if(bar != null){
@@ -100,6 +113,8 @@ export default {
 			this.counter = 0;
 
 			this.audioPlayer.pause();
+			this.audioPlayer.currentTime = 0;
+
 
 			var bar = document.querySelector('.loader__bar');
 			if(bar != null){

@@ -40,7 +40,9 @@ import {
 	getMoveObjectState,
 	getRessourcesState,
 	getChoiceState,
-	getShareState
+	getShareState,
+	getSoundState,
+	getPlayerState
 } from '../vuex/getters';
 
 import { setSecretMessageState,
@@ -48,7 +50,8 @@ import { setSecretMessageState,
 	setFocusState,
 	setDataState,
 	setMoveObjectState,
-	setCursorProgressState
+	setCursorProgressState,
+	setPlayerState,
 } from '../vuex/actions';
 
 import SecretMessage from './SecretMessage';
@@ -70,7 +73,9 @@ export default {
 			getMoveObject: getMoveObjectState,
 			getRessources: getRessourcesState,
 			getChoice: getChoiceState,
-			getShare: getShareState
+			getShare: getShareState,
+			getSound: getSoundState,
+			getPlayer: getPlayerState,
 		},
 		actions: {
 			setSecretMessage: setSecretMessageState,
@@ -78,7 +83,8 @@ export default {
 			setFocus: setFocusState,
 			setData: setDataState,
 			setMoveObject: setMoveObjectState,
-			setCursorProgress: setCursorProgressState
+			setCursorProgress: setCursorProgressState,
+			setPlayer: setPlayerState,
 		}
 	},
 	data () {
@@ -113,7 +119,6 @@ export default {
 			if(this.getFocus == true){
 				this.setSecretMessage();
 			}else{
-				console.log("ok");
 				this.tweenMove.reverse();
 				this.setLockControls();
 				this.setSecretMessage();
@@ -122,7 +127,7 @@ export default {
 		},
 		getChoice: function(){
 			this.splineMove();
-		}
+		},
 	},
 	created: function(){
 		this.downVec = new THREE.Vector3(0,-1,1);
@@ -140,8 +145,7 @@ export default {
 		this.particleBuilder();
 		this.splineBuilder();
 		this.modelBuilder();
-		this.soundBuilder();
-
+		this.soundBuilder(true);
 
 		window.addEventListener('resize', this.onResize);
 		TweenMax.ticker.addEventListener('tick', this.update);
@@ -444,10 +448,13 @@ export default {
 				});
 			}
 		},
-		soundBuilder: function(){
-			var audio= require('../../static/sounds/backgroundLoop.mp3');
-			var audioLoader = new Sound(this.scene.camera);
-			audioLoader.load(this.terrain.mesh, audio);
+		soundBuilder: function(displayer){
+				var audio= require('../../static/sounds/backgroundLoop.mp3');
+				var audioLoader = new Sound(this.scene.camera);
+				var that = this;
+				audioLoader.load(this.terrain.mesh, audio, function(displayer, player){
+					that.setPlayer(player);
+				});
 		},
   }
 

@@ -85,3 +85,11 @@ export const setAboutState = function ({ dispatch, state }) {
 export const setInstanciateSpaceBarState = function ({ dispatch, state }) {
   dispatch('SPACEBAR')
 }
+
+export const setSoundState = function ({ dispatch, state }) {
+  dispatch('SOUND')
+}
+
+export const setPlayerState = function({ dispatch, state }, player){
+	dispatch('PLAYER', player)
+}

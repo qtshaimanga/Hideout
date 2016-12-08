@@ -2,7 +2,7 @@
 	<div class="home">
 		<navigation></navigation>
 
-		<space-bar v-if="getInstanciateSpaceBar"></space-bar>
+		<space-bar v-show="getInstanciateSpaceBar"></space-bar>
 
 		<transition name="fade" mode="out-in">
 			<presentation v-show="getPres"></presentation>

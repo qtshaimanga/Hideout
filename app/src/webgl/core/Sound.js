@@ -20,19 +20,33 @@ class Sound {
      * @name render
      * @description Renders/Draw the scene
      */
-    load(mesh, sound) {
+    load(mesh, sound, callback) {
 
-      var positionalAudio = new THREE.PositionalAudio(this.listener.children[0]);
+      var that = this;
+      this.positionalAudio = new THREE.PositionalAudio(this.listener.children[0]);
+
       var audioLoader = new THREE.AudioLoader();
 
       audioLoader.load( sound, function( buffer ) {
-        positionalAudio.setBuffer( buffer );
-        positionalAudio.setRefDistance( 1000 );
-        positionalAudio.setLoop(true);
-        positionalAudio.play();
+        that.positionalAudio.setBuffer( buffer );
+        that.positionalAudio.setRefDistance( 1000 );
+        that.positionalAudio.setLoop(true);
+        that.positionalAudio.play();
+        callback(true, that.positionalAudio);
       });
 
-      mesh.add( positionalAudio );
+
+
+      mesh.add( this.positionalAudio );
+    }
+
+    play(displayer){
+
+      if(displayer == true){
+        //this.positionalAudio.play();
+      }else{
+        //this.positionalAudio.pause();
+      }
 
     }
 

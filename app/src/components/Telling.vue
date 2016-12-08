@@ -2,77 +2,186 @@
 	<div class="telling">
 		<div class="container">
 			<div class="text">Now you can tell your secret here...</div>
-				<div class="wrapper">
-					<div class="circle">
-						<svg version="1.1" class="svg_circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-							 viewBox="0 0 106.2 106.2" style="enable-background:new 0 0 106.2 106.2;" xml:space="preserve">
-							<g id="Calque_2">
-								<g id="Calque_1-2">
-										<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-3549.543" y1="-284.6837" x2="-3443.3528" y2="-284.6837" gradientTransform="matrix(0.21 0.98 0.98 -0.21 1064.0601 3409.1401)">
-										<stop  offset="0" style="stop-color:#EA0061"/>
-										<stop  offset="0.56" style="stop-color:#0000FF"/>
-										<stop  offset="0.62" style="stop-color:#0D27FD"/>
-										<stop  offset="0.76" style="stop-color:#287CF9"/>
-										<stop  offset="0.87" style="stop-color:#3DBAF6"/>
-										<stop  offset="0.96" style="stop-color:#49E0F4"/>
-										<stop  offset="1" style="stop-color:#4EEFF3"/>
-									</linearGradient>
-									<path class="st0" d="M53,106.2C23.7,106.2-0.1,82.3,0,53c0-10.1,2.9-20,8.4-28.6C24.3-0.3,57.1-7.4,81.8,8.4
-										C93.7,16,102,28.1,105,41.8c6.2,28.7-11.9,56.9-40.6,63.2c0,0,0,0,0,0l-0.2-1l0.2,1C60.7,105.8,56.8,106.2,53,106.2z M53.2,2
-										c-3.7,0-7.4,0.4-11,1.2c-27.6,6-45,33.2-39,60.8c2.9,13.2,10.9,24.8,22.3,32.1c23.8,15.2,55.4,8.3,70.6-15.5
-										c7.3-11.4,9.8-25.2,6.9-38.4C97.9,18.8,77.2,2.1,53.2,2z"/>
-								</g>
-							</g>
-						</svg>
-						<div class="microphone">
-							<svg id="svg_microphone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.06 48.04">
-								<g id="Calque_2" data-name="Calque 2">
-									<g id="Calque_1-2" data-name="Calque 1">
-										<path class="cls-1" d="M14,36.84A10.5,10.5,0,0,1,3.54,26.35V10.49a10.49,10.49,0,1,1,21,0V26.35A10.5,10.5,0,0,1,14,36.84ZM14,.6a9.9,9.9,0,0,0-9.89,9.89V26.35a9.89,9.89,0,1,0,19.78,0V10.49A9.9,9.9,0,0,0,14,.6Zm0,35.1a9.37,9.37,0,0,1-9.36-9.36V10.49a9.36,9.36,0,1,1,18.72,0V26.35A9.37,9.37,0,0,1,14,35.7Zm0-34a8.77,8.77,0,0,0-8.76,8.76V26.35a8.76,8.76,0,1,0,17.52,0V10.49A8.77,8.77,0,0,0,14,1.73Z"/>
-										<path class="cls-1" d="M24,48H4.1V46.31h9.06V40.67A13.94,13.94,0,0,1,0,27.36c0-.22,0-.45,0-.67V21.38H1.73v5.31c0,.2,0,.4,0,.59a12.3,12.3,0,0,0,24.58-.59V21.38h1.73v5.31a14,14,0,0,1-13.16,14v5.64H24ZM4.7,47.45H23.36v-.53H14.3V40.1h.29a13.39,13.39,0,0,0,12.88-13.4V22h-.53v4.71a12.9,12.9,0,0,1-25.78.62c0-.21,0-.41,0-.62V22H.6v4.71c0,.21,0,.43,0,.64A13.34,13.34,0,0,0,13.48,40.09h.29v6.81H4.7Z"/>
-									</g>
-								</g>
-							</svg>
-
-						</div>
-					</div>
-					<div class="placeholder">I have a secret</div>
-					<span class="caption">40 seconds max</span>
-				</div>
-			<div class="controls">
-				<div class="previous" @click="previous">previous</div>
-				<div class="next" @click="type">next</div>
+			<div class="wrapper-icon">
+				<div class="circle" @click="ctaDoSomething">
+					<svg version="1.1" class="svg_circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					viewBox="0 0 106.2 106.2" style="enable-background:new 0 0 106.2 106.2;" xml:space="preserve">
+					<g id="Calque_2">
+						<g id="Calque_1-2">
+							<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-3549.543" y1="-284.6837" x2="-3443.3528" y2="-284.6837" gradientTransform="matrix(0.21 0.98 0.98 -0.21 1064.0601 3409.1401)">
+								<stop  offset="0" style="stop-color:#EA0061"/>
+								<stop  offset="0.56" style="stop-color:#0000FF"/>
+								<stop  offset="0.62" style="stop-color:#0D27FD"/>
+								<stop  offset="0.76" style="stop-color:#287CF9"/>
+								<stop  offset="0.87" style="stop-color:#3DBAF6"/>
+								<stop  offset="0.96" style="stop-color:#49E0F4"/>
+								<stop  offset="1" style="stop-color:#4EEFF3"/>
+							</linearGradient>
+							<path class="st0" d="M53,106.2C23.7,106.2-0.1,82.3,0,53c0-10.1,2.9-20,8.4-28.6C24.3-0.3,57.1-7.4,81.8,8.4
+							C93.7,16,102,28.1,105,41.8c6.2,28.7-11.9,56.9-40.6,63.2c0,0,0,0,0,0l-0.2-1l0.2,1C60.7,105.8,56.8,106.2,53,106.2z M53.2,2
+							c-3.7,0-7.4,0.4-11,1.2c-27.6,6-45,33.2-39,60.8c2.9,13.2,10.9,24.8,22.3,32.1c23.8,15.2,55.4,8.3,70.6-15.5
+							c7.3-11.4,9.8-25.2,6.9-38.4C97.9,18.8,77.2,2.1,53.2,2z"/>
+						</g>
+					</g>
+				</svg>
+				<div class="microphone show">
+					<svg version="1.1" id="svg_microphone" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					viewBox="-291 372 28.1 49" style="enable-background:new -291 372 28.1 49;" xml:space="preserve">
+					<g>
+						<path class="st0" d="M-277,410.8C-277,410.8-277,410.8-277,410.8c-6.4,0-11.5-5.2-11.5-11.5v-15.9c0-6.3,5.2-11.5,11.5-11.5
+						c6.3,0,11.5,5.2,11.5,11.5v15.9c0,3.1-1.2,6-3.4,8.1C-271,409.6-273.9,410.8-277,410.8z M-277,374c-5.2,0-9.5,4.3-9.5,9.5v15.9
+						c0,5.2,4.2,9.5,9.5,9.5c0,0,0,0,0,0c2.6,0,4.9-1,6.7-2.8c1.8-1.8,2.8-4.2,2.8-6.7v-15.9C-267.5,378.2-271.7,374-277,374z"/>
+					</g>
+					<path class="st0" d="M-264.7,394.3v5.3c-0.1,6.5-5.1,11.8-11.6,12.2c-6.8,0.4-12.6-4.8-13-11.6c0-0.2,0-0.4,0-0.6v-5.3h-1.7v5.3
+					c0,0.2,0,0.4,0,0.7c0.3,7.2,6,12.9,13.2,13.3v5.6h-9.1v1.7h19.9v-1.7h-9.1v-5.6c7.4-0.4,13.2-6.6,13.2-14v-5.3H-264.7z"/>
+				</svg>
+			</div>
+			<div class="pause">
+				<svg id="svg_pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 30">
+					<g id="Calque_2" data-name="Calque 2">
+						<g id="Calque_1-2" data-name="Calque 1">
+							<path class="cls-1" d="M1,30a1,1,0,0,1-1-1V1A1,1,0,0,1,2,1V29A1,1,0,0,1,1,30Z"/>
+							<path class="cls-1" d="M22,30a1,1,0,0,1-1-1V1a1,1,0,0,1,2,0V29A1,1,0,0,1,22,30Z"/>
+						</g>
+					</g>
+				</svg>
+			</div>
+			<div class="play">
+				<svg id="svg_play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.85 31.55">
+					<g id="Calque_2" data-name="Calque 2">
+						<g id="Calque_1-2" data-name="Calque 1">
+							<path class="cls-1" d="M1,31.55a1,1,0,0,1-1-1V1A1,1,0,0,1,1.51.14L26.37,14.92a1,1,0,0,1,0,1.72L1.51,31.41A1,1,0,0,1,1,31.55ZM2,2.76v26l21.9-13Z"/>
+						</g>
+					</g>
+				</svg>
 			</div>
 		</div>
+		<div class="circle-sub-text">
+			<div class="timer"><span>0:29</span> / 0:40</div>
+			<div class="duration">0:39</div>
+			<div class="caption">clic to listen your secret<br>or <span>record it again</span> </div>
+		</div>
 	</div>
+	<div class="wrapper-text show">
+		<div class="placeholder">I have a secret</div>
+		<span class="caption">40 seconds max</span>
+	</div>
+	<div class="controls">
+		<div class="previous" @click="previous">previous
+			<svg class="svg_previous" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18.87 1">
+				<linearGradient id="Dégradé_sans_nom_23" y1="0.5" x2="12.34" y2="0.5" gradientUnits="userSpaceOnUse">
+					<stop offset="0.14" stop-color="#ffa836"/>
+					<stop offset="0.29" stop-color="#ffa537"/>
+					<stop offset="0.42" stop-color="#fd9a3a"/>
+					<stop offset="0.55" stop-color="#fb883e"/>
+					<stop offset="0.67" stop-color="#f86f45"/>
+					<stop offset="0.79" stop-color="#f44e4d"/>
+					<stop offset="0.91" stop-color="#f02757"/>
+					<stop offset="1" stop-color="#eb0061"/>
+				</linearGradient>
+				<linearGradient id="Dégradé_sans_nom_2" x1="15.01" y1="0.5" x2="18.87" y2="0.5" gradientUnits="userSpaceOnUse">
+					<stop offset="0" stop-color="#f34350"/>
+					<stop offset="0.02" stop-color="#f23b52"/>
+					<stop offset="0.1" stop-color="#ef2558"/>
+					<stop offset="0.18" stop-color="#ed145c"/>
+					<stop offset="0.29" stop-color="#ec095f"/>
+					<stop offset="0.45" stop-color="#eb0261"/>
+					<stop offset="0.87" stop-color="#eb0061"/>
+				</linearGradient>
+				<g id="Calque_2" data-name="Calque 2">
+					<g id="Calque_1-2" data-name="Calque 1">
+						<rect class="cls-1" width="12.34" height="1"/>
+						<rect class="cls-2" x="15.01" width="3.86" height="1"/>
+					</g>
+				</g>
+			</svg>
+		</div>
+		<div class="next" @click="type">
+			<svg class="svg_next" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18.87 1">
+				<defs>
+					<linearGradient id="Dégradé_sans_nom_36" y1="0.5" x2="12.34" y2="0.5" gradientUnits="userSpaceOnUse">
+						<stop offset="0" stop-color="#4eeef2"/>
+						<stop offset="0" stop-color="#47d8f3"/>
+						<stop offset="1" stop-color="#184afb"/>
+					</linearGradient>
+					<linearGradient id="Dégradé_sans_nom_44" x1="15.01" y1="0.5" x2="18.87" y2="0.5" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1d58fa"/><stop offset="1" stop-color="blue"/></linearGradient>
+				</defs>
+				<title>icon-next</title>
+				<g id="Calque_2" data-name="Calque 2">
+					<g id="Calque_1-2" data-name="Calque 1">
+						<rect class="cls-1" width="12.34" height="1"/>
+						<rect class="cls-2" x="15.01" width="3.86" height="1"/>
+					</g>
+				</g>
+			</svg>
+			next</div>
+		</div>
+	</div>
+</div>
 </template>
 
 <script>
+
+import $ from 'jquery';
+
+import { getTellingState } from '../vuex/getters'
+
 import {
 	setTypeState,
 	setTellingState,
-	setShareChoiceState
+	setShareChoiceState,
+	setWebglHomeState
 } from '../vuex/actions';
+
 
 export default {
 	components: {
 
 	},
 	vuex: {
-		getters: {},
+		getters: {
+			getTelling: getTellingState
+		},
 		actions: {
 			setType: setTypeState,
 			setTelling: setTellingState,
-			setShareChoice: setShareChoiceState
+			setShareChoice: setShareChoiceState,
+			setWebglHome: setWebglHomeState
 		}
 	},
 	data () {
 		return {
-
+			ctaCircle: Object(),
+			iconMicrophone: Object(),
+			iconPlay: Object(),
+			iconPause: Object(),
+			wrapperText: Object(),
+			subText: Object(),
+			subTextTimer: Object(),
+			subTextCaption: Object(),
+		}
+	},
+	watch: {
+		getTelling: function(){
+			if(this.getTelling == true){
+				this.getMicrophoneUser();
+			}
 		}
 	},
 	mounted: function() {
+		//TODO état micro on off / popin d'avertissement etc..
 
+		this.ctaCircle = $('.wrapper-icon .circle');
+		this.iconMicrophone = this.ctaCircle.find('.microphone');
+		this.iconPlay = this.ctaCircle.find('.play');
+		this.iconPause = this.ctaCircle.find('.pause');
+
+		this.wrapperText = $('.wrapper-text');
+
+		this.subText = $('.circle-sub-text');
+		this.subTextTimer = this.subText.find('.timer');
+		this.subTextDuration = this.subText.find('.duration');
+		this.subTextCaption = this.subText.find('.caption');
 	},
 	methods:{
 		type: function(event){
@@ -82,6 +191,56 @@ export default {
 		previous: function(event){
 			this.setTelling();
 			this.setShareChoice();
+		},
+		getMicrophoneUser: function(){
+			// navigator.getUserMedia = ( navigator.getUserMedia ||
+			// 	navigator.webkitGetUserMedia ||
+			// 	navigator.mozGetUserMedia ||
+			// 	navigator.msGetUserMedia);
+
+			var constraints = { audio: true };
+
+			// navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
+			// 	/* use the stream */
+			// }).catch(function(err) {
+			// 	/* handle the error */
+			// });
+			// navigator.getUserMedia({audio: true}, function(localMediaStream) {
+			// //
+			// //
+			// // }, function(e){
+			// // 	//TODO ajouter l'autorisation
+			// // 	console.log(">>>>>>", e)
+			// // });
+		},
+		ctaDoSomething: function(event) {
+			var that = this;
+			if(this.iconMicrophone.hasClass('show')) {
+				console.log("current microphone & change");
+				this.iconMicrophone.removeClass('show');
+				this.wrapperText.removeClass('show');
+				setTimeout(function(){
+					that.iconPause.addClass('show');
+					that.subTextTimer.addClass('show');
+				}, 250);
+
+			} else if(this.iconPause.hasClass('show')) {
+				console.log("current pause & change");
+				this.iconPause.removeClass('show');
+				this.subTextTimer.removeClass('show');
+				setTimeout(function(){
+					that.subTextTimer.hide();
+				});
+
+				setTimeout(function(){
+					that.subTextDuration.addClass('show');
+					that.iconPlay.addClass('show');
+					that.subTextCaption.addClass('show');
+				}, 250);
+
+			} else if(this.iconPlay.hasClass('show')) {
+				console.log("current play & change");
+			}
 		}
 	}
 }
@@ -90,8 +249,12 @@ export default {
 <style lang="scss" scoped>
 @import "../styles/variables";
 @import "../styles/mixins";
+@import "../styles/utils/buttons";
+
+$transition-text: opacity 250ms ease-out;
 
 .telling{
+	position: absolute;
 	width: 100%;
 	height: 90%;
 	margin: 0px;
@@ -110,10 +273,12 @@ export default {
 		width: 75%;
 		max-width: 780px;
 		min-height: 320px;
+		position: relative;
 
 		div{
-			margin-bottom: 20px;
+			// margin-bottom: 20px;
 		}
+
 		.text{
 			margin-right: auto;
 			width: 100%;
@@ -134,23 +299,30 @@ export default {
 			}
 		}
 
-		.wrapper {
+		.wrapper-icon {
 			width: 100%;
 			margin: auto;
 			display: flex;
 			flex-direction: column;
 			margin-top: 5%;
 			margin-bottom: 9%;
-			// @include transform(translate3d(-50%, 0, 0));
 			// position: absolute;
 			// left: 50%;
+			// @include transform(translate3d(-50%, 0, 0));
+
+			// .wrapper-icon {
+			// 	position: absolute;
+			// 	left: 50%;
+			// 	top: 50%;
+			// 	text-align: center;
+			// 	@include transform(translate3d(-50%, -50%, 0));
 
 			.circle {
 				width: 110px;
 				height: 110px;
+				margin: 0 auto 20px auto;
 				position: relative;
-				margin: auto;
-
+				// margin: auto;
 				&:hover{
 					cursor: pointer;
 				}
@@ -160,52 +332,151 @@ export default {
 				}
 
 				.microphone {
+					display: block;
 					position: absolute;
 					top: 50%;
 					left: 50%;
 					width: 28px;
 					height: 48px;
 					@include transform(translate3d(-50%, -50%, 0));
+					@include transition($transition-text);
+					opacity: 0;
+
+					&.show {
+						opacity: 1;
+					}
 
 					svg#svg_microphone {
+						.st0{fill:#FFFFFF;}
+					}
+				}
 
+				.pause {
+					display: block;
+					position: absolute;
+					margin:auto;
+					top: 50%;
+					left: 50%;
+					width: 23px;
+					height: 28px;
+					@include transform(translate3d(-50%, -50%, 0));
+					@include transition($transition-text);
+					opacity: 0;
+
+					&.show {
+						opacity: 1;
+					}
+
+					svg#svg_pause {
+						.cls-1{fill:#fff;}
+					}
+				}
+
+				.play {
+					display: block;
+					position: absolute;
+					margin:auto;
+					top: 50%;
+					left: 54%;
+					width: 28px;
+					height: 30px;
+					@include transform(translate3d(-50%, -50%, 0));
+					@include transition($transition-text);
+					opacity: 0;
+
+					&.show {
+						opacity: 1;
+					}
+
+					svg#svg_play {
 						.cls-1{fill:#fff;}
 					}
 				}
 			}
 
+			.circle-sub-text {
+				position: absolute;
+				left: 50%;
+				@include transform(translate3d(-50%, 0, 0));
+				@include text-standard-small;
+				text-align: center;
+				white-space: nowrap;
+
+				.timer {
+					opacity: 0;
+					@include transition($transition-text);
+
+					&.show {
+						opacity: 1;
+					}
+				}
+				.duration {
+					opacity: 0;
+					@include transition($transition-text);
+
+					&.show {
+						opacity: 1;
+					}
+				}
+				.caption {
+					opacity: 0;
+					@include transition($transition-text);
+
+					&.show {
+						opacity: 1;
+					}
+
+					span {
+						text-decoration: underline;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+
+		.wrapper-text {
+			text-align: center;
+			position: absolute;
+			left: 50%;
+			bottom: 0%;
+			opacity: 0;
+			@include transform(translate3d(-50%, 0, 0));
+			@include transition($transition-text);
+
+			&.show {
+				opacity: 1;
+			}
+
 			.placeholder {
 				@include text-title-small;
-				margin-bottom: 0;
+				margin-bottom: 10px;
 				text-align: center;
 			}
 
 			.caption {
-				@include text-standard;
+				@include text-standard-small;
 				text-align: center;
 			}
 		}
 
 		.controls{
+			@extend %controls;
 			width: 100%;
-			display: flex;
-			flex-direction: row;
 			flex-wrap: wrap;
-			justify-content: space-between;
+			flex-direction: row;
 			align-items: flex-end;
-			@include text-button();
 
 			&:hover>div{
 				cursor: pointer;
 			}
 
 			.previous {
-				letter-spacing: 0.1rem;
+				@extend %previous;
 				margin: 0;
 			}
 
 			.next {
-				letter-spacing: 0.1rem;
+				@extend %next;
 				margin: 0;
 			}
 		}

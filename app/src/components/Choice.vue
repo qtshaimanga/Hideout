@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { getLockControlsState } from '../vuex/getters';
+import { getLockControlsState, getChoiceState } from '../vuex/getters';
 
 import {
 	setShareState,
@@ -25,17 +25,26 @@ import {
 export default {
 	vuex: {
 		getters: {
-			getLockControls: getLockControlsState
+			getLockControls: getLockControlsState,
+			getChoice: getChoiceState,
 		},
 		actions: {
 			setChoice: setChoiceState,
 			setShare: setShareState,
 			setWebglHome: setWebglHomeState,
-			setLockControls: setLockControlsState
+			setLockControls: setLockControlsState,
 		}
 	},
 	data () {
 		return {}
+	},
+	watch: {
+		// getChoice: function(){
+		// 	console.log("lock");
+		// 	if(this.getChoice == true){
+		// 		this.setLockControls();
+		// 	}
+		// }
 	},
 	mounted: function() {
 	},

@@ -16,7 +16,8 @@ import{
 	getPresState,
 	getWebglHomeState,
 	getSoundState,
-	getPlayerState
+	getPlayerState,
+	getInstanciateSpaceBarState
 } from '../vuex/getters';
 
 import {
@@ -39,7 +40,8 @@ export default {
 			getPres: getPresState,
 			getWebglHome: getWebglHomeState,
 			getSound: getSoundState,
-			getPlayer: getPlayerState
+			getPlayer: getPlayerState,
+			getInstanciateSpaceBar: getInstanciateSpaceBarState
 		},
 		actions: {
 			setPres : setPresState,
@@ -90,7 +92,7 @@ export default {
 		spacebarPressed: function(){
 			this.counter += 0.1;
 
-			if(this.getPlay == true){
+			if(this.getPlay == true && this.getInstanciateSpaceBar == true){
 				this.audioPlayer.play();
 			}
 

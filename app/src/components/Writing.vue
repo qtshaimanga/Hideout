@@ -2,7 +2,7 @@
 	<div class="writing">
 		<div class="container">
 			<div class="text">Now you can write your secret here.</div>
-			<textarea placeholder="write your secret here..." name="textarea"></textarea>
+			<textarea placeholder="I have a secret..." name="textarea"></textarea>
 			<div class="controls">
 				<div class="previous" @click="previous">previous
 					<svg class="svg_previous" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18.87 1">

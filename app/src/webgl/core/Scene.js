@@ -12,8 +12,8 @@ class Scene {
 
 		// console.log( _config );
 
-		this.fogColor = 0x1f1f3b;
-		this.fogDensity = 0.0020;
+		this.fogColor = 0x101028;
+		this.fogDensity = 0.0018;
 		this.scene.fog = new THREE.FogExp2( this.fogColor, this.fogDensity );
 
 		this.renderer = new THREE.WebGLRenderer({antialias: true});
@@ -36,7 +36,7 @@ class Scene {
 	*/
 	addLight(){
 
-		this.scene.add(new THREE.AmbientLight(0x1f1f3b));
+		this.scene.add(new THREE.AmbientLight(0x1b1e47));
 
 		this.directional = new THREE.DirectionalLight(0xf4a6e9);
 		this.directional.position.set(1, 1, 1);

@@ -14,7 +14,7 @@ class Terrain {
 		this.geometry = new THREE.PlaneGeometry( this.height, this.width, this.numSegments, this.numSegments );
 
 		this.materialAlpha = new THREE.MeshPhongMaterial({
-			color: 0x2c3544,
+			color: 0x212b47,
 			wireframe: false
 			// shading: THREE.FlatShading
 		});

@@ -7,7 +7,7 @@ import vertexShader from '../shaders/confuseSecrets/vertexShader.vert';
 import fragmentShader from '../shaders/confuseSecrets/fragmentShader.frag';
 
 
-var size = 60;
+var size = 40;
 var widthSegments = 6;
 var heightSegments = 6;
 var geometry = new THREE.SphereGeometry(size, widthSegments, heightSegments);
@@ -45,8 +45,8 @@ class Confuse {
 				metalness: { value: .2 },
 				envMapIntensity : { value: 1 },
 				u_time: { type: "f", value: 0.1 },
-				u_speed: { type: 'f', value: 0.4 },
-				u_amp: { type: 'f', value: 100.0 },
+				u_speed: { type: 'f', value: 2.5 },
+				u_amp: { type: 'f', value: 60.0 },
 				u_texture:   { type:"t", value: texture },
 			},
 			fragmentShader: fragmentShader,

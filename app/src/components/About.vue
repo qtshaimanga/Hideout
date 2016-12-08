@@ -86,7 +86,8 @@ export default {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	background-color: transparent;
+	// background-color: transparent;
+	background-color: rgba(23, 25, 38, 0.5);
 	color: $color-white;
 	display: flex;
 	flex-flow: row;

@@ -24,7 +24,7 @@ class Alpha {
 				this.mesh = mesh.children[0].clone();
 
 				this.materialAlpha = new THREE.MeshPhongMaterial({
-					color: 0x2c3544,
+					color: 0x212b47,
 					wireframe: false
 				});
 

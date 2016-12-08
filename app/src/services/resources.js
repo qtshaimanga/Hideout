@@ -50,6 +50,26 @@ export default [
     id: 'texture8',
     url: require('../../static/textures/texture8.jpg')
   },
+  {
+	type: 'jpg',
+	id: 'texture9',
+	url: require('../../static/textures/texture9.jpg')
+  },
+  {
+	type: 'jpg',
+	id: 'texture10',
+	url: require('../../static/textures/texture10.jpg')
+  },
+  {
+	type: 'jpg',
+	id: 'texture11',
+	url: require('../../static/textures/texture11.jpg')
+  },
+  {
+	type: 'jpg',
+	id: 'texture12',
+	url: require('../../static/textures/texture12.jpg')
+  },
 
   // ==== Images
   {

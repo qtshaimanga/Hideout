@@ -1,11 +1,11 @@
 <template>
 	<div class="presentation">
 		<div class="container">
-
-			<div class="element" v-show="element1">1 Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor</div>
-			<div class="element" v-show="element2">2 Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor</div>
-			<div class="element" v-show="element3">3 Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor</div>
-
+			<div class="black-border top" v-bind:class="{ show: !isIntroFinished }"></div>
+				<div class="element intro" v-show="element1">In a world where everything can be known by anyone thanks to the internet,</div>
+				<div class="element intro" v-show="element2">Where our image is actually defined by our virtual identity,</div>
+				<div class="element intro" v-show="element3">The discovery of our most private and intimate secret is only a matter of time. <br>You just have to dig a little.</div>
+			<div class="black-border bottom" v-bind:class="{ show: !isIntroFinished }"></div>
 			<div class="element" v-if="true"  v-show="element4">
 			<div class="logo">
 				<svg id="svg_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 412.96 75.88">
@@ -153,6 +153,7 @@ export default {
 			element2: false,
 			element3: false,
 			element4: false,
+			isIntroFinished: false,
 			transition1: Object(),
 			transition2: Object(),
 			transition3: Object(),
@@ -207,6 +208,7 @@ export default {
 		},
 		firstElement: function(){
 			var that = this;
+
 			this.element1 = true;
 			this.transition1 = setTimeout(function(){
 				that.element1 = false;
@@ -219,6 +221,7 @@ export default {
 			this.transition3 = setTimeout(function(){
 				that.element3 = false;
 				that.element4 = true;
+				that.isIntroFinished = true;
 				that.setInstanciateSpaceBar();
 				that.setSkipe();
 				that.animateSVG();
@@ -231,11 +234,13 @@ export default {
 			this.element1 = false
 			this.element2 = false
 			this.element3 = false
+
 			if(this.getAbout == true){
 				this.element4 = false;
 			}else{
 				this.element4 = true;
 			}
+			this.isIntroFinished = true;
 			this.animateSVG();
 		}
 	}
@@ -257,25 +262,59 @@ export default {
 
 	display: flex;
 	.container{
-		width: 33%;
+		width: 75%;
 		min-width: 380px;
-		max-width: 450px;
+		max-width: 780px;
 		height: 100%;
 		margin: auto;
 		text-align: center;
-		color: #FFFFFF;
+		color: $color-white;
 		display: flex;
 		flex-direction: column;
+
+		.black-border {
+			height: 15%;
+			width: 100%;
+			left:0;
+			background-color: $color-black;
+
+			&.top {
+				position: absolute;
+				top: 0;
+
+				&:not(.show) {
+					@include transition(transform 500ms ease-out);
+					@include transform(translate3d(0, -100%, 0));
+				}
+			}
+
+			&.bottom {
+				position: absolute;
+				bottom: 0;
+
+				&:not(.show) {
+					@include transition(transform 500ms ease-out);
+					@include transform(translate3d(0, 100%, 0));
+				}
+			}
+
+
+		}
 
 		.element{
 			margin-top: auto;
 			margin-bottom: auto;
-			@include text-standard();
+			@include text-standard;
 			-webkit-animation: fadein 4s;
-       -moz-animation: fadein 4s;
-        -ms-animation: fadein 4s;
-         -o-animation: fadein 4s;
-            animation: fadein 4s;
+			-moz-animation: fadein 4s;
+			-ms-animation: fadein 4s;
+			-o-animation: fadein 4s;
+			animation: fadein 4s;
+
+			&.intro {
+				@include text-title;
+				line-height: 5rem;
+			}
 		}
 
 		.logo {

@@ -13,7 +13,6 @@
 							</linearGradient>
 							<linearGradient id="writing_gradient_2" x1="-11.19" y1="25.16" x2="24.07" y2="65.39" xlink:href="#writing_gradient_1"/>
 						</defs>
-						<title>Fichier 4</title>
 						<g id="Calque_2" data-name="Calque 2">
 							<g id="Calque_1-2" data-name="Calque 1">
 								<g id="_Groupe_" data-name="&lt;Groupe&gt;"><path id="_Tracé_transparent_" data-name="&lt;Tracé transparent&gt;" class="cls-1" d="M2.74,54.47l7.12-3.34L38.34,8.53,36.73,7.46l2.64-4L34.13,0,31.49,4,29.7,2.76,28.64,4.35,26.22,2.73,17.35,16l1.13.75L26.6,4.61l1.29.86L1.22,45.34.85,53.22,0,55.3,1.13,56ZM34.51,1.88l3,2L35.6,6.7l-.83-.56L32.62,4.71ZM8.94,50.06,2.85,52.91l-.61-.4.32-6.73L30.07,4.64l2,1.31L36,8.59h0l.48.32Z"/>
@@ -23,7 +22,35 @@
 						</g>
 					</svg>
 				</span>
-				<span class="text">writing it</span>
+				<span class="text">
+					<svg class="svg_before_writing" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18.87 1">
+						<linearGradient id="Dégradé_sans_nom_23" y1="0.5" x2="12.34" y2="0.5" gradientUnits="userSpaceOnUse">
+							<stop offset="0.14" stop-color="#ffa836"/>
+							<stop offset="0.29" stop-color="#ffa537"/>
+							<stop offset="0.42" stop-color="#fd9a3a"/>
+							<stop offset="0.55" stop-color="#fb883e"/>
+							<stop offset="0.67" stop-color="#f86f45"/>
+							<stop offset="0.79" stop-color="#f44e4d"/>
+							<stop offset="0.91" stop-color="#f02757"/>
+							<stop offset="1" stop-color="#eb0061"/>
+						</linearGradient>
+						<linearGradient id="Dégradé_sans_nom_2" x1="15.01" y1="0.5" x2="18.87" y2="0.5" gradientUnits="userSpaceOnUse">
+							<stop offset="0" stop-color="#f34350"/>
+							<stop offset="0.02" stop-color="#f23b52"/>
+							<stop offset="0.1" stop-color="#ef2558"/>
+							<stop offset="0.18" stop-color="#ed145c"/>
+							<stop offset="0.29" stop-color="#ec095f"/>
+							<stop offset="0.45" stop-color="#eb0261"/>
+							<stop offset="0.87" stop-color="#eb0061"/>
+						</linearGradient>
+						<g id="Calque_2" data-name="Calque 2">
+							<g id="Calque_1-2" data-name="Calque 1">
+								<rect class="cls-1" width="12.34" height="1"/>
+								<rect class="cls-2" x="15.01" width="3.86" height="1"/>
+							</g>
+						</g>
+					</svg>
+					writing it</span>
 			</div>
 			<div class="telling" @click="telling">
 				<span class="icon-telling">
@@ -42,7 +69,24 @@
 						</g>
 					</svg>
 				</span>
-				<span class="text">telling it</span>
+				<span class="text">
+					<svg class="svg_before_telling" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18.87 1">
+						<defs>
+							<linearGradient id="Dégradé_sans_nom_36" y1="0.5" x2="12.34" y2="0.5" gradientUnits="userSpaceOnUse">
+								<stop offset="0" stop-color="#4eeef2"/>
+								<stop offset="0" stop-color="#47d8f3"/>
+								<stop offset="1" stop-color="#184afb"/>
+							</linearGradient>
+							<linearGradient id="Dégradé_sans_nom_44" x1="15.01" y1="0.5" x2="18.87" y2="0.5" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1d58fa"/><stop offset="1" stop-color="blue"/></linearGradient>
+						</defs>
+						<g id="Calque_2" data-name="Calque 2">
+							<g id="Calque_1-2" data-name="Calque 1">
+								<rect class="cls-1" width="12.34" height="1"/>
+								<rect class="cls-2" x="15.01" width="3.86" height="1"/>
+							</g>
+						</g>
+					</svg>
+					telling it</span>
 			</div>
 		</div>
 	</div>
@@ -170,6 +214,13 @@ import {
 			.writing{
 				text-align: center;
 
+				svg.svg_before_writing {
+					width: 18px;
+					vertical-align: middle;
+					.cls-1{fill:url(#Dégradé_sans_nom_23);}
+					.cls-2{fill:url(#Dégradé_sans_nom_2);}
+				}
+
 				.icon-writing {
 					display: block;
 					margin: 0 auto;
@@ -202,6 +253,13 @@ import {
 			}
 			.telling{
 				text-align: center;
+
+				svg.svg_before_telling {
+					width: 18px;
+					vertical-align: middle;
+					.cls-1{fill:url(#Dégradé_sans_nom_36);}
+					.cls-2{fill:url(#Dégradé_sans_nom_44);}
+				}
 
 				.icon-telling {
 					display: block;

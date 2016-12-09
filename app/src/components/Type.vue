@@ -247,7 +247,8 @@ import {
 	setSavingXState,
 	setSavingYState,
 	setSavingZState,
-	setSavingState
+	setSavingState,
+	setShareChoiceState
 } from '../vuex/actions';
 
 export default {
@@ -279,7 +280,8 @@ export default {
 			setSavingX: setSavingXState,
 			setSavingY: setSavingYState,
 			setSavingZ: setSavingZState,
-			setSaving: setSavingState
+			setSaving: setSavingState,
+			setShareChoice: setShareChoiceState
 		}
 	},
 	data () {
@@ -310,6 +312,7 @@ export default {
 			if(this.typeSecret != ""){
 				this.setType();
 				this.setShare();
+				this.setShareChoice();
 				var date = new Date();
 				var day = date.getDay().toString();
 				var month = date.getMonth().toString();

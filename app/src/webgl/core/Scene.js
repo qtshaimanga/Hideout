@@ -21,9 +21,9 @@ class Scene {
 		this.renderer.setClearColor(this.fogColor);
 
 		this.camera = new THREE.PerspectiveCamera(74, width / height, 1, 1000);
-		this.camera.position.x = 200;
-		this.camera.position.y = 200;
-		this.camera.position.z = 500;
+		this.camera.position.x = 700;
+		this.camera.position.y = 800;
+		this.camera.position.z = 1000;
 		this.camera.lookAt(new THREE.Vector3(0,50,0));
 
 		this.addLight();

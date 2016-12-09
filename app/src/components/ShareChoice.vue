@@ -1,6 +1,6 @@
 <template>
 	<div class="share-choice">
-		<div class="container">
+		<div id="container_share_choice" class="container">
 			<div class="text">It's time to share you secret, and lay it down here.<span>Do you want to reveal it by :</span></div>
 			<div class="writing" @click="writing">
 				<span class="icon-writing">
@@ -93,17 +93,23 @@
 </template>
 
 <script>
+import { TweenMax } from 'gsap';
+
+import { getShareChoiceState, getChoiceState, getWritingState, getTellingState } from '../vuex/getters';
+
 import {
 	setShareChoiceState,
 	setWritingState,
 	setTellingState } from '../vuex/actions';
 
 	export default {
-		components: {
-
-		},
 		vuex: {
-			getters: {},
+			getters: {
+				getShareChoice: getShareChoiceState,
+				getChoice: getChoiceState,
+				getWriting: getWritingState,
+				getTelling: getTellingState,
+			},
 			actions: {
 				setShareChoice: setShareChoiceState,
 				setWriting: setWritingState,
@@ -112,10 +118,39 @@ import {
 		},
 		data () {
 			return {
-
+				myTweenIn: Object(),
+				myTweenOut: Object()
 			}
 		},
+		watch: {
+			getChoice: function(){
+				//console.log('choice set', this.getChoice);
+				//console.log('via choice', this.getShareChoice.statut, this.getShareChoice.from);
+				this.tweenThisIn();
+				if(this.getShareChoice.statut == true && this.getShareChoice.from == "previous"){
+					console.log("<<<< PREVIOUS");
+				}
+			},
+			getShareChoice: function(){
+				// console.log(">>>>>", this.getShareChoice);
+				//console.log('OKOK', this.getShareChoice);
+				if(this.getShareChoice.statut == true && this.getShareChoice.from == "previous"){
+					console.log('okookkkk');
+				}
+				if(this.getShareChoice.statut == true){
+					if(this.getShareChoice.from == "previous"){
+						console.log("previous");
+					} else {
+						console.log("getShareChoice >>>>>>>>");
+						this.tweenThisIn();
+					}
+				}
+			},
+		},
 		mounted: function() {
+			console.log('choice');
+			this.setTweens();
+
 			var tl_writing = new TimelineMax({
 				paused:true,
 				repeatDelay:0,
@@ -129,7 +164,7 @@ import {
 				cycle:{
 					/* number of <stop> elements and ending value */
 					stopColor: ['#F1F904','#F4B404']
-				}
+				}, ease:Expo.easeOut
 			}, 2, 0)
 			.progress(1).progress(0)
 			.play();
@@ -146,12 +181,46 @@ import {
 		},
 		methods:{
 			writing: function(event){
-				this.setShareChoice();
-				this.setWriting();
+				this.currentGoTo = "writing";
+				this.tweenThisOut();
 			},
 			telling: function(event){
-				this.setShareChoice();
-				this.setTelling();
+				this.currentGoTo = "telling";
+				this.tweenThisOut();
+			},
+			goTo: function(event){
+				if(this.currentGoTo == "writing") {
+					this.setShareChoice();
+					this.setWriting();
+				} else if (this.currentGoTo == "telling") {
+					this.setShareChoice();
+					this.setTelling();
+				}
+			},
+			setTweens: function(event){
+				this.myTweenIn = new TimelineMax({paused: true, delay: 1});
+				this.myTweenIn.from("#container_share_choice .text", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+				this.myTweenIn.from("#container_share_choice .writing", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+				this.myTweenIn.from("#container_share_choice .telling", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+
+				this.myTweenInBack = new TimelineMax({paused: true, delay: 0, onComplete: this.goTo});
+				this.myTweenInBack.from("#container_share_choice .text", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+				this.myTweenInBack.from("#container_share_choice .writing", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+				this.myTweenInBack.from("#container_share_choice .telling", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+
+				this.myTweenOut = new TimelineMax({paused: true, delay: 0, onComplete: this.goTo});
+				this.myTweenOut.to("#container_share_choice .text", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+				this.myTweenOut.to("#container_share_choice .writing", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+				this.myTweenOut.to("#container_share_choice .telling", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+			},
+			tweenThisIn: function(event) {
+				this.myTweenIn.play(0);
+			},
+			tweenThisInBack: function(event) {
+				this.myTweenInBack.play(0);
+			},
+			tweenThisOut: function(event) {
+				this.myTweenOut.play(0);
 			}
 		}
 	}
@@ -188,6 +257,7 @@ import {
 				width: 55%;
 				font-family: $font-otama;
 				font-size: 3.5rem;
+				// line-height: 3rem;
 				position: relative;
 
 				span {
@@ -203,7 +273,7 @@ import {
 						content: "1.";
 						display: block;
 						position: absolute;
-						top: -11.5rem;
+						top: -12rem;
 						left: -2.5rem;
 						opacity: 0.2;
 						@include text-title('Otama', 17rem, $line-height: normal);
@@ -225,6 +295,7 @@ import {
 					display: block;
 					margin: 0 auto;
 					text-align: center;
+					padding-top: 60px;
 
 					svg {
 						width: 39px;
@@ -265,6 +336,7 @@ import {
 					display: block;
 					margin: 0 auto;
 					text-align: center;
+					padding-top: 60px;
 
 					svg {
 						width: 33px;

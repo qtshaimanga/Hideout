@@ -4,7 +4,7 @@
 		<p @click="setFocus"></p>
 	</div> -->
 	<div class="close" @click="setFocus"></div>
-	<div class="container">
+	<div id="container_focus" class="container">
 		<svg version="1.1" id="svg_quote" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 			viewBox="0 0 108.7 90.7" style="enable-background:new 0 0 108.7 90.7;" xml:space="preserve">
 			<g class="st0">
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { getFocusState } from '../vuex/getters';
+
 import { setFocusState } from '../vuex/actions';
 
 export default {
@@ -36,6 +38,7 @@ export default {
 	},
 	vuex: {
 		getters: {
+			getFocus: getFocusState
 		},
 		actions: {
 			setFocus: setFocusState
@@ -49,12 +52,39 @@ export default {
 	watch: {
 		mesh: function(){
 			console.log("tets mesh id : ", this.meshId);
+			console.log(">>>>>");
+		},
+		getFocus: function() {
+			if(this.getFocus == true) {
+				this.tweenThisIn();
+				console.log(">>>>> IN");
+			} else {
+				this.tweenThisOut();
+				console.log(">>>>> OUT");
+			}
 		}
 	},
 	mounted: function() {
+		this.setTweens();
 	},
 	methods:{
+		setTweens: function(event) {
+			this.myTweenIn = new TimelineMax({paused: true, delay: 1});
+			this.myTweenIn.from("#container_focus svg", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenIn.from("#container_focus span", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenIn.from("#container_focus p", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
 
+			this.myTweenOut = new TimelineMax({paused: true, delay: 0});
+			this.myTweenOut.to("#container_focus svg", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenOut.to("#container_focus span", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenOut.to("#container_focus p", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+		},
+		tweenThisIn: function(event) {
+			this.myTweenIn.play(0);
+		},
+		tweenThisOut: function(){
+			this.myTweenOut.play(0);
+		}
 	}
 }
 </script>

@@ -1,5 +1,6 @@
 <template>
 	<div class="app">
+		<loader v-if="getLoader"></loader>
 		<router-view></router-view>
 	</div>
 </template>
@@ -7,7 +8,21 @@
 <script>
 import store from './store'
 
+import Loader from './components/Loader'
+
+import {
+	getLoaderState
+} from './vuex/getters';
+
 export default {
+	components: {
+		Loader
+	},
+	vuex: {
+		getters: {
+			getLoader: getLoaderState,
+		}
+	},
 	store: store,
 	data () {
 		return {

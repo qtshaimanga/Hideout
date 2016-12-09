@@ -267,15 +267,15 @@ export default {
 						this.$el.style.cursor = "default";
 					}else{
 						if(time == this.loading){
-								if(this.getFocus == false){
-									this.meshId = this.getMeshId(intersectSecret[0].object.name);
-									this.meshText = this.getRequestSecretMessageById(this.meshId);
+							if(this.getFocus == false){
+								this.meshId = this.getMeshId(intersectSecret[0].object.name);
+								this.meshText = this.getRequestSecretMessageById(this.meshId);
 
-									this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
-									this.moveObject(this.scene.camera, intersectSecret[0].object);
-									this.setFocus();
-									this.setLockControls();
-								}
+								this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
+								this.moveObject(this.scene.camera, intersectSecret[0].object);
+								this.setFocus();
+								this.setLockControls();
+							}
 						}else if(time <= this.loading){
 							this.setCursorProgress(time+1);
 							if(time == 1){
@@ -435,9 +435,9 @@ export default {
 			}
 
 			this.particules.update();
-      this.meshCollisionneur();
-      this.terrainCollisionneur();
-    },
+			this.meshCollisionneur();
+			this.terrainCollisionneur();
+		},
 		modelBuilder: function(){
 			var model = new Model();
 			for(let i=0; i<=models.length-1; i++){
@@ -449,14 +449,14 @@ export default {
 			}
 		},
 		soundBuilder: function(displayer){
-				var audio= require('../../static/sounds/backgroundLoop.mp3');
-				var audioLoader = new Sound(this.scene.camera);
-				var that = this;
-				audioLoader.load(this.terrain.mesh, audio, function(displayer, player){
-					that.setPlayer(player);
-				});
+			var audio= require('../../static/sounds/backgroundLoop.mp3');
+			var audioLoader = new Sound(this.scene.camera);
+			var that = this;
+			audioLoader.load(this.terrain.mesh, audio, function(displayer, player){
+				that.setPlayer(player);
+			});
 		},
-  }
+	}
 
 }
 </script>

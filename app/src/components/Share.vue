@@ -37,7 +37,7 @@
 			</div>
 			<div class="close" @click="close"></div>
 		</div>
-		<share-choice v-show="getShareChoice"></share-choice>
+		<share-choice v-show="getShareChoice.statut"></share-choice>
 		<writing v-show="getWriting"></writing>
 		<telling v-show="getTelling"></telling>
 		<type v-show="getType.statut"></type>
@@ -94,7 +94,7 @@ export default {
 		return {}
 	},
 	created: function(){
-		this.setShareChoice();
+		// this.setShareChoice();
 	},
 	mounted: function() {
 
@@ -106,7 +106,7 @@ export default {
 			if(this.getShare == true){
 				this.setShare();
 			}
-			if(this.getShareChoice == false){
+			if(this.getShareChoice.statut == true){
 				this.setShareChoice();
 			}
 		}
@@ -136,7 +136,7 @@ export default {
 		flex-flow: row;
 		z-index: 99999;
 		position: absolute;
-		
+
 		.text{
 			margin: auto;
 

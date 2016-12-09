@@ -1,6 +1,6 @@
 <template>
 	<div class="type">
-		<div class="container">
+		<div id="container_type" class="container">
 			<div class="text">One more step,<br>what kind of secret is it ?</div>
 			<div class="type-secret">
 				<svg id="svg_type"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 739.79 24.35">
@@ -29,51 +29,51 @@
 							<circle id="point_3" data-name="&lt;Tracé&gt;" class="single-point cls-1" cx="491.95" cy="12.16" r="2.27"/>
 							<circle id="point_4" data-name="&lt;Tracé&gt;" class="single-point cls-1" cx="727.56" cy="12.16" r="2.27"/>
 							<g id="_Groupe_" data-name="&lt;Groupe&gt;">
-								<path id="_Tracé_5" data-name="&lt;Tracé&gt;" class="cls-2" d="M5.42,3.7a10.8,10.8,0,0,1,13.16-.22l.81-1.09A12.15,12.15,0,0,0,1.27,17.58L2.48,17A10.84,10.84,0,0,1,5.42,3.7Z"/>
-								<path id="_Tracé_6" data-name="&lt;Tracé&gt;" class="cls-3" d="M21.84,7.4a10.85,10.85,0,0,1-3,13.2A10.69,10.69,0,0,1,6,21.06l-.81,1.08A11.32,11.32,0,0,0,12,24.35a12.44,12.44,0,0,0,7.72-2.69A12.22,12.22,0,0,0,23.05,6.8Z"/>
+								<path id="_Tracé_5" data-name="&lt;Tracé&gt;" class="arc-circle-pleasant show cls-2" d="M5.42,3.7a10.8,10.8,0,0,1,13.16-.22l.81-1.09A12.15,12.15,0,0,0,1.27,17.58L2.48,17A10.84,10.84,0,0,1,5.42,3.7Z"/>
+								<path id="_Tracé_6" data-name="&lt;Tracé&gt;" class="arc-circle-pleasant show cls-3" d="M21.84,7.4a10.85,10.85,0,0,1-3,13.2A10.69,10.69,0,0,1,6,21.06l-.81,1.08A11.32,11.32,0,0,0,12,24.35a12.44,12.44,0,0,0,7.72-2.69A12.22,12.22,0,0,0,23.05,6.8Z"/>
 								<path id="_Tracé_7" data-name="&lt;Tracé&gt;" class="cls-4" d="M249.62,3.7a10.8,10.8,0,0,1,13.16-.22l.81-1.09a12.15,12.15,0,0,0-18.11,15.18l1.21-.61A10.83,10.83,0,0,1,249.62,3.7Z"/>
 								<path id="_Tracé_8" data-name="&lt;Tracé&gt;" class="cls-5" d="M266,7.4a10.85,10.85,0,0,1-3,13.2,10.69,10.69,0,0,1-12.88.47l-.81,1.08a11.32,11.32,0,0,0,6.81,2.2,12.44,12.44,0,0,0,7.72-2.69A12.21,12.21,0,0,0,267.25,6.8Z"/>
-								<rect id="_Tracé_9" data-name="&lt;Tracé&gt;" class="cls-6" x="77.72" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_10" data-name="&lt;Tracé&gt;" class="cls-6" x="72.55" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_11" data-name="&lt;Tracé&gt;" class="cls-6" x="82.89" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_12" data-name="&lt;Tracé&gt;" class="cls-6" x="93.24" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_13" data-name="&lt;Tracé&gt;" class="cls-6" x="88.06" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_14" data-name="&lt;Tracé&gt;" class="cls-6" x="67.37" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_15" data-name="&lt;Tracé&gt;" class="cls-6" x="57.03" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_16" data-name="&lt;Tracé&gt;" class="cls-6" x="46.68" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_17" data-name="&lt;Tracé&gt;" class="cls-6" x="41.51" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_18" data-name="&lt;Tracé&gt;" class="cls-6" x="98.41" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_19" data-name="&lt;Tracé&gt;" class="cls-6" x="51.86" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_20" data-name="&lt;Tracé&gt;" class="cls-6" x="36.34" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_21" data-name="&lt;Tracé&gt;" class="cls-6" x="62.2" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_22" data-name="&lt;Tracé&gt;" class="cls-6" x="31.17" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_23" data-name="&lt;Tracé&gt;" class="cls-6" x="150.13" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_24" data-name="&lt;Tracé&gt;" class="cls-6" x="134.62" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_25" data-name="&lt;Tracé&gt;" class="cls-6" x="139.79" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_26" data-name="&lt;Tracé&gt;" class="cls-6" x="144.96" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_27" data-name="&lt;Tracé&gt;" class="cls-6" x="103.58" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_28" data-name="&lt;Tracé&gt;" class="cls-6" x="160.48" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_29" data-name="&lt;Tracé&gt;" class="cls-6" x="129.44" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_30" data-name="&lt;Tracé&gt;" class="cls-6" x="113.93" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_31" data-name="&lt;Tracé&gt;" class="cls-6" x="108.75" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_32" data-name="&lt;Tracé&gt;" class="cls-6" x="155.31" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_33" data-name="&lt;Tracé&gt;" class="cls-6" x="176.24" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_34" data-name="&lt;Tracé&gt;" class="cls-6" x="165.9" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_35" data-name="&lt;Tracé&gt;" class="cls-6" x="171.07" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_36" data-name="&lt;Tracé&gt;" class="cls-6" x="186.59" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_37" data-name="&lt;Tracé&gt;" class="cls-6" x="191.63" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_38" data-name="&lt;Tracé&gt;" class="cls-6" x="181.41" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_39" data-name="&lt;Tracé&gt;" class="cls-6" x="124.27" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_40" data-name="&lt;Tracé&gt;" class="cls-6" x="119.1" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_41" data-name="&lt;Tracé&gt;" class="cls-6" x="227.5" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_42" data-name="&lt;Tracé&gt;" class="cls-6" x="211.98" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_43" data-name="&lt;Tracé&gt;" class="cls-6" x="217.15" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_44" data-name="&lt;Tracé&gt;" class="cls-6" x="222.32" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_45" data-name="&lt;Tracé&gt;" class="cls-6" x="237.84" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_46" data-name="&lt;Tracé&gt;" class="cls-6" x="206.81" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_47" data-name="&lt;Tracé&gt;" class="cls-6" x="232.67" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_48" data-name="&lt;Tracé&gt;" class="cls-6" x="201.63" y="11.45" width="1.29" height="0.98"/>
-								<rect id="_Tracé_49" data-name="&lt;Tracé&gt;" class="cls-6" x="196.46" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_9" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="77.72" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_10" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="72.55" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_11" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="82.89" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_12" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="93.24" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_13" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="88.06" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_14" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="67.37" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_15" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="57.03" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_16" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="46.68" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_17" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="41.51" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_18" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="98.41" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_19" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="51.86" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_20" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="36.34" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_21" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="62.2" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_22" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="31.17" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_23" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="150.13" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_24" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="134.62" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_25" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="139.79" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_26" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="144.96" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_27" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="103.58" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_28" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="160.48" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_29" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="129.44" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_30" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="113.93" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_31" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="108.75" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_32" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="155.31" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_33" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="176.24" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_34" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="165.9" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_35" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="171.07" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_36" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="186.59" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_37" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="191.63" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_38" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="181.41" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_39" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="124.27" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_40" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="119.1" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_41" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="227.5" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_42" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="211.98" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_43" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="217.15" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_44" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="222.32" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_45" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="237.84" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_46" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="206.81" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_47" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="232.67" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_48" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="201.63" y="11.45" width="1.29" height="0.98"/>
+								<rect id="_Tracé_49" data-name="&lt;Tracé&gt;" class="svg_line_1 cls-6" x="196.46" y="11.45" width="1.29" height="0.98"/>
 								<path id="_Tracé_50" data-name="&lt;Tracé&gt;" class="cls-2" d="M485.64,3.7a10.8,10.8,0,0,1,13.16-.22l.81-1.09A12.15,12.15,0,0,0,481.5,17.58L482.7,17A10.84,10.84,0,0,1,485.64,3.7Z"/>
 								<path id="_Tracé_51" data-name="&lt;Tracé&gt;" class="cls-3" d="M502.06,7.4a10.85,10.85,0,0,1-3,13.2,10.69,10.69,0,0,1-12.88.47l-.81,1.08a11.32,11.32,0,0,0,6.81,2.2,12.44,12.44,0,0,0,7.72-2.69A12.22,12.22,0,0,0,503.27,6.8Z"/>
 								<path id="_Tracé_52" data-name="&lt;Tracé&gt;" class="cls-4" d="M720.93,3.7a10.8,10.8,0,0,1,13.16-.22l.81-1.09a12.15,12.15,0,0,0-18.11,15.18L718,17A10.83,10.83,0,0,1,720.93,3.7Z"/>
@@ -222,7 +222,8 @@
 
 <script>
 import $ from 'jquery';
-import { getTypeState } from '../vuex/getters';
+import { getTypeState, getWritingState, getTellingState } from '../vuex/getters';
+import { TweenMax } from 'gsap';
 
 import {
 	setTypeState,
@@ -238,7 +239,9 @@ export default {
 	},
 	vuex: {
 		getters: {
-			getType: getTypeState
+			getType: getTypeState,
+			getWriting: getWritingState,
+			getTelling: getTellingState,
 		},
 		actions: {
 			setType: setTypeState,
@@ -253,7 +256,29 @@ export default {
 
 		}
 	},
+	watch: {
+		getType: function(){
+			if(this.getType == true){
+				// this.tweenThisIn();
+			}
+		},
+		getTelling: function() {
+			if(this.getTelling == false && this.getType.statut == true){
+				this.tweenThisIn();
+			}
+		},
+		getWriting: function() {
+			if(this.getWriting == false && this.getType.statut == true){
+				this.tweenThisIn();
+			}
+		},
+
+	},
+	created: function() {
+	},
 	mounted: function() {
+		this.setTweens();
+
 		this.allPoints = $('#svg_type .single-point');
 		this.pointPleasant = $('#svg_type #point_1');
 		this.pointSurprising = $('#svg_type #point_2');
@@ -290,6 +315,28 @@ export default {
 				console.log("painful");
 				this.pointPainful.addClass('show');
 			}
+		},
+		setTweens: function(event) {
+			this.myTweenIn = new TimelineMax({paused: true, delay: 0.5});
+			this.myTweenIn.from("#container_type .text", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenIn.from("#container_type .type-secret", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenIn.staggerFrom("#container_type .hitbox-wrapper .secret-type", 0.75, {y: 15, opacity: 0, ease:Power3.easeInOut}, 0.2, 0);
+			this.myTweenIn.from("#container_type .controls .previous", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+			this.myTweenIn.from("#container_type .controls .save", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+
+			this.myTweenOut = new TimelineMax({paused: true, delay: 0, onComplete: this.goTo});
+			this.myTweenOut.to("#container_type .text", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenOut.to("#container_type .type-secret", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenIn.staggerTo("#container_type .hitbox-wrapper .secret-type", 0.75, {y: 0, opacity: 0, ease:Power3.easeInOut}, 0.2, 0);
+			this.myTweenOut.to("#container_type .controls .previous", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
+			this.myTweenOut.to("#container_type .controls .save", 1, {x: 40, opacity: 0, ease:Expo.easeOut}, 0);
+
+		},
+		tweenThisIn: function(event) {
+			this.myTweenIn.play(0);
+		},
+		tweenThisOut: function(){
+			this.myTweenOut.play(0);
 		}
 	}
 }
@@ -354,7 +401,7 @@ export default {
 						opacity: 1;
 					}
 				}
-			}
+		}
 
 			.hitbox-wrapper {
 				.secret-type {

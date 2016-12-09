@@ -1,6 +1,6 @@
 <template>
 	<div class="telling">
-		<div class="container">
+		<div id="container_telling" class="container">
 			<div class="text">Now you can tell your secret here...</div>
 			<div class="wrapper-icon">
 				<div class="circle" @click="ctaDoSomething">
@@ -164,12 +164,14 @@ export default {
 	watch: {
 		getTelling: function(){
 			if(this.getTelling == true){
+				this.tweenThisIn();
 				this.getMicrophoneUser();
 			}
 		}
 	},
 	mounted: function() {
 		//TODO état micro on off / popin d'avertissement etc..
+		this.setTweens();
 
 		this.ctaCircle = $('.wrapper-icon .circle');
 		this.iconMicrophone = this.ctaCircle.find('.microphone');
@@ -185,12 +187,21 @@ export default {
 	},
 	methods:{
 		type: function(event){
-			this.setTelling();
-			this.setType("telling");
+			this.currentGoTo = "type";
+			this.tweenThisOut();
 		},
 		previous: function(event){
-			this.setTelling();
-			this.setShareChoice();
+			this.currentGoTo = "previous";
+			this.tweenThisOutBack();
+		},
+		goTo: function(event){
+			if(this.currentGoTo == "type") {
+				this.setTelling();
+				this.setType("telling");
+			} else if (this.currentGoTo == "previous") {
+				this.setTelling();
+				this.setShareChoice("previous");
+			}
 		},
 		getMicrophoneUser: function(){
 			// navigator.getUserMedia = ( navigator.getUserMedia ||
@@ -219,6 +230,7 @@ export default {
 				console.log("current microphone & change");
 				this.iconMicrophone.removeClass('show');
 				this.wrapperText.removeClass('show');
+
 				setTimeout(function(){
 					that.iconPause.addClass('show');
 					that.subTextTimer.addClass('show');
@@ -241,7 +253,41 @@ export default {
 			} else if(this.iconPlay.hasClass('show')) {
 				console.log("current play & change");
 			}
-		}
+		},
+		setTweens: function(event){
+			this.myTweenIn = new TimelineMax({paused: true, delay: 1});
+			this.myTweenIn.from("#container_telling .text", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+			this.myTweenIn.from("#container_telling textarea", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+			this.myTweenIn.from("#container_telling .wrapper-icon", 1, {opacity: 0, ease:Power4.easeOut}, 0.3);
+			this.myTweenIn.from("#container_telling .wrapper-text", 1, {opacity: 0, ease:Power4.easeOut}, 0.3);
+			this.myTweenIn.from("#container_telling .controls .next", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+			this.myTweenIn.from("#container_telling .controls .previous", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+
+			this.myTweenOut = new TimelineMax({paused: true, delay: 0, onComplete: this.goTo});
+			this.myTweenOut.to("#container_telling .text", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOut.to("#container_telling textarea", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOut.to("#container_telling .wrapper-icon", 1, {opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOut.to("#container_telling .wrapper-text", 1, {opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOut.to("#container_telling .controls .next", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOut.to("#container_telling .controls .previous", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+
+			this.myTweenOutBack = new TimelineMax({paused: true, delay: 0, onComplete: this.goTo});
+			this.myTweenOutBack.to("#container_telling .text", 1, {x: -40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOutBack.to("#container_telling textarea", 1, {x: -40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOutBack.to("#container_telling .wrapper-icon", 1, {opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOutBack.to("#container_telling .wrapper-text", 1, {opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOutBack.to("#container_telling .controls .next", 1, {x: -40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOutBack.to("#container_telling .controls .previous", 1, {x: -40, opacity: 0, ease:Power4.easeIn}, 0);
+		},
+		tweenThisIn: function(event) {
+			this.myTweenIn.play(0);
+		},
+		tweenThisOut: function(event) {
+			this.myTweenOut.play(0);
+		},
+		tweenThisOutBack: function(event) {
+			this.myTweenOutBack.play(0);
+		},
 	}
 }
 </script>

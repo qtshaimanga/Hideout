@@ -369,6 +369,7 @@ export default {
 				}
 
 				#svg_spacebar_blank_top {
+					display: none;
 					.cls-1 {
 						fill:#fff;
 					}

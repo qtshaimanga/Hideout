@@ -30,8 +30,8 @@ export const setTellingState = function ({ dispatch, state }) {
   dispatch('TELLING')
 }
 
-export const setShareChoiceState = function ({ dispatch, state }) {
-  dispatch('SHARECHOICE')
+export const setShareChoiceState = function ({ dispatch, state }, from) {
+  dispatch('SHARECHOICE', from)
 }
 
 export const setTypeState = function ({ dispatch, state }, from) {

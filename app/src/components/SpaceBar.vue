@@ -17,7 +17,7 @@ import{
 	getWebglHomeState,
 	getSoundState,
 	getPlayerState,
-	getInstanciateSpaceBarState
+	getInstanciateSpaceBarState,
 } from '../vuex/getters';
 
 import {
@@ -25,7 +25,8 @@ import {
 	setChoiceState,
 	setWebglHomeState,
 	setLockControlsState,
-	setSkipeState
+	setSkipeState,
+	setCallTerrainCollisionneurState
 } from '../vuex/actions'
 
 export default {
@@ -41,14 +42,15 @@ export default {
 			getWebglHome: getWebglHomeState,
 			getSound: getSoundState,
 			getPlayer: getPlayerState,
-			getInstanciateSpaceBar: getInstanciateSpaceBarState
+			getInstanciateSpaceBar: getInstanciateSpaceBarState,
 		},
 		actions: {
 			setPres : setPresState,
 			setChoice: setChoiceState,
 			setWebglHome: setWebglHomeState,
 			setLockControls: setLockControlsState,
-			setSkipe: setSkipeState
+			setSkipe: setSkipeState,
+			setCallTerrainCollisionneur: setCallTerrainCollisionneurState
 		}
 	},
 	data () {
@@ -100,6 +102,12 @@ export default {
 			if(bar != null){
 				TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
 			}
+
+			if(this.counter == 0.7){
+				console.log("set terrain");
+				this.setCallTerrainCollisionneur();
+			}
+
 			if(this.counter == 1.2){
 				if(this.getPres == true){
 					this.setPres();

@@ -42,7 +42,9 @@ import {
 	getChoiceState,
 	getShareState,
 	getSoundState,
-	getPlayerState
+	getPlayerState,
+	getCallTerrainCollisionneurState,
+	getSavingState
 } from '../vuex/getters';
 
 import { setSecretMessageState,
@@ -52,6 +54,7 @@ import { setSecretMessageState,
 	setMoveObjectState,
 	setCursorProgressState,
 	setPlayerState,
+	setSavingTerrainCollisionneurState
 } from '../vuex/actions';
 
 import SecretMessage from './SecretMessage';
@@ -76,6 +79,8 @@ export default {
 			getShare: getShareState,
 			getSound: getSoundState,
 			getPlayer: getPlayerState,
+			getCallTerrainCollisionneur: getCallTerrainCollisionneurState,
+			getSaving : getSavingState
 		},
 		actions: {
 			setSecretMessage: setSecretMessageState,
@@ -85,6 +90,7 @@ export default {
 			setMoveObject: setMoveObjectState,
 			setCursorProgress: setCursorProgressState,
 			setPlayer: setPlayerState,
+			setSavingTerrainCollisionneur: setSavingTerrainCollisionneurState
 		}
 	},
 	data () {
@@ -128,9 +134,22 @@ export default {
 		getChoice: function(){
 			this.splineMove();
 		},
+		getCallTerrainCollisionneur: function(){
+			this.setSavingTerrainCollisionneur(this.scene.camera.position);
+		},
+		getSaving: function(){
+			this.listOfDataSecret.push(this.getSaving);
+
+			var secret = [];
+			secret.push(this.getSaving);
+			var newSecret = this.buildSecret(secret);
+
+			this.listOfObjectSecret.push(newSecret[0]);
+
+		}
 	},
 	created: function(){
-		this.downVec = new THREE.Vector3(0,-1,1);
+		this.downVec = new THREE.Vector3(0,-1000,1);
 		this.frontVec = new THREE.Vector3(0,0,1);
 		this.cameraRay = new THREE.Raycaster();
 	},
@@ -178,6 +197,7 @@ export default {
 			});
 		},
 		getRequestAllSecrets: function(callback){
+			this.listOfDataSecret = data;
 			this.setData(data);
 			callback(data);
 		},
@@ -212,11 +232,12 @@ export default {
 				if(secret && secret.mesh) {
 					globeSecret = new GlobeSecret();
 
-					secret.mesh.name = data[i].typeSecret+"_"+i;
+					var range = this.listOfObjectSecret.length+i;
+					secret.mesh.name = data[i].typeSecret+"_"+range;
 					secret.mesh.position.set(x, y, z);
 					this.scene.add(secret.mesh);
 
-					globeSecret.mesh.name = data[i].typeSecret+"_"+i;
+					globeSecret.mesh.name = data[i].typeSecret+"_"+range;
 					globeSecret.mesh.position.set(x, y, z);
 					this.scene.add(globeSecret.mesh);
 
@@ -233,9 +254,14 @@ export default {
 			this.cameraRay.setFromCamera(this.downVec, this.scene.camera);
 
 			var intersectCamera = this.cameraRay.intersectObject( this.terrain.mesh, true );
+
 			if(intersectCamera!= 0 && intersectCamera[0].distance <= 50){
 				this.scene.camera.position.y = this.scene.camera.position.y + 50 - intersectCamera[0].distance;
 			}
+
+			// if(intersectCamera[0] != undefined){
+			// 	return intersectCamera[0].point;
+			// }
 		},
 		modelCollisionneur: function(){
 			this.cameraRay.setFromCamera(this.frontVec, this.scene.camera);
@@ -369,8 +395,8 @@ export default {
 
 		},
 		getRequestSecretMessageById: function(meshId){
-			var text = this.getData[meshId].text;
-			return text
+			var text = this.listOfDataSecret[Number(meshId)].text;
+			return text;
 		},
 		postRequestSecretById: function(){
 			//var data = this.getDataToSave(); //is an array() with object(rowid, typeContaint, sound, text, typeSecret, x, y, z, date )

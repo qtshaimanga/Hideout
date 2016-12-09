@@ -34,9 +34,76 @@ const state = {
 
   sound: true,
   player: Object(),
+
+  saving: Object(),
+  savingRowid: String(),
+  savingTypeContaint: String(),
+  savingSound: String(),
+  savingText: String(),
+  savingTypeSecret: String(),
+  savingX: String(),
+  savingY: String(),
+  savingZ: String(),
+  savingTexture: String(),
+  savingColor: String(),
+  savingDate: String(),
+  savingTerrainCollisionneur: Object(),
+  callTerrainCollisionneur: true
 }
 
 const mutations = {
+  SAVINGROWID(state, savingRowid)
+  {
+    state.savingRowid = savingRowid
+  },
+  SAVINGTYPECONTAINT(state, savingTypeContaint)
+  {
+    state.savingTypeContaint = savingTypeContaint
+  },
+  SAVINGSOUND(state, savingSound)
+  {
+    state.savingSound = savingSound
+  },
+  SAVINGTEXT(state, savingText)
+  {
+    state.savingText = savingText
+  },
+  SAVINGTYPESECRET(state, savingTypeSecret)
+  {
+    state.savingTypeSecret = savingTypeSecret
+  },
+  SAVINGX(state, savingX)
+  {
+    state.savingX = savingX
+  },
+  SAVINGY(state, savingY)
+  {
+    state.savingY = savingY
+  },
+  SAVINGZ(state, savingZ)
+  {
+    state.savingZ = savingZ
+  },
+  SAVINGTEXTURE(state, savingTexture)
+  {
+    state.savingTexture = savingTexture
+  },
+  SAVINGCOLOR(state, savingColor)
+  {
+    state.savingColor = savingColor
+  },
+  SAVINGDATE(state, savingDate)
+  {
+    state.savingDate = savingDate
+  },
+  SAVINGTERRAIN(state, savingTerrainCollisionneur)
+  {
+    state.savingTerrainCollisionneur = savingTerrainCollisionneur
+  },
+  CALLTERRAIN(state, callTerrainCollisionneur)
+  {
+    state.callTerrainCollisionneur = state.callTerrainCollisionneur ? false : state.callTerrainCollisionneur ? false : true;
+  },
   PRES (state)
   {
     state.pres = state.pres ? false : state.pres ? false : true;
@@ -135,6 +202,10 @@ const mutations = {
   PLAYER(state, player)
   {
     state.player = player
+  },
+  SAVING(state, saving)
+  {
+    state.saving = saving
   },
 }
 

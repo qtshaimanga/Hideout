@@ -96,7 +96,9 @@
 import {
 	setShareChoiceState,
 	setWritingState,
-	setTellingState } from '../vuex/actions';
+	setTellingState,
+	setLockControlsState
+ } from '../vuex/actions';
 
 	export default {
 		components: {
@@ -107,7 +109,8 @@ import {
 			actions: {
 				setShareChoice: setShareChoiceState,
 				setWriting: setWritingState,
-				setTelling: setTellingState
+				setTelling: setTellingState,
+				setLockControls: setLockControlsState
 			}
 		},
 		data () {
@@ -148,6 +151,7 @@ import {
 			writing: function(event){
 				this.setShareChoice();
 				this.setWriting();
+				this.setLockControls();
 			},
 			telling: function(event){
 				this.setShareChoice();

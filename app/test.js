@@ -133,4 +133,4 @@ console.log(secondControl);
 
 
 
-//POST // SPLINE // AUIDO FAKE ? // contour de map // browser // cors // mobile // optim // optim SVG
+//AUIDO V2 // contour de map // browser // cors // mobile // optim // optim SVG

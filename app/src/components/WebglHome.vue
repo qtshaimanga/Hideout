@@ -1,7 +1,7 @@
 <template>
 	<div class="webgl-home" id="webgl">
 		<cursor-loader v-show="cursorLoader"></cursor-loader>
-		<secret-message v-show="this.getSecretMessage" :meshId="meshId" :meshText="meshText"></secret-message>
+		<secret-message v-show="this.getSecretMessage" :meshId="meshId" :meshText="meshText" :meshSound="meshSound"></secret-message>
 	</div>
 </template>
 
@@ -108,6 +108,7 @@ export default {
 			objectIntersected: String(),
 			meshId: Number(),
 			meshText: String(),
+			meshSound: String(),
 			listOfDataSecret: Array(),
 			listOfObjectSecret: Array(),
 			loading: 100,
@@ -296,7 +297,7 @@ export default {
 								if(this.getFocus == false){
 									this.meshId = this.getMeshId(intersectSecret[0].object.name);
 									this.meshText = this.getRequestSecretMessageById(this.meshId);
-
+									this.meshSound = this.getRequestSecretSoundById(this.meshId);
 									this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
 									this.moveObject(this.scene.camera, intersectSecret[0].object);
 									this.setFocus();
@@ -338,8 +339,8 @@ export default {
 			var startPosition = startObject.position;
 			var endPosition = endObject.position;
 
-			var curveCtrlLength1 = 220;
-			var curveCtrlLength2 = 220;
+			var curveCtrlLength1 = 150;
+			var curveCtrlLength2 = 150;
 			var offset = new THREE.Vector2(80, 200);
 			var upVec = new THREE.Vector3( 0, 1, 0);
 
@@ -380,7 +381,7 @@ export default {
 				"value": 0
 			};
 
-			this.tweenMove = TweenMax.to(cameraTransition, 2, {
+			this.tweenMove = TweenMax.to(cameraTransition, 3, {
 				value: 1,
 				onUpdate: function(){
 					var positionUpdated = curve.getPoint(cameraTransition.value);
@@ -397,6 +398,10 @@ export default {
 		getRequestSecretMessageById: function(meshId){
 			var text = this.listOfDataSecret[Number(meshId)].text;
 			return text;
+		},
+		getRequestSecretSoundById: function(meshId){
+			var sound = this.listOfDataSecret[Number(meshId)].sound;
+			return sound;
 		},
 		postRequestSecretById: function(){
 			//var data = this.getDataToSave(); //is an array() with object(rowid, typeContaint, sound, text, typeSecret, x, y, z, date )
@@ -426,7 +431,12 @@ export default {
 				this.tick += 0.001;
 			}
 			var splinePoint = this.spline.curve.getPoint(this.tick);
-			this.scene.camera.lookAt(splinePoint);
+
+			var tangent = this.spline.curve.getTangent(this.tick).normalize();
+			// var look = -tangent.clone().sub(splinePoint);
+
+			this.scene.camera.lookAt(-tangent);
+
 			this.scene.camera.position.z = splinePoint.z;
 			this.scene.camera.position.x = splinePoint.x;
 			this.scene.camera.position.y = splinePoint.y;

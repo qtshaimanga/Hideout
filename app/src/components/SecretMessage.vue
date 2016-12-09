@@ -3,6 +3,7 @@
 		<!-- <div class="close">
 		<p @click="setFocus"></p>
 	</div> -->
+	<audio controls id="audioPlayer"></audio>
 	<div class="close" @click="setFocus"></div>
 	<div class="container">
 		<svg version="1.1" id="svg_quote" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -21,21 +22,24 @@
 		</svg>
 		<span>I have a secret</span>
 		<p>{{ meshText }}</p>
+		<div class="playing" v-if="meshSound" @click="playRecord">Play</div>
 	</div>
 </div>
 </template>
 
 <script>
+import { getFocusState } from "../vuex/getters"
 import { setFocusState } from '../vuex/actions';
 
 export default {
 	name: "secretMessage",
-	props: ['meshId', 'meshText'],
+	props: ['meshId', 'meshText', 'meshSound'],
 	components: {
 
 	},
 	vuex: {
 		getters: {
+			getFocus: getFocusState
 		},
 		actions: {
 			setFocus: setFocusState
@@ -43,18 +47,30 @@ export default {
 	},
 	data () {
 		return {
-
 		}
 	},
 	watch: {
-		mesh: function(){
-			console.log("tets mesh id : ", this.meshId);
+		meshSound: function(){
+			this.meshSound;
+		},
+		getFocus: function(){
+			if(this.getFocus == false){
+				this.stopRecord();
+			}
 		}
 	},
 	mounted: function() {
 	},
 	methods:{
-
+		playRecord: function(){
+			console.log("play");
+			this.audioPlayer = document.getElementById('audioPlayer')
+			this.audioPlayer.src = this.meshSound;
+			this.audioPlayer.play();
+		},
+		stopRecord: function(){
+			this.audioPlayer.pause();
+		},
 	}
 }
 </script>
@@ -62,6 +78,10 @@ export default {
 <style lang="scss" scoped>
 @import "../styles/variables";
 @import "../styles/mixins";
+
+audio{
+	opacity: 0;
+}
 
 .secret-message {
 	position: absolute;
@@ -142,6 +162,14 @@ export default {
 	p {
 		@include text-standard();
 		color: $color-white;
+	}
+
+	.playing{
+		@include text-standard();
+		margin-left: 2.5rem;
+		&:hover{
+			cursor: pointer;
+		}
 	}
 }
 

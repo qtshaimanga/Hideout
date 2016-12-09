@@ -331,6 +331,7 @@ export default {
 					"color": this.color,
 					"date": day+"/"+month+"/"+year
 				}
+
 				this.setSaving(data);
 			}
 		},

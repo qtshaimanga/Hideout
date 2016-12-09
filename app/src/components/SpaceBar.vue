@@ -76,7 +76,7 @@ export default {
 		audio: function(){
 			var audioFile = require("../../static/sounds/spacebar.mp3");
 			this.audioPlayer = new Audio(audioFile);
-				this.audioPlayer.addEventListener('ended', function() {
+			this.audioPlayer.addEventListener('ended', function() {
 			    this.currentTime = 0;
 			    this.play();
 			}, false);
@@ -104,7 +104,6 @@ export default {
 			}
 
 			if(this.counter == 0.7){
-				console.log("set terrain");
 				this.setCallTerrainCollisionneur();
 			}
 

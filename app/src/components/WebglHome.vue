@@ -44,7 +44,8 @@ import {
 	getSoundState,
 	getPlayerState,
 	getCallTerrainCollisionneurState,
-	getSavingState
+	getSavingState,
+	getCursorLoaderState
 } from '../vuex/getters';
 
 import { setSecretMessageState,
@@ -54,7 +55,8 @@ import { setSecretMessageState,
 	setMoveObjectState,
 	setCursorProgressState,
 	setPlayerState,
-	setSavingTerrainCollisionneurState
+	setSavingTerrainCollisionneurState,
+	setCursorLoaderState
 } from '../vuex/actions';
 
 import SecretMessage from './SecretMessage';
@@ -80,7 +82,8 @@ export default {
 			getSound: getSoundState,
 			getPlayer: getPlayerState,
 			getCallTerrainCollisionneur: getCallTerrainCollisionneurState,
-			getSaving : getSavingState
+			getSaving : getSavingState,
+			getCursorLoader: getCursorLoaderState
 		},
 		actions: {
 			setSecretMessage: setSecretMessageState,
@@ -90,7 +93,8 @@ export default {
 			setMoveObject: setMoveObjectState,
 			setCursorProgress: setCursorProgressState,
 			setPlayer: setPlayerState,
-			setSavingTerrainCollisionneur: setSavingTerrainCollisionneurState
+			setSavingTerrainCollisionneur: setSavingTerrainCollisionneurState,
+			setCursorLoader: setCursorLoaderState
 		}
 	},
 	data () {
@@ -465,9 +469,15 @@ export default {
 			if(this.getPres == true | this.getChoice == true | this.getShare == true ){	// | this.getShare == true | this.getChoice == true
 				this.splineMove();
 				this.cursorLoader = false;
+				if(this.getCursorLoader == true){
+					this.setCursorLoader();
+				}
 			}else{
 				this.scene.remove(this.spline);
 				this.cursorLoader = true;
+				if(this.getCursorLoader == false){
+					this.setCursorLoader();
+				}
 			}
 
 			this.particules.update();

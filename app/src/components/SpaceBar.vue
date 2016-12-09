@@ -26,7 +26,8 @@ import {
 	setWebglHomeState,
 	setLockControlsState,
 	setSkipeState,
-	setCallTerrainCollisionneurState
+	setCallTerrainCollisionneurState,
+	setShareChoiceState
 } from '../vuex/actions'
 
 export default {
@@ -50,7 +51,8 @@ export default {
 			setWebglHome: setWebglHomeState,
 			setLockControls: setLockControlsState,
 			setSkipe: setSkipeState,
-			setCallTerrainCollisionneur: setCallTerrainCollisionneurState
+			setCallTerrainCollisionneur: setCallTerrainCollisionneurState,
+			setShareChoice: setShareChoiceState
 		}
 	},
 	data () {

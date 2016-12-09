@@ -64,12 +64,16 @@ export default {
 	methods:{
 		playRecord: function(){
 			console.log("play");
-			this.audioPlayer = document.getElementById('audioPlayer')
-			this.audioPlayer.src = this.meshSound;
-			this.audioPlayer.play();
+			if(this.meshSound != ""){
+				this.audioPlayer = document.getElementById('audioPlayer')
+				this.audioPlayer.src = this.meshSound;
+				this.audioPlayer.play();
+			}
 		},
 		stopRecord: function(){
-			this.audioPlayer.pause();
+			if(this.meshSound != ""){
+				this.audioPlayer.pause();
+			}
 		},
 	}
 }

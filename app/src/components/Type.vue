@@ -318,8 +318,8 @@ export default {
 				var month = date.getMonth().toString();
 				var year = date.getFullYear().toString();
 				var rowid = this.getData.length + 1;
-				var x = this.getSavingTerrainCollisionneur.x + 0 ;
-				var z = this.getSavingTerrainCollisionneur.z + 0;
+				var x = this.getSavingTerrainCollisionneur.x - 50 ;
+				var z = this.getSavingTerrainCollisionneur.z - 50;
 				var y = this.getSavingTerrainCollisionneur.y;
 				var data = {
 					"rowid": rowid.toString(),

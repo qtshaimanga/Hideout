@@ -28,7 +28,7 @@
 			<div class="tuto"  v-show="getCursorLoader">Hold SPACEBAR to share a secret</div>
 
 			<transition name="fade" mode="out-in">
-				<loader v-if="getLoader"></loader>
+				<!-- <loader v-if="getLoader"></loader> -->
 			</transition>
 			<transition name="fade" mode="out-in">
 				<p class="skip" v-show="!getSkipe && !getAbout" @click="skip">skip</p><!-- && getPres -->

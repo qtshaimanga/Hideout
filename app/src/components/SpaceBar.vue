@@ -8,6 +8,7 @@
 
 <script>
 import { TweenMax } from 'gsap';
+import { CSSPlugin } from 'gsap';
 
 import{
 	getSkipeState,
@@ -79,8 +80,8 @@ export default {
 			var audioFile = require("../../static/sounds/spacebar.mp3");
 			this.audioPlayer = new Audio(audioFile);
 			this.audioPlayer.addEventListener('ended', function() {
-			    this.currentTime = 0;
-			    this.play();
+				this.currentTime = 0;
+				this.play();
 			}, false);
 		},
 		checkPressed: function(element){

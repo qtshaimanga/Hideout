@@ -19,7 +19,7 @@ const state = {
   writing: false,
   telling: false,
   type: { statut:false, from:"home"},
-  sharechoice: false,
+  sharechoice: { statut:false, from:"home"},
 
   secretMessage: false,
 
@@ -140,9 +140,10 @@ const mutations = {
   {
     state.telling = state.telling ? false : state.telling ? false : true;
   },
-  SHARECHOICE (state)
+  SHARECHOICE (state, from)
   {
-    state.sharechoice = state.sharechoice ? false : state.sharechoice ? false : true;
+    state.sharechoice.statut = state.sharechoice.statut ? false : state.sharechoice.statut ? false : true;
+	state.sharechoice.from = from;
   },
   TYPE (state, from)
   {

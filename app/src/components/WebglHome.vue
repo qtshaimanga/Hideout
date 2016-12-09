@@ -481,9 +481,9 @@ export default {
 			}
 
 			this.particules.update();
-      this.meshCollisionneur();
-      this.terrainCollisionneur();
-    },
+			this.meshCollisionneur();
+			this.terrainCollisionneur();
+		},
 		modelBuilder: function(){
 			var model = new Model();
 			for(let i=0; i<=models.length-1; i++){
@@ -495,14 +495,14 @@ export default {
 			}
 		},
 		soundBuilder: function(displayer){
-				var audio= require('../../static/sounds/backgroundLoop.mp3');
-				var audioLoader = new Sound(this.scene.camera);
-				var that = this;
-				audioLoader.load(this.terrain.mesh, audio, function(displayer, player){
-					that.setPlayer(player);
-				});
+			var audio= require('../../static/sounds/backgroundLoop.mp3');
+			var audioLoader = new Sound(this.scene.camera);
+			var that = this;
+			audioLoader.load(this.terrain.mesh, audio, function(displayer, player){
+				that.setPlayer(player);
+			});
 		},
-  }
+	}
 
 }
 </script>

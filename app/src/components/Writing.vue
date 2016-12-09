@@ -1,6 +1,6 @@
 <template>
 	<div class="writing">
-		<div class="container">
+		<div id="container_writing" class="container">
 			<div class="text">Now you can write your secret here.</div>
 			<textarea v-model="textarea" placeholder="I have a secret..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'I have a secret...'" name="textarea"></textarea>
 			<div class="controls">
@@ -107,27 +107,70 @@ export default {
 		}
 	},
 	watch: {
+		getWriting: function(){
+			if(this.getWriting == true){
+				this.tweenThisIn();
+			}
+		},
 		getChoice: function(){
 			this.textarea = "";
 		}
 	},
 	mounted: function() {
+		this.setTweens();
 	},
 	methods:{
-		type: function(event){	//next
-			if(this.textarea != ""){
-				this.setWriting();
-				this.setType("writing");
+		type: function(event){
+			this.currentGoTo = "type";
+			this.tweenThisOut();
+		},
+		previous: function(event){
+			this.currentGoTo = "previous";
+			this.tweenThisOutBack();
+		},
+		goTo: function(event){
+			if(this.currentGoTo == "type") {
 				this.setSavingTypeContaint("text");
 				this.setSavingSound("");
 				this.setSavingText(this.textarea);
+				this.setWriting();
+				this.setType("writing");
+				this.setLockControls();
+			} else if (this.currentGoTo == "previous") {
+				this.setWriting();
+				this.setShareChoice("previous");
 			}
-			this.setLockControls();
 		},
-		previous: function(event){	//previous
-			this.setWriting();
-			this.setShareChoice();
+		setTweens: function(event){
+			this.myTweenIn = new TimelineMax({paused: true, delay: 1});
+			this.myTweenIn.from("#container_writing .text", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+			this.myTweenIn.from("#container_writing textarea", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+			this.myTweenIn.from("#container_writing .controls .next", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+			this.myTweenIn.from("#container_writing .controls .previous", 1, {x: -40, opacity: 0, ease:Power4.easeOut}, 0);
+
+			this.myTweenOut = new TimelineMax({paused: true, delay: 0, onComplete: this.goTo});
+			this.myTweenOut.to("#container_writing .text", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOut.to("#container_writing textarea", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOut.to("#container_writing .controls .next", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOut.to("#container_writing .controls .previous", 1, {x: 40, opacity: 0, ease:Power4.easeIn}, 0);
+
+			this.myTweenOutBack = new TimelineMax({paused: true, delay: 0, onComplete: this.goTo});
+			this.myTweenOutBack.to("#container_writing .text", 1, {x: -40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOutBack.to("#container_writing textarea", 1, {x: -40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOutBack.to("#container_writing .controls .next", 1, {x: -40, opacity: 0, ease:Power4.easeIn}, 0);
+			this.myTweenOutBack.to("#container_writing .controls .previous", 1, {x: -40, opacity: 0, ease:Power4.easeIn}, 0);
 		},
+		tweenThisIn: function(event) {
+			this.myTweenIn.play(0);
+		},
+		tweenThisOut: function(event) {
+			if(this.textarea != ""){
+				this.myTweenOut.play(0);
+			}
+		},
+		tweenThisOutBack: function(event) {
+			this.myTweenOutBack.play(0);
+		}
 	}
 }
 </script>
@@ -178,11 +221,11 @@ export default {
 			resize: none;
 			outline: none;
 			color: $color-white;
-			background-image: -webkit-linear-gradient(left, transparent 10px, transparent 10px), -webkit-linear-gradient(right, transparent 10px, transparent 10px), -webkit-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
-			background-image: -moz-linear-gradient(left, transparent 10px, transparent 10px), -moz-linear-gradient(right, transparent 10px, transparent 10px), -moz-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
-			background-image: -ms-linear-gradient(left, transparent 10px, transparent 10px), -ms-linear-gradient(right, transparent 10px, transparent 10px), -ms-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
-			background-image: -o-linear-gradient(left, transparent 10px, transparent 10px), -o-linear-gradient(right, transparent 10px, transparent 10px), -o-linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
-			background-image: linear-gradient(left, transparent 10px, transparent 10px), linear-gradient(right, transparent 10px, transparent 10px), linear-gradient(transparent 30px, #ccc 30px, #ccc 31px, transparent 31px);
+			background-image: -webkit-linear-gradient(left, transparent 10px, transparent 10px), -webkit-linear-gradient(right, transparent 10px, transparent 10px), -webkit-linear-gradient(transparent 30px, rgba(#ccc, 0.15) 30px, rgba(#ccc, 0.15) 31px, transparent 31px);
+			background-image: -moz-linear-gradient(left, transparent 10px, transparent 10px), -moz-linear-gradient(right, transparent 10px, transparent 10px), -moz-linear-gradient(transparent 30px, rgba(#ccc, 0.15) 30px, rgba(#ccc, 0.15) 31px, transparent 31px);
+			background-image: -ms-linear-gradient(left, transparent 10px, transparent 10px), -ms-linear-gradient(right, transparent 10px, transparent 10px), -ms-linear-gradient(transparent 30px, rgba(#ccc, 0.15) 30px, rgba(#ccc, 0.15) 31px, transparent 31px);
+			background-image: -o-linear-gradient(left, transparent 10px, transparent 10px), -o-linear-gradient(right, transparent 10px, transparent 10px), -o-linear-gradient(transparent 30px, rgba(#ccc, 0.15) 30px, rgba(#ccc, 0.15) 31px, transparent 31px);
+			background-image: linear-gradient(left, transparent 10px, transparent 10px), linear-gradient(right, transparent 10px, transparent 10px), linear-gradient(transparent 30px, rgba(#ccc, 0.15) 30px, rgba(#ccc, 0.15) 31px, transparent 31px);
 			background-size: 100% 100%, 100% 100%, 100% 31px;
 			box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 			line-height: 31px;

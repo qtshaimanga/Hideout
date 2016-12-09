@@ -93,3 +93,47 @@ export const setSoundState = function ({ dispatch, state }) {
 export const setPlayerState = function({ dispatch, state }, player){
 	dispatch('PLAYER', player)
 }
+
+export const setSavingState = function({ dispatch, state }, saving){
+	dispatch('SAVING', saving)
+}
+
+export const setSavingRowidState = function({ dispatch, state }, savingRowid){
+	dispatch('SAVINGROWID', savingRowid)
+}
+export const setSavingTypeContaintState = function({ dispatch, state }, savingTypeContaint){
+	dispatch('SAVINGTYPECONTAINT', savingTypeContaint)
+}
+export const setSavingSoundState = function({ dispatch, state }, savingSound){
+	dispatch('SAVINGSOUND', savingSound)
+}
+export const setSavingTextState = function({ dispatch, state }, savingText){
+	dispatch('SAVINGTEXT', savingText)
+}
+export const setSavingTypeSecretState = function({ dispatch, state }, savingTypeSecret){
+	dispatch('SAVINGTYPESECRET', savingTypeSecret)
+}
+export const setSavingXState = function({ dispatch, state }, savingX){
+	dispatch('SAVINGX', savingX)
+}
+export const setSavingYState = function({ dispatch, state }, savingY){
+	dispatch('SAVINGY', savingY)
+}
+export const setSavingZState = function({ dispatch, state }, savingZ){
+	dispatch('SAVINGZ', savingZ)
+}
+export const setSavingTextureState = function({ dispatch, state }, savingTexture){
+	dispatch('SAVINGTEXTURE', savingTexture)
+}
+export const setSavingColorState = function({ dispatch, state }, savingColor){
+	dispatch('SAVINGCOLOR', savingColor)
+}
+export const setSavingDateState = function({ dispatch, state }, savingDate){
+	dispatch('SAVINGDATE', savingDate)
+}
+export const setSavingTerrainCollisionneurState = function({ dispatch, state }, savingTerrainCollisionneur){
+	dispatch('SAVINGTERRAIN', savingTerrainCollisionneur)
+}
+export const setCallTerrainCollisionneurState = function({ dispatch, state }, callTerrainCollisionneur){
+	dispatch('CALLTERRAIN', callTerrainCollisionneur)
+}

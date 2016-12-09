@@ -9,3 +9,16 @@ AllowOverride All
 ErrorLog <%= current_path %>/logs/error.log
 CustomLog <%= current_path %>/logs/access.log combined
 </VirtualHost>
+
+<!--
+<VirtualHost *:80>
+ServerAdmin  q.tshaimanga@gmail.com
+ServerName hideout.quentintshaimanga.fr
+ServerAlias www.hideout.quentintshaimanga.fr
+DocumentRoot /var/www/hideout/
+<Directory /var/www/hideout/ >
+AllowOverride All
+</Directory>
+ErrorLog /var/www/hideout/logs/error.log
+CustomLog /var/www/hideout/logs/access.log combined
+</VirtualHost> -->

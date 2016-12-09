@@ -1,7 +1,7 @@
 <template>
 	<div class="webgl-home" id="webgl">
 		<cursor-loader v-show="cursorLoader"></cursor-loader>
-		<secret-message v-show="this.getSecretMessage" :meshId="meshId" :meshText="meshText"></secret-message>
+		<secret-message v-show="this.getSecretMessage" :meshId="meshId" :meshText="meshText" :meshSound="meshSound"></secret-message>
 	</div>
 </template>
 
@@ -42,7 +42,10 @@ import {
 	getChoiceState,
 	getShareState,
 	getSoundState,
-	getPlayerState
+	getPlayerState,
+	getCallTerrainCollisionneurState,
+	getSavingState,
+	getCursorLoaderState
 } from '../vuex/getters';
 
 import { setSecretMessageState,
@@ -52,6 +55,8 @@ import { setSecretMessageState,
 	setMoveObjectState,
 	setCursorProgressState,
 	setPlayerState,
+	setSavingTerrainCollisionneurState,
+	setCursorLoaderState
 } from '../vuex/actions';
 
 import SecretMessage from './SecretMessage';
@@ -76,6 +81,9 @@ export default {
 			getShare: getShareState,
 			getSound: getSoundState,
 			getPlayer: getPlayerState,
+			getCallTerrainCollisionneur: getCallTerrainCollisionneurState,
+			getSaving : getSavingState,
+			getCursorLoader: getCursorLoaderState
 		},
 		actions: {
 			setSecretMessage: setSecretMessageState,
@@ -85,6 +93,8 @@ export default {
 			setMoveObject: setMoveObjectState,
 			setCursorProgress: setCursorProgressState,
 			setPlayer: setPlayerState,
+			setSavingTerrainCollisionneur: setSavingTerrainCollisionneurState,
+			setCursorLoader: setCursorLoaderState
 		}
 	},
 	data () {
@@ -102,6 +112,7 @@ export default {
 			objectIntersected: String(),
 			meshId: Number(),
 			meshText: String(),
+			meshSound: String(),
 			listOfDataSecret: Array(),
 			listOfObjectSecret: Array(),
 			loading: 100,
@@ -128,9 +139,22 @@ export default {
 		getChoice: function(){
 			this.splineMove();
 		},
+		getCallTerrainCollisionneur: function(){
+			this.setSavingTerrainCollisionneur(this.scene.camera.position);
+		},
+		getSaving: function(){
+			this.listOfDataSecret.push(this.getSaving);
+
+			var secret = [];
+			secret.push(this.getSaving);
+			var newSecret = this.buildSecret(secret);
+
+			this.listOfObjectSecret.push(newSecret[0]);
+
+		}
 	},
 	created: function(){
-		this.downVec = new THREE.Vector3(0,-1,1);
+		this.downVec = new THREE.Vector3(0,-1000,1);
 		this.frontVec = new THREE.Vector3(0,0,1);
 		this.cameraRay = new THREE.Raycaster();
 	},
@@ -178,6 +202,7 @@ export default {
 			});
 		},
 		getRequestAllSecrets: function(callback){
+			this.listOfDataSecret = data;
 			this.setData(data);
 			callback(data);
 		},
@@ -212,11 +237,12 @@ export default {
 				if(secret && secret.mesh) {
 					globeSecret = new GlobeSecret();
 
-					secret.mesh.name = data[i].typeSecret+"_"+i;
+					var range = this.listOfObjectSecret.length+i;
+					secret.mesh.name = data[i].typeSecret+"_"+range;
 					secret.mesh.position.set(x, y, z);
 					this.scene.add(secret.mesh);
 
-					globeSecret.mesh.name = data[i].typeSecret+"_"+i;
+					globeSecret.mesh.name = data[i].typeSecret+"_"+range;
 					globeSecret.mesh.position.set(x, y, z);
 					this.scene.add(globeSecret.mesh);
 
@@ -233,9 +259,14 @@ export default {
 			this.cameraRay.setFromCamera(this.downVec, this.scene.camera);
 
 			var intersectCamera = this.cameraRay.intersectObject( this.terrain.mesh, true );
+
 			if(intersectCamera!= 0 && intersectCamera[0].distance <= 50){
 				this.scene.camera.position.y = this.scene.camera.position.y + 50 - intersectCamera[0].distance;
 			}
+
+			// if(intersectCamera[0] != undefined){
+			// 	return intersectCamera[0].point;
+			// }
 		},
 		modelCollisionneur: function(){
 			this.cameraRay.setFromCamera(this.frontVec, this.scene.camera);
@@ -267,15 +298,15 @@ export default {
 						this.$el.style.cursor = "default";
 					}else{
 						if(time == this.loading){
-							if(this.getFocus == false){
-								this.meshId = this.getMeshId(intersectSecret[0].object.name);
-								this.meshText = this.getRequestSecretMessageById(this.meshId);
-
-								this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
-								this.moveObject(this.scene.camera, intersectSecret[0].object);
-								this.setFocus();
-								this.setLockControls();
-							}
+								if(this.getFocus == false){
+									this.meshId = this.getMeshId(intersectSecret[0].object.name);
+									this.meshText = this.getRequestSecretMessageById(this.meshId);
+									this.meshSound = this.getRequestSecretSoundById(this.meshId);
+									this.currentObjectSecret = this.listOfObjectSecret[this.meshId][0];
+									this.moveObject(this.scene.camera, intersectSecret[0].object);
+									this.setFocus();
+									this.setLockControls();
+								}
 						}else if(time <= this.loading){
 							this.setCursorProgress(time+1);
 							if(time == 1){
@@ -312,8 +343,8 @@ export default {
 			var startPosition = startObject.position;
 			var endPosition = endObject.position;
 
-			var curveCtrlLength1 = 220;
-			var curveCtrlLength2 = 220;
+			var curveCtrlLength1 = 150;
+			var curveCtrlLength2 = 150;
 			var offset = new THREE.Vector2(80, 200);
 			var upVec = new THREE.Vector3( 0, 1, 0);
 
@@ -354,7 +385,7 @@ export default {
 				"value": 0
 			};
 
-			this.tweenMove = TweenMax.to(cameraTransition, 2, {
+			this.tweenMove = TweenMax.to(cameraTransition, 3, {
 				value: 1,
 				onUpdate: function(){
 					var positionUpdated = curve.getPoint(cameraTransition.value);
@@ -369,8 +400,12 @@ export default {
 
 		},
 		getRequestSecretMessageById: function(meshId){
-			var text = this.getData[meshId].text;
-			return text
+			var text = this.listOfDataSecret[Number(meshId)].text;
+			return text;
+		},
+		getRequestSecretSoundById: function(meshId){
+			var sound = this.listOfDataSecret[Number(meshId)].sound;
+			return sound;
 		},
 		postRequestSecretById: function(){
 			//var data = this.getDataToSave(); //is an array() with object(rowid, typeContaint, sound, text, typeSecret, x, y, z, date )
@@ -400,7 +435,12 @@ export default {
 				this.tick += 0.001;
 			}
 			var splinePoint = this.spline.curve.getPoint(this.tick);
-			this.scene.camera.lookAt(splinePoint);
+
+			var tangent = this.spline.curve.getTangent(this.tick).normalize();
+			// var look = -tangent.clone().sub(splinePoint);
+
+			this.scene.camera.lookAt(-tangent);
+
 			this.scene.camera.position.z = splinePoint.z;
 			this.scene.camera.position.x = splinePoint.x;
 			this.scene.camera.position.y = splinePoint.y;
@@ -429,9 +469,15 @@ export default {
 			if(this.getPres == true | this.getChoice == true | this.getShare == true ){	// | this.getShare == true | this.getChoice == true
 				this.splineMove();
 				this.cursorLoader = false;
+				if(this.getCursorLoader == true){
+					this.setCursorLoader();
+				}
 			}else{
 				this.scene.remove(this.spline);
 				this.cursorLoader = true;
+				if(this.getCursorLoader == false){
+					this.setCursorLoader();
+				}
 			}
 
 			this.particules.update();

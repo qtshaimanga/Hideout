@@ -86,7 +86,6 @@ export default {
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
-	// background-color: transparent;
 	background-color: rgba(23, 25, 38, 0.5);
 	color: $color-white;
 	display: flex;
@@ -131,15 +130,15 @@ export default {
 			}
 
 			#logo_gobelins {
-				width: 35%;
-				height: 20%;
+				width: 25%;
+				height: 10%;
 				opacity: 0.4;
 				margin-right: 20px;
 			}
 
 			#logo_cci {
-				width: 15%;
-				height: 15%;
+				width: 10%;
+				height: 10%;
 				opacity: 0.4;
 			}
 		}

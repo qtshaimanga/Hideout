@@ -59,7 +59,6 @@ export default {
 				progress: this.progressValue,
 				onUpdate: () => {
 					this.progress = Math.ceil( this.progress );
-					console.log(this.progress);
 					TweenMax.set('#the-loader .progress_bar', {width: this.progress*3});
 				}
 			});

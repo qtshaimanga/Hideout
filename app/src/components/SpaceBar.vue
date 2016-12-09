@@ -18,7 +18,7 @@ import{
 	getWebglHomeState,
 	getSoundState,
 	getPlayerState,
-	getInstanciateSpaceBarState
+	getInstanciateSpaceBarState,
 } from '../vuex/getters';
 
 import {
@@ -26,7 +26,9 @@ import {
 	setChoiceState,
 	setWebglHomeState,
 	setLockControlsState,
-	setSkipeState
+	setSkipeState,
+	setCallTerrainCollisionneurState,
+	setShareChoiceState
 } from '../vuex/actions'
 
 export default {
@@ -42,14 +44,16 @@ export default {
 			getWebglHome: getWebglHomeState,
 			getSound: getSoundState,
 			getPlayer: getPlayerState,
-			getInstanciateSpaceBar: getInstanciateSpaceBarState
+			getInstanciateSpaceBar: getInstanciateSpaceBarState,
 		},
 		actions: {
 			setPres : setPresState,
 			setChoice: setChoiceState,
 			setWebglHome: setWebglHomeState,
 			setLockControls: setLockControlsState,
-			setSkipe: setSkipeState
+			setSkipe: setSkipeState,
+			setCallTerrainCollisionneur: setCallTerrainCollisionneurState,
+			setShareChoice: setShareChoiceState
 		}
 	},
 	data () {
@@ -75,7 +79,7 @@ export default {
 		audio: function(){
 			var audioFile = require("../../static/sounds/spacebar.mp3");
 			this.audioPlayer = new Audio(audioFile);
-				this.audioPlayer.addEventListener('ended', function() {
+			this.audioPlayer.addEventListener('ended', function() {
 				this.currentTime = 0;
 				this.play();
 			}, false);
@@ -101,6 +105,11 @@ export default {
 			if(bar != null){
 				TweenMax.to(bar, 0.2, { scaleX: this.counter, ease: Expo.easeOut});
 			}
+
+			if(this.counter == 0.7){
+				this.setCallTerrainCollisionneur();
+			}
+
 			if(this.counter == 1.2){
 				if(this.getPres == true){
 					this.setPres();

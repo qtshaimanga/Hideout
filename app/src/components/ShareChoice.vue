@@ -100,7 +100,9 @@ import { getShareChoiceState, getChoiceState, getWritingState, getTellingState }
 import {
 	setShareChoiceState,
 	setWritingState,
-	setTellingState } from '../vuex/actions';
+	setTellingState,
+	setLockControlsState
+ } from '../vuex/actions';
 
 	export default {
 		vuex: {
@@ -113,7 +115,8 @@ import {
 			actions: {
 				setShareChoice: setShareChoiceState,
 				setWriting: setWritingState,
-				setTelling: setTellingState
+				setTelling: setTellingState,
+				setLockControls: setLockControlsState
 			}
 		},
 		data () {
@@ -183,6 +186,11 @@ import {
 			writing: function(event){
 				this.currentGoTo = "writing";
 				this.tweenThisOut();
+// =======
+// 				// this.setShareChoice();
+// 				// this.setWriting();
+// 				// this.setLockControls();
+// >>>>>>> 86284117fcb448576b0e9b910e67ee26e27eb927
 			},
 			telling: function(event){
 				this.currentGoTo = "telling";
@@ -192,6 +200,7 @@ import {
 				if(this.currentGoTo == "writing") {
 					this.setShareChoice();
 					this.setWriting();
+					this.setLockControls();
 				} else if (this.currentGoTo == "telling") {
 					this.setShareChoice();
 					this.setTelling();

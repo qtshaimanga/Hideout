@@ -222,15 +222,36 @@
 
 <script>
 import $ from 'jquery';
-import { getTypeState, getWritingState, getTellingState } from '../vuex/getters';
 import { TweenMax } from 'gsap';
+import {
+	getTypeState,
+	getWritingState,
+	getTellingState,
+	getDataState,
+	getSavingTypeContaintState,
+	getSavingSoundState,
+	getSavingTextState,
+	getSavingTypeSecretState,
+	getSavingTextureState,
+	getSavingColorState,
+	getSavingTerrainCollisionneurState
+} from '../vuex/getters';
 
 import {
 	setTypeState,
 	setShareState,
 	setWebglHomeState,
 	setWritingState,
-	setTellingState
+	setTellingState,
+	setSavingTypeSecretState,
+	setSavingTextureState,
+	setSavingColorState,
+	setSavingDateState,
+	setSavingXState,
+	setSavingYState,
+	setSavingZState,
+	setSavingState,
+	setShareChoiceState
 } from '../vuex/actions';
 
 export default {
@@ -242,18 +263,37 @@ export default {
 			getType: getTypeState,
 			getWriting: getWritingState,
 			getTelling: getTellingState,
+			getData: getDataState,
+			getSavingTypeContaint: getSavingTypeContaintState,
+			getSavingSound: getSavingSoundState,
+			getSavingText: getSavingTextState,
+			getSavingTypeSecret: getSavingTypeSecretState,
+			getSavingTexture: getSavingTextureState,
+			getSavingColor: getSavingColorState,
+			getSavingTerrainCollisionneur: getSavingTerrainCollisionneurState
 		},
 		actions: {
 			setType: setTypeState,
 			setShare: setShareState,
 			setWebglHome: setWebglHomeState,
 			setWriting: setWritingState,
-			setTelling: setTellingState
+			setTelling: setTellingState,
+			setSavingTypeSecret: setSavingTypeSecretState,
+			setSavingTexture: setSavingTextureState,
+			setSavingColor: setSavingColorState,
+			setSavingDate: setSavingDateState,
+			setSavingX: setSavingXState,
+			setSavingY: setSavingYState,
+			setSavingZ: setSavingZState,
+			setSaving: setSavingState,
+			setShareChoice: setShareChoiceState
 		}
 	},
 	data () {
 		return {
-
+			color: String(),
+			texture: String(),
+			typeSecret: String()
 		}
 	},
 	watch: {
@@ -268,13 +308,16 @@ export default {
 			}
 		},
 		getWriting: function() {
+			console.log(">>>> ");
 			if(this.getWriting == false && this.getType.statut == true){
+				console.log(">>>>  TYPEE_");
 				this.tweenThisIn();
 			}
 		},
 
 	},
 	created: function() {
+
 	},
 	mounted: function() {
 		this.setTweens();
@@ -284,11 +327,39 @@ export default {
 		this.pointSurprising = $('#svg_type #point_2');
 		this.pointAshamed = $('#svg_type #point_3');
 		this.pointPainful = $('#svg_type #point_4');
+
+		this.allPoints.removeClass('show');
 	},
 	methods:{
 		save: function(event){
-			this.setType();
-			this.setShare();
+			if(this.typeSecret != ""){
+				this.setType();
+				this.setShare();
+				this.setShareChoice();
+				var date = new Date();
+				var day = date.getDay().toString();
+				var month = date.getMonth().toString();
+				var year = date.getFullYear().toString();
+				var rowid = this.getData.length + 1;
+				var x = this.getSavingTerrainCollisionneur.x - 50 ;
+				var z = this.getSavingTerrainCollisionneur.z - 50;
+				var y = this.getSavingTerrainCollisionneur.y;
+				var data = {
+					"rowid": rowid.toString(),
+					"typeContaint": this.getSavingTypeContaint,
+					"sound": this.getSavingSound,
+					"text": this.getSavingText,
+					"typeSecret": this.typeSecret,
+					"x": x.toString(),
+					"y": y.toString(),
+					"z": z.toString(),
+					"texture": this.texture,
+					"color": this.color,
+					"date": day+"/"+month+"/"+year
+				}
+
+				this.setSaving(data);
+			}
 		},
 		previous: function(event){
 			if(this.getType.from == "writing"){
@@ -300,21 +371,40 @@ export default {
 			}
 		},
 		selectSecret: function(event) {
+			var secretType = String();
 			var currentTarget = $(event.target);
+			var color = ["0x4eeff3", "0x0000ff"];
+			var randomIntTexture = this.getRandomInt(1, 12);
+			var randomIntColor = this.getRandomInt(0, 1);
+
 			this.allPoints.removeClass('show');
+
+			this.color = "";
+			this.texture = "";
+			this.typeSecret = "";
+
 			if(currentTarget.hasClass('pleasant')) {
-				console.log("pleasant");
+				secretType = "sugar"
+				this.color = color[randomIntColor];
+
 				this.pointPleasant.addClass('show');
 			} else if (currentTarget.hasClass('surprising')) {
-				console.log("surprising");
+				secretType = "explosion";
+				this.texture = "texture"+randomIntTexture;
+
 				this.pointSurprising.addClass('show');
 			} else if (currentTarget.hasClass('ashamed')) {
-				console.log("ashamed");
+				secretType = "confuse"
+				this.texture = "texture"+randomIntTexture;
+
 				this.pointAshamed.addClass('show');
 			} else if(currentTarget.hasClass('painful')) {
-				console.log("painful");
+				secretType = "toxic"
+				this.texture = "texture"+randomIntTexture;
+
 				this.pointPainful.addClass('show');
 			}
+			this.typeSecret = secretType;
 		},
 		setTweens: function(event) {
 			this.myTweenIn = new TimelineMax({paused: true, delay: 0.5});
@@ -327,7 +417,7 @@ export default {
 			this.myTweenOut = new TimelineMax({paused: true, delay: 0, onComplete: this.goTo});
 			this.myTweenOut.to("#container_type .text", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
 			this.myTweenOut.to("#container_type .type-secret", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
-			this.myTweenIn.staggerTo("#container_type .hitbox-wrapper .secret-type", 0.75, {y: 0, opacity: 0, ease:Power3.easeInOut}, 0.2, 0);
+			this.myTweenOut.staggerTo("#container_type .hitbox-wrapper .secret-type", 0.75, {y: 0, opacity: 0, ease:Power3.easeInOut}, 0.2);
 			this.myTweenOut.to("#container_type .controls .previous", 1, {x: -40, opacity: 0, ease:Expo.easeOut}, 0);
 			this.myTweenOut.to("#container_type .controls .save", 1, {x: 40, opacity: 0, ease:Expo.easeOut}, 0);
 
@@ -337,6 +427,10 @@ export default {
 		},
 		tweenThisOut: function(){
 			this.myTweenOut.play(0);
+			console.log(">>>> TEEN OUT");
+		},
+		getRandomInt: function (min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
 		}
 	}
 }

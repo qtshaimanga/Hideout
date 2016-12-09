@@ -2,7 +2,7 @@
 	<div class="writing">
 		<div id="container_writing" class="container">
 			<div class="text">Now you can write your secret here.</div>
-			<textarea placeholder="I have a secret..." name="textarea"></textarea>
+			<textarea v-model="textarea" placeholder="I have a secret..." onfocus="this.placeholder = ''" onblur="this.placeholder = 'I have a secret...'" name="textarea"></textarea>
 			<div class="controls">
 				<div class="previous" @click="previous">previous
 					<svg class="svg_previous" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 18.87 1">
@@ -58,7 +58,11 @@
 </template>
 
 <script>
-import { getWritingState } from '../vuex/getters';
+import {
+	getWritingState ,
+	getSavingState,
+	getChoiceState
+} from '../vuex/getters';
 
 import {
 	setTypeState,
@@ -66,7 +70,11 @@ import {
 	setShareChoiceState,
 	setInstanciateWebglHomeState,
 	setWebglHomeState,
-	setLockControlsState
+	setLockControlsState,
+	setSavingState,
+	setSavingTypeContaintState,
+	setSavingSoundState,
+	setSavingTextState
 } from '../vuex/actions';
 
 export default {
@@ -75,7 +83,9 @@ export default {
 	},
 	vuex: {
 		getters: {
-			getWriting: getWritingState
+			getWriting: getWritingState,
+			getSaving: getSavingState,
+			getChoice: getChoiceState
 		},
 		actions: {
 			setType: setTypeState,
@@ -83,21 +93,27 @@ export default {
 			setShareChoice: setShareChoiceState,
 			setWebglHome: setWebglHomeState,
 			setInstanciateWebglHome: setInstanciateWebglHomeState,
-			setLockControls: setLockControlsState
+			setLockControls: setLockControlsState,
+			setSaving: setSavingState,
+			setSavingTypeContaint: setSavingTypeContaintState,
+			setSavingSound: setSavingSoundState,
+			setSavingText: setSavingTextState
 		}
 	},
 	data () {
 		return {
-			textarea: String(),
-			letters: String()
+			letters: String(),
+			textarea: ""
 		}
 	},
 	watch: {
 		getWriting: function(){
 			if(this.getWriting == true){
-				window.addEventListener('keydown', this.setTextarea.bind(this));
 				this.tweenThisIn();
 			}
+		},
+		getChoice: function(){
+			this.textarea = "";
 		}
 	},
 	mounted: function() {
@@ -114,8 +130,12 @@ export default {
 		},
 		goTo: function(event){
 			if(this.currentGoTo == "type") {
+				this.setSavingTypeContaint("text");
+				this.setSavingSound("");
+				this.setSavingText(this.textarea);
 				this.setWriting();
 				this.setType("writing");
+				this.setLockControls();
 			} else if (this.currentGoTo == "previous") {
 				this.setWriting();
 				this.setShareChoice("previous");
@@ -144,22 +164,12 @@ export default {
 			this.myTweenIn.play(0);
 		},
 		tweenThisOut: function(event) {
-			this.myTweenOut.play(0);
+			if(this.textarea != ""){
+				this.myTweenOut.play(0);
+			}
 		},
 		tweenThisOutBack: function(event) {
 			this.myTweenOutBack.play(0);
-		},
-		setText: function(event){
-			console.log(event);
-		},
-		setTextarea: function(element){
-			// var textarea = document.getquerySelector('.textarea');
-			// if( textarea == null){
-			// 	console.log("reset");
-			// }
-			this.letters += element.key
-			this.textarea = this.letters.toString();
-			//saut de ligne, effacer, caractere spaciaux etc
 		}
 	}
 }

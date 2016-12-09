@@ -12,11 +12,11 @@ const routes = [
     name : 'home',
     component: Home
   },
-  {
-    path: '*',
-    name: 'notFound',
-    component: NotFound
-  }
+  // {
+  //   path: '*',
+  //   name: 'notFound',
+  //   component: NotFound
+  // }
 ];
 
 const router = new VueRouter({

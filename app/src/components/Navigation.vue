@@ -24,6 +24,9 @@
 					--><span></span>
 				</span>
 			</div>
+
+			<div class="tuto"  v-show="getCursorLoader">Hold SPACEBAR to share a secret</div>
+
 			<transition name="fade" mode="out-in">
 				<!-- <loader v-if="getLoader"></loader> -->
 			</transition>
@@ -44,7 +47,9 @@ import {
 	getPresState,
 	getInstanciateSpaceBarState,
 	getSoundState,
-	getPlayerState
+	getPlayerState,
+	getWebglHomeState,
+	getCursorLoaderState
 } from '../vuex/getters';
 
 import {
@@ -69,7 +74,9 @@ export default {
 			getPres: getPresState,
 			getInstanciateSpaceBar: getInstanciateSpaceBarState,
 			getSound: getSoundState,
-			getPlayer: getPlayerState
+			getPlayer: getPlayerState,
+			getWebglHome: getWebglHomeState,
+			getCursorLoader: getCursorLoaderState
 		},
 		actions: {
 			setSkipe: setSkipeState,
@@ -88,6 +95,8 @@ export default {
 	watch: {
 		getPlayer: function(){
 			this.audioPlayer = true;
+		},
+		getCursorLoader: function(){
 		}
 	},
 	mounted: function() {
@@ -159,6 +168,15 @@ export default {
 		flex-flow: row;
 		justify-content: space-between;
 		align-items: center;
+
+		.tuto{
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			font-family: $font-poppins-light;
+			opacity: 0.1;
+			font-size: 1.2em;
+		}
 
 		div{
 			width: auto;

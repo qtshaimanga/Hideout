@@ -1,6 +1,7 @@
 <template>
 	<div class="telling">
 		<div id="container_telling" class="container">
+			<audio controls id="audioPlayer"></audio>
 			<div class="text">Now you can tell your secret here...</div>
 			<div class="wrapper-icon">
 				<div class="circle" @click="ctaDoSomething">
@@ -59,7 +60,7 @@
 		<div class="circle-sub-text">
 			<div class="timer"><span>0:29</span> / 0:40</div>
 			<div class="duration">0:39</div>
-			<div class="caption">clic to listen your secret<br>or <span>record it again</span> </div>
+			<div class="caption">clic to listen your secret<br>or <span @click="recordAgain">record it again</span> </div>
 		</div>
 	</div>
 	<div class="wrapper-text show">
@@ -130,7 +131,9 @@ import {
 	setTypeState,
 	setTellingState,
 	setShareChoiceState,
-	setWebglHomeState
+	setWebglHomeState,
+	setSavingSoundState,
+	setSavingTypeContaintState
 } from '../vuex/actions';
 
 
@@ -146,7 +149,9 @@ export default {
 			setType: setTypeState,
 			setTelling: setTellingState,
 			setShareChoice: setShareChoiceState,
-			setWebglHome: setWebglHomeState
+			setWebglHome: setWebglHomeState,
+			setSavingSound: setSavingSoundState,
+			setSavingTypeContaint: setSavingTypeContaintState
 		}
 	},
 	data () {
@@ -159,6 +164,9 @@ export default {
 			subText: Object(),
 			subTextTimer: Object(),
 			subTextCaption: Object(),
+			mediaRecorder: Object(),
+			chunks: Array(),
+			audioPlayer: Object(),
 		}
 	},
 	watch: {
@@ -204,25 +212,18 @@ export default {
 			}
 		},
 		getMicrophoneUser: function(){
-			// navigator.getUserMedia = ( navigator.getUserMedia ||
-			// 	navigator.webkitGetUserMedia ||
-			// 	navigator.mozGetUserMedia ||
-			// 	navigator.msGetUserMedia);
 
-			var constraints = { audio: true };
-
-			// navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
-			// 	/* use the stream */
-			// }).catch(function(err) {
-			// 	/* handle the error */
-			// });
-			// navigator.getUserMedia({audio: true}, function(localMediaStream) {
-			// //
-			// //
-			// // }, function(e){
-			// // 	//TODO ajouter l'autorisation
-			// // 	console.log(">>>>>>", e)
-			// // });
+		},
+		recordAgain: function(){
+			// this.iconMicrophone.addClass('show');
+			// this.wrapperText.addClass('show');
+			//
+			// this.iconPause.removeClass('show');
+			// this.subTextTimer.removeClass('show');
+			//
+			// this.subTextDuration.removeClass('show');
+			// this.iconPlay.removeClass('show');
+			// this.subTextCaption.removeClass('show');
 		},
 		ctaDoSomething: function(event) {
 			var that = this;
@@ -230,7 +231,8 @@ export default {
 				console.log("current microphone & change");
 				this.iconMicrophone.removeClass('show');
 				this.wrapperText.removeClass('show');
-
+				this.RecordAudio();
+				// >>>>>>> 86284117fcb448576b0e9b910e67ee26e27eb927
 				setTimeout(function(){
 					that.iconPause.addClass('show');
 					that.subTextTimer.addClass('show');
@@ -240,6 +242,7 @@ export default {
 				console.log("current pause & change");
 				this.iconPause.removeClass('show');
 				this.subTextTimer.removeClass('show');
+				this.stopRecord();
 				setTimeout(function(){
 					that.subTextTimer.hide();
 				});
@@ -251,7 +254,44 @@ export default {
 				}, 250);
 
 			} else if(this.iconPlay.hasClass('show')) {
-				console.log("current play & change");
+				//console.log("current play & change");
+				this.playRecord();
+			}
+		},
+		playRecord: function(){
+			this.audioPlayer.play();
+		},
+		stopRecord: function(){
+			this.mediaRecorder.stop();
+
+			var blob = new Blob(this.chunks, { 'type' : 'audio/ogg; codecs=opus' });
+			this.chunks = [];
+			var audioURL = window.URL.createObjectURL(blob);
+
+			this.setSavingSound(audioURL);
+			this.setSavingTypeContaint("sound");
+
+			this.audioPlayer = document.getElementById('audioPlayer')
+			this.audioPlayer.src = audioURL;
+		},
+		RecordAudio: function(){
+			var that = this;
+			if (navigator.getUserMedia) {
+				navigator.getUserMedia ({ audio: true },
+					function(stream) {
+						that.mediaRecorder = new MediaRecorder(stream);
+						that.mediaRecorder.start();
+						that.chunks = [];
+						that.mediaRecorder.ondataavailable = function(e) {
+							that.chunks.push(e.data);
+						}
+					},
+					function(err) {
+						//console.log('The following gUM error occured: ' + err);
+					}
+				);
+			} else {
+				//console.log('getUserMedia not supported on your browser!');
 			}
 		},
 		setTweens: function(event){
@@ -298,6 +338,10 @@ export default {
 @import "../styles/utils/buttons";
 
 $transition-text: opacity 250ms ease-out;
+
+audio{
+	opacity: 0;
+}
 
 .telling{
 	position: absolute;

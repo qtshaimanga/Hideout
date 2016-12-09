@@ -88,3 +88,50 @@ export function getSoundState (state) {
 export function getPlayerState (state, player) {
   return state.player
 }
+
+export function getSavingState (state, saving) {
+  return state.saving
+}
+
+
+export function getSavingRowidState (state, savingRowid) {
+  return state.savingRowid
+}
+export function getSavingTypeContaintState (state, savingTypeContaint) {
+  return state.savingTypeContaint
+}
+export function getSavingSoundState (state, savingSound) {
+  return state.savingSound
+}
+export function getSavingTextState (state, savingText) {
+  return state.savingText
+}
+export function getSavingTypeSecretState (state, savingTypeSecret) {
+  return state.savingTypeSecret
+}
+export function getSavingXState (state, savingX) {
+  return state.savingX
+}
+export function getSavingYState (state, savingY) {
+  return state.savingY
+}
+export function getSavingZState (state, savingZ) {
+  return state.savingZ
+}
+export function getSavingTextureState (state, savingTexture) {
+  return state.savingTexture
+}
+export function getSavingColorState (state, savingColor) {
+  return state.savingColor
+}
+export function getSavingDateState (state, savingDate) {
+  return state.savingDate
+}
+
+export function getSavingTerrainCollisionneurState (state, savingTerrainCollisionneur) {
+  return state.savingTerrainCollisionneur
+}
+
+export function getCallTerrainCollisionneurState (state, callTerrainCollisionneur) {
+  return state.callTerrainCollisionneur
+}

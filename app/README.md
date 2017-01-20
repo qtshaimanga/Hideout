@@ -1,4 +1,4 @@
-# Starter Front : project.air-edf.io
+# Starter Front : project.DMN.io
 
 > starter with THREE, VUEJS, VUEX, VUE-ROUTER, Capistrano...
 

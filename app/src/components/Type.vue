@@ -160,6 +160,7 @@
 						</g>
 					</g>
 				</svg>
+				</div>
 				<div class="hitbox-wrapper">
 					<div class="secret-type pleasant" @click="selectSecret">Pleasant</div>
 					<div class="secret-type surprising" @click="selectSecret">Surprising</div>
